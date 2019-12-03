@@ -142,6 +142,22 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasMouseMoved(Point mousePosition)
         {
+            if ( _currentShapeDrawerType == ShapeDrawerType.None )
+            {
+                return;
+            }
+            if ( !_isDrawing )
+            {
+                return;
+            }
+            UpdateCurrentDrawingShapeHint(mousePosition);
+        }
+
+        /// <summary>
+        /// Updates the current drawing shape hint.
+        /// </summary>
+        private void UpdateCurrentDrawingShapeHint(Point mousePosition)
+        {
             if ( mousePosition == null )
             {
                 throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
@@ -149,14 +165,6 @@ namespace DualViewsDrawingModel
             if ( !IsInclusiveInCanvas(mousePosition) )
             {
                 // TODO: Throw exception.
-                return;
-            }
-            if ( _currentShapeDrawerType == ShapeDrawerType.None )
-            {
-                return;
-            }
-            if ( !_isDrawing )
-            {
                 return;
             }
             _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
