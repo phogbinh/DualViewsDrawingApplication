@@ -155,11 +155,12 @@ namespace DualViewsDrawingModel
             {
                 return;
             }
-            if ( _isDrawing )
+            if ( !_isDrawing )
             {
-                _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
-                NotifyCanvasRefreshDrawRequested();
+                return;
             }
+            _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
+            NotifyCanvasRefreshDrawRequested();
         }
 
         /// <summary>
