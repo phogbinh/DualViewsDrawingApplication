@@ -16,8 +16,6 @@
                 return _y;
             }
         }
-        private const string ERROR_X_IS_NEGATIVE = "The given x is negative.";
-        private const string ERROR_Y_IS_NEGATIVE = "The given y is negative.";
         private const double X_INITIAL_VALUE = 0.0;
         private const double Y_INITIAL_VALUE = 0.0;
         private double _x;
