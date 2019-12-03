@@ -19,9 +19,9 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             // UI
             _canvas.Resize += (sender, eventArguments) => _model.SetCanvasSize(_canvas.Size.Width, _canvas.Size.Height);
             _canvas.Paint += (sender, eventArguments) => _model.RefreshDrawCanvas(new DrawingFormGraphicsAdapter(eventArguments.Graphics));
-            _canvas.MouseDown += (sender, eventArguments) => _model.HandleCanvasMousePressed(new Point(eventArguments.X, eventArguments.Y));
-            _canvas.MouseMove += (sender, eventArguments) => _model.HandleCanvasMouseMoved(new Point(eventArguments.X, eventArguments.Y));
-            _canvas.MouseUp += (sender, eventArguments) => _model.HandleCanvasMouseReleased(new Point(eventArguments.X, eventArguments.Y));
+            _canvas.MouseDown += HandleCanvasMousePressed;
+            _canvas.MouseMove += HandleCanvasMouseMoved;
+            _canvas.MouseUp += HandleCanvasMouseReleased;
             _rectangleButton.Click += HandleRectangleButtonClicked;
             _lineButton.Click += HandleLineButtonClicked;
             _clearButton.Click += HandleClearButtonClicked;
@@ -43,6 +43,30 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         private void HandleCanvasRefreshDrawRequested()
         {
             Invalidate(true);
+        }
+
+        /// <summary>
+        /// Handles the canvas mouse pressed.
+        /// </summary>
+        private void HandleCanvasMousePressed(object sender, MouseEventArgs eventArguments)
+        {
+            _model.HandleCanvasMousePressed(new Point(eventArguments.X, eventArguments.Y));
+        }
+
+        /// <summary>
+        /// Handles the canvas mouse moved.
+        /// </summary>
+        private void HandleCanvasMouseMoved(object sender, MouseEventArgs eventArguments)
+        {
+            _model.HandleCanvasMouseMoved(new Point(eventArguments.X, eventArguments.Y));
+        }
+
+        /// <summary>
+        /// Handles the canvas mouse released.
+        /// </summary>
+        private void HandleCanvasMouseReleased(object sender, MouseEventArgs eventArguments)
+        {
+            _model.HandleCanvasMouseReleased(new Point(eventArguments.X, eventArguments.Y));
         }
 
         /// <summary>
