@@ -185,12 +185,13 @@ namespace DualViewsDrawingModel
             {
                 return;
             }
-            if ( _isDrawing )
+            if ( !_isDrawing )
             {
-                _shapeDrawersManager.AddShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition, _currentShapeDrawerType);
-                _isDrawing = false;
-                NotifyCanvasRefreshDrawRequested();
+                return;
             }
+            _shapeDrawersManager.AddShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition, _currentShapeDrawerType);
+            _isDrawing = false;
+            NotifyCanvasRefreshDrawRequested();
         }
 
         /// <summary>
