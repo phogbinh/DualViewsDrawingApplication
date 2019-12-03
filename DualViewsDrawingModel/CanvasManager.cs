@@ -14,6 +14,7 @@ namespace DualViewsDrawingModel
         private const string ERROR_CANVAS_HEIGHT_IS_NOT_POSITIVE = "The given canvas height is not positive.";
         private const string ERROR_MOUSE_POSITION_IS_NULL = "The given mouse position is null.";
         private const string ERROR_POINT_IS_NULL = "The given point is null.";
+        private const string ERROR_PREVIOUS_DRAW_HAS_NOT_FINISHED = "Cannot start a new draw when the previous draw has not finished.";
         private double _canvasWidth;
         private double _canvasHeight;
         private ShapeDrawerType _currentShapeDrawerType;
@@ -114,6 +115,10 @@ namespace DualViewsDrawingModel
             {
                 // TODO: Throw exception.
                 return;
+            }
+            if ( _isDrawing )
+            {
+                throw new ApplicationException(ERROR_PREVIOUS_DRAW_HAS_NOT_FINISHED);
             }
             _isDrawing = true;
             _currentDrawingShapeDrawingStartingPoint = mousePosition;
