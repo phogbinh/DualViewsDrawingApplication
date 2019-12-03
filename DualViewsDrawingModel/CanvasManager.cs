@@ -15,6 +15,7 @@ namespace DualViewsDrawingModel
         private const string ERROR_MOUSE_POSITION_IS_NULL = "The given mouse position is null.";
         private const string ERROR_POINT_IS_NULL = "The given point is null.";
         private const string ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED = "Cannot begin a new draw when the previous draw has not ended.";
+        private const string ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS = "The given mouse position is not inclusively inside the canvas.";
         private double _canvasWidth;
         private double _canvasHeight;
         private ShapeDrawerType _currentShapeDrawerType;
@@ -113,8 +114,7 @@ namespace DualViewsDrawingModel
             }
             if ( !IsInclusiveInCanvas(mousePosition) )
             {
-                // TODO: Throw exception.
-                return;
+                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
             }
             if ( _isDrawing )
             {
@@ -160,8 +160,7 @@ namespace DualViewsDrawingModel
             }
             if ( !IsInclusiveInCanvas(mousePosition) )
             {
-                // TODO: Throw exception.
-                return;
+                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
             }
             _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
             NotifyCanvasRefreshDrawRequested();
@@ -186,8 +185,7 @@ namespace DualViewsDrawingModel
         {
             if ( !IsInclusiveInCanvas(mousePosition) )
             {
-                // TODO: Throw exception.
-                return;
+                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
             }
             _shapeDrawersManager.AddShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition, _currentShapeDrawerType);
             _isDrawing = false;
