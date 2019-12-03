@@ -142,10 +142,6 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasMouseMoved(Point mousePosition)
         {
-            if ( _currentShapeDrawerType == ShapeDrawerType.None )
-            {
-                return;
-            }
             if ( !_isDrawing )
             {
                 return;
