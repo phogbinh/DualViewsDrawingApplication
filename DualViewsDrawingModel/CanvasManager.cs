@@ -121,7 +121,7 @@ namespace DualViewsDrawingModel
             {
                 throw new ArgumentNullException(ERROR_POINT_IS_NULL);
             }
-            return point.IsInCanvas(_canvasWidth, _canvasHeight);
+            return point.IsInclusiveInRegion(0, _canvasWidth, 0, _canvasHeight);
         }
 
         /// <summary>

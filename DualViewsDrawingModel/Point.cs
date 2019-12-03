@@ -36,11 +36,11 @@
         }
 
         /// <summary>
-        /// Determines whether [is in canvas].
+        /// Determines whether the point is inclusively inside the given region.
         /// </summary>
-        public bool IsInCanvas(double canvasWidth, double canvasHeight)
+        public bool IsInclusiveInRegion(double regionLowerBoundaryX, double regionUpperBoundaryX, double regionLowerBoundaryY, double regionUpperBoundaryY)
         {
-            return 0 <= _x && _x <= canvasWidth && 0 <= _y && _y <= canvasHeight;
+            return Definitions.IsInclusiveInInterval(_x, regionLowerBoundaryX, regionUpperBoundaryX) && Definitions.IsInclusiveInInterval(_y, regionLowerBoundaryY, regionUpperBoundaryY);
         }
     }
 }
