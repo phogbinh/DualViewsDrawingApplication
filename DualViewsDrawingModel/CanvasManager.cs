@@ -129,6 +129,10 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasMouseMoved(Point mousePosition)
         {
+            if ( mousePosition == null )
+            {
+                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
+            }
             if ( !IsInclusiveInCanvas(mousePosition) )
             {
                 // TODO: Throw exception.
@@ -150,6 +154,10 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasMouseReleased(Point mousePosition)
         {
+            if ( mousePosition == null )
+            {
+                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
+            }
             if ( !IsInclusiveInCanvas(mousePosition) )
             {
                 // TODO: Throw exception.
