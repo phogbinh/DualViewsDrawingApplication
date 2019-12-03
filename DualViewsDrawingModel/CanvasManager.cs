@@ -189,6 +189,14 @@ namespace DualViewsDrawingModel
             {
                 return;
             }
+            EndDrawing(mousePosition);
+        }
+
+        /// <summary>
+        /// Ends the drawing.
+        /// </summary>
+        private void EndDrawing(Point mousePosition)
+        {
             _shapeDrawersManager.AddShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition, _currentShapeDrawerType);
             _isDrawing = false;
             NotifyCanvasRefreshDrawRequested();
