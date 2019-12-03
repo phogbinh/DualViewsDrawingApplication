@@ -172,19 +172,6 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasMouseReleased(Point mousePosition)
         {
-            if ( mousePosition == null )
-            {
-                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
-            }
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                // TODO: Throw exception.
-                return;
-            }
-            if ( _currentShapeDrawerType == ShapeDrawerType.None )
-            {
-                return;
-            }
             if ( !_isDrawing )
             {
                 return;
@@ -197,6 +184,11 @@ namespace DualViewsDrawingModel
         /// </summary>
         private void EndDrawing(Point mousePosition)
         {
+            if ( !IsInclusiveInCanvas(mousePosition) )
+            {
+                // TODO: Throw exception.
+                return;
+            }
             _shapeDrawersManager.AddShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition, _currentShapeDrawerType);
             _isDrawing = false;
             NotifyCanvasRefreshDrawRequested();
