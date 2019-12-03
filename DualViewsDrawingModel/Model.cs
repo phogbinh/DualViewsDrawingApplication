@@ -61,6 +61,14 @@
         }
 
         /// <summary>
+        /// Determines whether [is inclusive in canvas] [the specified point].
+        /// </summary>
+        public bool IsInclusiveInCanvas(Point point)
+        {
+            return _canvasManager.IsInclusiveInCanvas(point);
+        }
+
+        /// <summary>
         /// Handles the canvas mouse moved.
         /// </summary>
         public void HandleCanvasMouseMoved(Point mousePosition)

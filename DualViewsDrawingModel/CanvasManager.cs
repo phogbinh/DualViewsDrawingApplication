@@ -128,7 +128,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Determines whether [is inclusively in canvas] [the specified point].
         /// </summary>
-        private bool IsInclusiveInCanvas(Point point)
+        public bool IsInclusiveInCanvas(Point point)
         {
             if ( point == null )
             {
