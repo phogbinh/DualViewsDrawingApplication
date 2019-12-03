@@ -94,6 +94,18 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasMousePressed(Point mousePosition)
         {
+            if ( _currentShapeDrawerType == ShapeDrawerType.None )
+            {
+                return;
+            }
+            StartDrawing(mousePosition);
+        }
+
+        /// <summary>
+        /// Starts the drawing.
+        /// </summary>
+        private void StartDrawing(Point mousePosition)
+        {
             if ( mousePosition == null )
             {
                 throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
@@ -101,10 +113,6 @@ namespace DualViewsDrawingModel
             if ( !IsInclusiveInCanvas(mousePosition) )
             {
                 // TODO: Throw exception.
-                return;
-            }
-            if ( _currentShapeDrawerType == ShapeDrawerType.None )
-            {
                 return;
             }
             _isDrawing = true;
