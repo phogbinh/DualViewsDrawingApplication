@@ -54,7 +54,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             {
                 return;
             }
-            _model.HandleCanvasMousePressed(new Point(eventArguments.X, eventArguments.Y));
+            _model.HandleCanvasLeftMousePressed(new Point(eventArguments.X, eventArguments.Y));
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             {
                 return;
             }
-            _model.HandleCanvasMouseMoved(new Point(eventArguments.X, eventArguments.Y));
+            _model.HandleCanvasLeftMouseMoved(new Point(eventArguments.X, eventArguments.Y));
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             {
                 return;
             }
-            _model.HandleCanvasMouseReleased(new Point(eventArguments.X, eventArguments.Y));
+            _model.HandleCanvasLeftMouseReleased(new Point(eventArguments.X, eventArguments.Y));
         }
 
         /// <summary>

@@ -53,11 +53,11 @@
         }
 
         /// <summary>
-        /// Handles the canvas mouse pressed.
+        /// Handles the canvas left mouse pressed.
         /// </summary>
-        public void HandleCanvasMousePressed(Point mousePosition)
+        public void HandleCanvasLeftMousePressed(Point mousePosition)
         {
-            _canvasManager.HandleCanvasMousePressed(mousePosition);
+            _canvasManager.HandleCanvasLeftMousePressed(mousePosition);
         }
 
         /// <summary>
@@ -69,19 +69,19 @@
         }
 
         /// <summary>
-        /// Handles the canvas mouse moved.
+        /// Handles the canvas left mouse moved.
         /// </summary>
-        public void HandleCanvasMouseMoved(Point mousePosition)
+        public void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
-            _canvasManager.HandleCanvasMouseMoved(mousePosition);
+            _canvasManager.HandleCanvasLeftMouseMoved(mousePosition);
         }
 
         /// <summary>
-        /// Handles the canvas mouse released.
+        /// Handles the canvas left mouse released.
         /// </summary>
-        public void HandleCanvasMouseReleased(Point mousePosition)
+        public void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
-            _canvasManager.HandleCanvasMouseReleased(mousePosition);
+            _canvasManager.HandleCanvasLeftMouseReleased(mousePosition);
         }
 
         /// <summary>

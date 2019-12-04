@@ -92,9 +92,9 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
-        /// Handles the canvas mouse pressed.
+        /// Handles the canvas left mouse pressed.
         /// </summary>
-        public void HandleCanvasMousePressed(Point mousePosition)
+        public void HandleCanvasLeftMousePressed(Point mousePosition)
         {
             if ( _currentShapeDrawerType == ShapeDrawerType.None )
             {
@@ -138,9 +138,9 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
-        /// Handles the canvas mouse moved.
+        /// Handles the canvas left mouse moved.
         /// </summary>
-        public void HandleCanvasMouseMoved(Point mousePosition)
+        public void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
             if ( !_isDrawing )
             {
@@ -152,7 +152,7 @@ namespace DualViewsDrawingModel
             }
             else
             {
-                HandleCanvasMouseMovedOutBound(mousePosition);
+                HandleCanvasLeftMouseMovedOutBound(mousePosition);
             }
         }
 
@@ -174,22 +174,22 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
-        /// Handles the canvas mouse moved out bound.
+        /// Handles the canvas left mouse moved out bound.
         /// </summary>
-        private void HandleCanvasMouseMovedOutBound(Point mousePosition)
+        private void HandleCanvasLeftMouseMovedOutBound(Point mousePosition)
         {
             if ( mousePosition == null )
             {
                 throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
             }
             mousePosition.ResizeToBeInBoundRegion(0, _canvasWidth, 0, _canvasHeight);
-            HandleCanvasMouseReleased(mousePosition);
+            HandleCanvasLeftMouseReleased(mousePosition);
         }
 
         /// <summary>
-        /// Handles the canvas mouse released.
+        /// Handles the canvas left mouse released.
         /// </summary>
-        public void HandleCanvasMouseReleased(Point mousePosition)
+        public void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
             if ( !_isDrawing )
             {
