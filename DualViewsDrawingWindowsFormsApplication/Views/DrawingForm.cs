@@ -42,7 +42,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleCanvasRefreshDrawRequested()
         {
-            Invalidate(true); // Invokes OnPaint.
+            Invalidate(true); // Triggers canvas Paint event.
         }
 
         /// <summary>
