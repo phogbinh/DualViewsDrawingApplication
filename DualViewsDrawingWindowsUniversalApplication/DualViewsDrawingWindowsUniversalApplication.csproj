@@ -116,6 +116,42 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\DualViewsDrawingModel\CanvasManager.cs">
+      <Link>Models\CanvasManager.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Definitions.cs">
+      <Link>Models\Definitions.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\IGraphics.cs">
+      <Link>Models\IGraphics.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Model.cs">
+      <Link>Models\Model.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Point.cs">
+      <Link>Models\Point.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\ShapeDrawersManager.cs">
+      <Link>Models\ShapeDrawersManager.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\ShapeDrawers\LineDrawer.cs">
+      <Link>Models\ShapeDrawers\LineDrawer.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\ShapeDrawers\RectangleDrawer.cs">
+      <Link>Models\ShapeDrawers\RectangleDrawer.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\ShapeDrawers\ShapeDrawer.cs">
+      <Link>Models\ShapeDrawers\ShapeDrawer.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\ShapeDrawerTypeHelper.cs">
+      <Link>Models\ShapeDrawerTypeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Shapes\Line.cs">
+      <Link>Models\Shapes\Line.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Shapes\Rectangle.cs">
+      <Link>Models\Shapes\Rectangle.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
