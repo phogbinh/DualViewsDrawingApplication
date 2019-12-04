@@ -108,6 +108,18 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
+        /// Determines whether [is inclusively in canvas] [the specified point].
+        /// </summary>
+        private bool IsInclusiveInCanvas(Point point)
+        {
+            if ( point == null )
+            {
+                throw new ArgumentNullException(ERROR_POINT_IS_NULL);
+            }
+            return point.IsInclusiveInRegion(0, _canvasWidth, 0, _canvasHeight);
+        }
+
+        /// <summary>
         /// Begins the drawing.
         /// </summary>
         private void BeginDrawing(Point mousePosition)
@@ -123,18 +135,6 @@ namespace DualViewsDrawingModel
             _isDrawing = true;
             _currentDrawingShapeDrawingStartingPoint = mousePosition;
             _currentDrawingShapeHintShapeDrawer = _shapeDrawersManager.CreateShapeDrawer(mousePosition, mousePosition, _currentShapeDrawerType);
-        }
-
-        /// <summary>
-        /// Determines whether [is inclusively in canvas] [the specified point].
-        /// </summary>
-        private bool IsInclusiveInCanvas(Point point)
-        {
-            if ( point == null )
-            {
-                throw new ArgumentNullException(ERROR_POINT_IS_NULL);
-            }
-            return point.IsInclusiveInRegion(0, _canvasWidth, 0, _canvasHeight);
         }
 
         /// <summary>
