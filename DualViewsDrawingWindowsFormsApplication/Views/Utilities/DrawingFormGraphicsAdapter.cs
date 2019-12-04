@@ -6,7 +6,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views.Utilities
 {
     public class DrawingFormGraphicsAdapter : IGraphics
     {
-        Graphics _graphics;
+        private Graphics _graphics;
 
         public DrawingFormGraphicsAdapter(Graphics graphicsData)
         {

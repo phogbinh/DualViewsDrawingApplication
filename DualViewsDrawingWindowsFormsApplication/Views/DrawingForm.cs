@@ -7,7 +7,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
 {
     public partial class DrawingForm : Form
     {
-        Model _model;
+        private Model _model;
 
         public DrawingForm(Model modelData)
         {
