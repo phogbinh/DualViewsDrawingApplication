@@ -146,7 +146,14 @@ namespace DualViewsDrawingModel
             {
                 return;
             }
-            UpdateCurrentDrawingShapeHint(mousePosition);
+            if ( IsInclusiveInCanvas(mousePosition) )
+            {
+                UpdateCurrentDrawingShapeHint(mousePosition);
+            }
+            else
+            {
+                HandleCanvasMouseMovedOutBound(mousePosition);
+            }
         }
 
         /// <summary>
@@ -164,6 +171,19 @@ namespace DualViewsDrawingModel
             }
             _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
             NotifyCanvasRefreshDrawRequested();
+        }
+
+        /// <summary>
+        /// Handles the canvas mouse moved out bound.
+        /// </summary>
+        private void HandleCanvasMouseMovedOutBound(Point mousePosition)
+        {
+            if ( mousePosition == null )
+            {
+                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
+            }
+            mousePosition.ResizeToBeInBoundRegion(0, _canvasWidth, 0, _canvasHeight);
+            HandleCanvasMouseReleased(mousePosition);
         }
 
         /// <summary>

@@ -22,5 +22,17 @@ namespace DualViewsDrawingModel
             }
             return intervalLowerBoundary <= value && value <= intervalUpperBoundary;
         }
+
+        /// <summary>
+        /// Resizes to be inbound interval.
+        /// </summary>
+        public static void ResizeToBeInBoundInterval(ref double value, double intervalLowerBoundary, double intervalUpperBoundary)
+        {
+            if ( intervalLowerBoundary > intervalUpperBoundary )
+            {
+                throw new ArgumentException(ERROR_INTERVAL_LOWER_BOUNDARY_IS_BIGGER_THAN_UPPER_BOUNDARY);
+            }
+            value = Math.Min(intervalUpperBoundary, Math.Max(intervalLowerBoundary, value));
+        }
     }
 }

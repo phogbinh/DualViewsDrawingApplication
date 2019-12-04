@@ -40,5 +40,14 @@
         {
             return Definitions.IsInclusiveInInterval(_x, regionLowerBoundaryX, regionUpperBoundaryX) && Definitions.IsInclusiveInInterval(_y, regionLowerBoundaryY, regionUpperBoundaryY);
         }
+
+        /// <summary>
+        /// Resizes to be inbound region.
+        /// </summary>
+        public void ResizeToBeInBoundRegion(double regionLowerBoundaryX, double regionUpperBoundaryX, double regionLowerBoundaryY, double regionUpperBoundaryY)
+        {
+            Definitions.ResizeToBeInBoundInterval(ref _x, regionLowerBoundaryX, regionUpperBoundaryX);
+            Definitions.ResizeToBeInBoundInterval(ref _y, regionLowerBoundaryY, regionUpperBoundaryY);
+        }
     }
 }
