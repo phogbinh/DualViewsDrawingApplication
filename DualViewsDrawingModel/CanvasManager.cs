@@ -96,6 +96,10 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasLeftMousePressed(Point mousePosition)
         {
+            if ( !IsInclusiveInCanvas(mousePosition) )
+            {
+                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
+            }
             if ( _currentShapeDrawerType == ShapeDrawerType.None )
             {
                 return;
@@ -111,10 +115,6 @@ namespace DualViewsDrawingModel
             if ( mousePosition == null )
             {
                 throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
-            }
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
             }
             if ( _isDrawing )
             {
@@ -165,10 +165,6 @@ namespace DualViewsDrawingModel
             {
                 throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
             }
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
-            }
             _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
             NotifyCanvasRefreshDrawRequested();
         }
@@ -191,6 +187,10 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
+            if ( !IsInclusiveInCanvas(mousePosition) )
+            {
+                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
+            }
             if ( !_isDrawing )
             {
                 return;
@@ -203,10 +203,6 @@ namespace DualViewsDrawingModel
         /// </summary>
         private void EndDrawing(Point mousePosition)
         {
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
-            }
             _shapeDrawersManager.AddShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition, _currentShapeDrawerType);
             _isDrawing = false;
             NotifyCanvasRefreshDrawRequested();
