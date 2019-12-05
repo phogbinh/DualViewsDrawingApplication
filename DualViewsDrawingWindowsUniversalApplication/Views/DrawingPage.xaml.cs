@@ -10,6 +10,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
 {
     public sealed partial class DrawingPage : Page
     {
+        private const double CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET = 10.0;
         private Model _model;
         private DrawingPageGraphicsAdapter _graphicsAdapter;
 
@@ -101,6 +102,11 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         /// </summary>
         private void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
+            if ( !mousePosition.IsInclusiveInRegion(CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, _model.GetCanvasWidth() - CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, _model.GetCanvasHeight() - CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET) )
+            {
+                _model.HandleCanvasLeftMouseReleased(mousePosition);
+                return;
+            }
             _model.HandleCanvasLeftMouseMoved(mousePosition);
         }
 
