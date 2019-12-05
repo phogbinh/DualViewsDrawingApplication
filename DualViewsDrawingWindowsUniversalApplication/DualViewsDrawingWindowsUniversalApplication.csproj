@@ -159,6 +159,7 @@
     <Compile Include="Views\DrawingPage.xaml.cs">
       <DependentUpon>DrawingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Utilities\DrawingPageGraphicsAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

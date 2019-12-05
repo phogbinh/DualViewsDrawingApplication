@@ -1,4 +1,5 @@
-﻿using DualViewsDrawingWindowsUniversalApplication.Views;
+﻿using DualViewsDrawingModel;
+using DualViewsDrawingWindowsUniversalApplication.Views;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -13,6 +14,8 @@ namespace DualViewsDrawingWindowsUniversalApplication
     /// </summary>
     sealed partial class App : Application
     {
+        private Model _model;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -21,6 +24,7 @@ namespace DualViewsDrawingWindowsUniversalApplication
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            _model = new Model();
         }
 
         /// <summary>
@@ -57,7 +61,7 @@ namespace DualViewsDrawingWindowsUniversalApplication
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(DrawingPage), e.Arguments);
+                    rootFrame.Navigate(typeof(DrawingPage), _model);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
