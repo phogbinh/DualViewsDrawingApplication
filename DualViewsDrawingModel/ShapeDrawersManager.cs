@@ -6,7 +6,6 @@ namespace DualViewsDrawingModel
 {
     public class ShapeDrawersManager
     {
-
         private List<ShapeDrawer> _shapeDrawers;
 
         public ShapeDrawersManager()
