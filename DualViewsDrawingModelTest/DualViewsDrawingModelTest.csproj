@@ -57,8 +57,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DefinitionsTest.cs" />
+    <Compile Include="Mocks\GraphicsMock.cs" />
     <Compile Include="PointTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShapeDrawers\LineDrawerTest.cs" />
     <Compile Include="ShapeDrawers\ShapeDrawerTest.cs" />
     <Compile Include="ShapeDrawerTypeHelperTest.cs" />
     <Compile Include="Shapes\LineTest.cs" />
