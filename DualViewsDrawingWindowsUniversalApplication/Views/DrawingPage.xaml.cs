@@ -102,6 +102,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         /// </summary>
         private void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
+            mousePosition.ResizeToBeInBoundRegion(0, _model.GetCanvasWidth(), 0, _model.GetCanvasHeight());
             if ( !mousePosition.IsInclusiveInRegion(CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, _model.GetCanvasWidth() - CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, _model.GetCanvasHeight() - CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET) )
             {
                 _model.HandleCanvasLeftMouseReleased(mousePosition);
