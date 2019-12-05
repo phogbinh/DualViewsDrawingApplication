@@ -19,7 +19,15 @@ namespace DualViewsDrawingModel.ShapeDrawers
             {
                 throw new ArgumentNullException(Definitions.ERROR_GRAPHICS_IS_NULL);
             }
-            graphics.Draw(new Rectangle(_drawingStartingPoint, _drawingEndingPoint));
+            graphics.Draw(CreateRectangle());
+        }
+
+        /// <summary>
+        /// Creates the rectangle.
+        /// </summary>
+        private Rectangle CreateRectangle()
+        {
+            return new Rectangle(_drawingStartingPoint, _drawingEndingPoint);
         }
     }
 }

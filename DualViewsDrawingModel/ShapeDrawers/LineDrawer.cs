@@ -19,7 +19,15 @@ namespace DualViewsDrawingModel.ShapeDrawers
             {
                 throw new ArgumentNullException(Definitions.ERROR_GRAPHICS_IS_NULL);
             }
-            graphics.Draw(new Line(_drawingStartingPoint, _drawingEndingPoint));
+            graphics.Draw(CreateLine());
+        }
+
+        /// <summary>
+        /// Creates the line.
+        /// </summary>
+        private Line CreateLine()
+        {
+            return new Line(_drawingStartingPoint, _drawingEndingPoint);
         }
     }
 }
