@@ -93,6 +93,19 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         }
 
         /// <summary>
+        /// Handles the canvas mouse action.
+        /// </summary>
+        private void HandleCanvasMouseAction(MouseEventArgs eventArguments, Action<Point> modelHandleCanvasMouseAction)
+        {
+            if ( eventArguments.Button == MouseButtons.Left )
+            {
+                Point mousePosition = new Point(eventArguments.X, eventArguments.Y);
+                ResizeMousePositionToBeInBoundModelCanvas(mousePosition);
+                modelHandleCanvasMouseAction(mousePosition);
+            }
+        }
+
+        /// <summary>
         /// Handles the rectangle button clicked.
         /// </summary>
         private void HandleRectangleButtonClicked(object sender, EventArgs eventArguments)
