@@ -54,14 +54,6 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         }
 
         /// <summary>
-        /// Resizes the mouse position to be in bound model canvas.
-        /// </summary>
-        private void ResizeMousePositionToBeInBoundModelCanvas(Point mousePosition)
-        {
-            mousePosition.ResizeToBeInBoundRegion(0, _model.GetCanvasWidth(), 0, _model.GetCanvasHeight());
-        }
-
-        /// <summary>
         /// Handles the canvas mouse moved.
         /// </summary>
         private void HandleCanvasMouseMoved(object sender, MouseEventArgs eventArguments)
@@ -85,7 +77,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             if ( eventArguments.Button == MouseButtons.Left )
             {
                 Point mousePosition = new Point(eventArguments.X, eventArguments.Y);
-                ResizeMousePositionToBeInBoundModelCanvas(mousePosition);
+                mousePosition.ResizeToBeInBoundRegion(0, _model.GetCanvasWidth(), 0, _model.GetCanvasHeight());
                 modelHandleCanvasMouseAction(mousePosition);
             }
         }
