@@ -79,6 +79,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         private void HandleCanvasMousePressed(object sender, PointerRoutedEventArgs eventArguments)
         {
             PointerPoint pointerPoint = eventArguments.GetCurrentPoint(_canvas);
+            _model.HandleCanvasLeftMouseReleased(new Point(pointerPoint.Position.X, pointerPoint.Position.Y));
             if ( pointerPoint.Properties.IsLeftButtonPressed )
             {
                 _model.HandleCanvasLeftMousePressed(new Point(pointerPoint.Position.X, pointerPoint.Position.Y));
