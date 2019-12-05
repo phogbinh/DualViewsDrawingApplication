@@ -23,12 +23,12 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestIsInclusiveInInterval()
         {
-            Assert.ThrowsException<ArgumentException>(() => Definitions.IsInclusiveInInterval(TestDefinitions.DUMP_DOUBLE, 10, 9));
-            Assert.IsTrue(Definitions.IsInclusiveInInterval(0, -1, 1));
-            Assert.IsTrue(Definitions.IsInclusiveInInterval(-1, -1, 1));
-            Assert.IsTrue(Definitions.IsInclusiveInInterval(1, -1, 1));
-            Assert.IsFalse(Definitions.IsInclusiveInInterval(0, 1, 10));
-            Assert.IsFalse(Definitions.IsInclusiveInInterval(-10, 0, 1));
+            Assert.ThrowsException<ArgumentException>(() => Definitions.IsInclusiveInInterval(TestDefinitions.DUMP_DOUBLE, 9.1, 9.0));
+            Assert.IsTrue(Definitions.IsInclusiveInInterval(0.0, -1.0, 1.0));
+            Assert.IsTrue(Definitions.IsInclusiveInInterval(-1.0, -1.0, 1.0));
+            Assert.IsTrue(Definitions.IsInclusiveInInterval(1.0, -1.0, 1.0));
+            Assert.IsFalse(Definitions.IsInclusiveInInterval(0.0, 1.0, 10.0));
+            Assert.IsFalse(Definitions.IsInclusiveInInterval(-10.0, 0.0, 1.0));
         }
 
         /// <summary>
@@ -38,16 +38,16 @@ namespace DualViewsDrawingModel.Test
         public void TestResizeToBeInBoundInterval()
         {
             double value = TestDefinitions.DUMP_DOUBLE;
-            Assert.ThrowsException<ArgumentException>(() => Definitions.ResizeToBeInBoundInterval(ref value, 2, 1));
-            value = -1;
-            Definitions.ResizeToBeInBoundInterval(ref value, 0, 5);
-            Assert.AreEqual(value, 0);
-            value = 10;
-            Definitions.ResizeToBeInBoundInterval(ref value, 9, 9);
-            Assert.AreEqual(value, 9);
-            value = 5;
-            Definitions.ResizeToBeInBoundInterval(ref value, 4, 6);
-            Assert.AreEqual(value, 5);
+            Assert.ThrowsException<ArgumentException>(() => Definitions.ResizeToBeInBoundInterval(ref value, 1.1, 1.0));
+            value = -1.0;
+            Definitions.ResizeToBeInBoundInterval(ref value, 0.0, 5.0);
+            Assert.AreEqual(value, 0.0);
+            value = 10.0;
+            Definitions.ResizeToBeInBoundInterval(ref value, 9.0, 9.0);
+            Assert.AreEqual(value, 9.0);
+            value = 5.0;
+            Definitions.ResizeToBeInBoundInterval(ref value, 4.0, 6.0);
+            Assert.AreEqual(value, 5.0);
         }
     }
 }
