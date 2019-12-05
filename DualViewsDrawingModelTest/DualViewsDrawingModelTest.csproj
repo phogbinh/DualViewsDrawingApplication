@@ -60,6 +60,7 @@
     <Compile Include="PointTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeDrawerTypeHelperTest.cs" />
+    <Compile Include="Shapes\LineTest.cs" />
     <Compile Include="TestDefinitions.cs" />
   </ItemGroup>
   <ItemGroup>
