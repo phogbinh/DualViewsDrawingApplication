@@ -142,18 +142,15 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
+            if ( !IsInclusiveInCanvas(mousePosition) )
+            {
+                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
+            }
             if ( !_isDrawing )
             {
                 return;
             }
-            if ( IsInclusiveInCanvas(mousePosition) )
-            {
-                UpdateCurrentDrawingShapeHint(mousePosition);
-            }
-            else
-            {
-                HandleCanvasLeftMouseMovedOutBound(mousePosition);
-            }
+            UpdateCurrentDrawingShapeHint(mousePosition);
         }
 
         /// <summary>
@@ -167,19 +164,6 @@ namespace DualViewsDrawingModel
             }
             _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
             NotifyCanvasRefreshDrawRequested();
-        }
-
-        /// <summary>
-        /// Handles the canvas left mouse moved out bound.
-        /// </summary>
-        private void HandleCanvasLeftMouseMovedOutBound(Point mousePosition)
-        {
-            if ( mousePosition == null )
-            {
-                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
-            }
-            mousePosition.ResizeToBeInBoundRegion(0, _canvasWidth, 0, _canvasHeight);
-            HandleCanvasLeftMouseReleased(mousePosition);
         }
 
         /// <summary>
