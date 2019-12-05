@@ -50,12 +50,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleCanvasMousePressed(object sender, MouseEventArgs eventArguments)
         {
-            if ( eventArguments.Button == MouseButtons.Left )
-            {
-                Point mousePosition = new Point(eventArguments.X, eventArguments.Y);
-                ResizeMousePositionToBeInBoundModelCanvas(mousePosition);
-                _model.HandleCanvasLeftMousePressed(mousePosition);
-            }
+            HandleCanvasMouseAction(eventArguments, (mousePosition) => _model.HandleCanvasLeftMousePressed(mousePosition));
         }
 
         /// <summary>
@@ -71,12 +66,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleCanvasMouseMoved(object sender, MouseEventArgs eventArguments)
         {
-            if ( eventArguments.Button == MouseButtons.Left )
-            {
-                Point mousePosition = new Point(eventArguments.X, eventArguments.Y);
-                ResizeMousePositionToBeInBoundModelCanvas(mousePosition);
-                _model.HandleCanvasLeftMouseMoved(mousePosition);
-            }
+            HandleCanvasMouseAction(eventArguments, (mousePosition) => _model.HandleCanvasLeftMouseMoved(mousePosition));
         }
 
         /// <summary>
@@ -84,12 +74,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleCanvasMouseReleased(object sender, MouseEventArgs eventArguments)
         {
-            if ( eventArguments.Button == MouseButtons.Left )
-            {
-                Point mousePosition = new Point(eventArguments.X, eventArguments.Y);
-                ResizeMousePositionToBeInBoundModelCanvas(mousePosition);
-                _model.HandleCanvasLeftMouseReleased(mousePosition);
-            }
+            HandleCanvasMouseAction(eventArguments, (mousePosition) => _model.HandleCanvasLeftMouseReleased(mousePosition));
         }
 
         /// <summary>
