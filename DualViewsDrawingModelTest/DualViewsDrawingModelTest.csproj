@@ -61,6 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeDrawerTypeHelperTest.cs" />
     <Compile Include="Shapes\LineTest.cs" />
+    <Compile Include="Shapes\RectangleTest.cs" />
     <Compile Include="TestDefinitions.cs" />
   </ItemGroup>
   <ItemGroup>
