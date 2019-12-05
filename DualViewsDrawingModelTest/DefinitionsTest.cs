@@ -25,6 +25,8 @@ namespace DualViewsDrawingModel.Test
         {
             Assert.ThrowsException<ArgumentException>(() => Definitions.IsInclusiveInInterval(TestDefinitions.DUMP_DOUBLE, 10, 9));
             Assert.IsTrue(Definitions.IsInclusiveInInterval(0, -1, 1));
+            Assert.IsTrue(Definitions.IsInclusiveInInterval(-1, -1, 1));
+            Assert.IsTrue(Definitions.IsInclusiveInInterval(1, -1, 1));
             Assert.IsFalse(Definitions.IsInclusiveInInterval(0, 1, 10));
             Assert.IsFalse(Definitions.IsInclusiveInInterval(-10, 0, 1));
         }
