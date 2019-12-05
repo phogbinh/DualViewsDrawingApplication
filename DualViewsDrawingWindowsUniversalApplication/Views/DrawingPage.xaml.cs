@@ -78,11 +78,10 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         private void HandleCanvasMousePressed(object sender, PointerRoutedEventArgs eventArguments)
         {
             PointerPoint pointerPoint = eventArguments.GetCurrentPoint(_canvas);
-            if ( pointerPoint.Properties.IsRightButtonPressed )
+            if ( pointerPoint.Properties.IsLeftButtonPressed )
             {
-                return;
+                _model.HandleCanvasLeftMousePressed(new Point(pointerPoint.Position.X, pointerPoint.Position.Y));
             }
-            _model.HandleCanvasLeftMousePressed(new Point(pointerPoint.Position.X, pointerPoint.Position.Y));
         }
 
         /// <summary>
@@ -91,11 +90,10 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         private void HandleCanvasMouseMoved(object sender, PointerRoutedEventArgs eventArguments)
         {
             PointerPoint pointerPoint = eventArguments.GetCurrentPoint(_canvas);
-            if ( pointerPoint.Properties.IsRightButtonPressed )
+            if ( pointerPoint.Properties.IsLeftButtonPressed )
             {
-                return;
+                _model.HandleCanvasLeftMouseMoved(new Point(pointerPoint.Position.X, pointerPoint.Position.Y));
             }
-            _model.HandleCanvasLeftMouseMoved(new Point(pointerPoint.Position.X, pointerPoint.Position.Y));
         }
 
         /// <summary>
@@ -104,11 +102,10 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         private void HandleCanvasMouseReleased(object sender, PointerRoutedEventArgs eventArguments)
         {
             PointerPoint pointerPoint = eventArguments.GetCurrentPoint(_canvas);
-            if ( pointerPoint.Properties.IsRightButtonPressed )
+            if ( pointerPoint.Properties.IsLeftButtonPressed )
             {
-                return;
+                _model.HandleCanvasLeftMouseReleased(new Point(pointerPoint.Position.X, pointerPoint.Position.Y));
             }
-            _model.HandleCanvasLeftMouseReleased(new Point(pointerPoint.Position.X, pointerPoint.Position.Y));
         }
 
         /// <summary>

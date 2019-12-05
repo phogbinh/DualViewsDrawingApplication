@@ -50,11 +50,10 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleCanvasMousePressed(object sender, MouseEventArgs eventArguments)
         {
-            if ( eventArguments.Button == MouseButtons.Right )
+            if ( eventArguments.Button == MouseButtons.Left )
             {
-                return;
+                _model.HandleCanvasLeftMousePressed(new Point(eventArguments.X, eventArguments.Y));
             }
-            _model.HandleCanvasLeftMousePressed(new Point(eventArguments.X, eventArguments.Y));
         }
 
         /// <summary>
@@ -62,11 +61,10 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleCanvasMouseMoved(object sender, MouseEventArgs eventArguments)
         {
-            if ( eventArguments.Button == MouseButtons.Right )
+            if ( eventArguments.Button == MouseButtons.Left )
             {
-                return;
+                _model.HandleCanvasLeftMouseMoved(new Point(eventArguments.X, eventArguments.Y));
             }
-            _model.HandleCanvasLeftMouseMoved(new Point(eventArguments.X, eventArguments.Y));
         }
 
         /// <summary>
@@ -74,11 +72,10 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleCanvasMouseReleased(object sender, MouseEventArgs eventArguments)
         {
-            if ( eventArguments.Button == MouseButtons.Right )
+            if ( eventArguments.Button == MouseButtons.Left )
             {
-                return;
+                _model.HandleCanvasLeftMouseReleased(new Point(eventArguments.X, eventArguments.Y));
             }
-            _model.HandleCanvasLeftMouseReleased(new Point(eventArguments.X, eventArguments.Y));
         }
 
         /// <summary>
