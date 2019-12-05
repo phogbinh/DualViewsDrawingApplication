@@ -232,5 +232,21 @@ namespace DualViewsDrawingModel
                 _currentDrawingShapeHintShapeDrawer.Draw(graphics);
             }
         }
+
+        /// <summary>
+        /// Gets the width of the canvas.
+        /// </summary>
+        public double GetCanvasWidth()
+        {
+            return _canvasWidth;
+        }
+
+        /// <summary>
+        /// Gets the height of the canvas.
+        /// </summary>
+        public double GetCanvasHeight()
+        {
+            return _canvasHeight;
+        }
     }
 }

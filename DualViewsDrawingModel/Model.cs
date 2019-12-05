@@ -83,5 +83,21 @@
         {
             _canvasManager.RefreshDrawCanvas(graphics);
         }
+
+        /// <summary>
+        /// Gets the width of the canvas.
+        /// </summary>
+        public double GetCanvasWidth()
+        {
+            return _canvasManager.GetCanvasWidth();
+        }
+
+        /// <summary>
+        /// Gets the height of the canvas.
+        /// </summary>
+        public double GetCanvasHeight()
+        {
+            return _canvasManager.GetCanvasHeight();
+        }
     }
 }
