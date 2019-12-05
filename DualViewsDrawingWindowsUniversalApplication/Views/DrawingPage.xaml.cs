@@ -80,7 +80,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         {
             PointerPoint pointerPoint = eventArguments.GetCurrentPoint(_canvas);
             Point mousePosition = new Point(pointerPoint.Position.X, pointerPoint.Position.Y);
-            _model.HandleCanvasLeftMouseReleased(mousePosition);
+            _model.HandleCanvasLeftMouseReleased(mousePosition); // Forcibly ends the current drawing to counter the bug caused by Windows Universal Application - the pointer moved event is not triggered when the pointer is dragged extremely fast out of the canvas, which leaves the current drawing not being finished if the mouse position obtained from the most recent pointer moved event invocation stays valid inside the canvas drawing region.
             if ( pointerPoint.Properties.IsLeftButtonPressed )
             {
                 _model.HandleCanvasLeftMousePressed(mousePosition);
