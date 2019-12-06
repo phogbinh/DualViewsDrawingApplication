@@ -75,11 +75,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasLeftMousePressed(Point mousePosition)
         {
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
-            }
-            _canvasDrawer.HandleCanvasLeftMousePressed(mousePosition);
+            HandleCanvasLeftMouseAction(mousePosition, (mousePositionParameter) => _canvasDrawer.HandleCanvasLeftMousePressed(mousePositionParameter));
         }
 
         /// <summary>
@@ -99,11 +95,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
-            }
-            _canvasDrawer.HandleCanvasLeftMouseMoved(mousePosition);
+            HandleCanvasLeftMouseAction(mousePosition, (mousePositionParameter) => _canvasDrawer.HandleCanvasLeftMouseMoved(mousePositionParameter));
         }
 
         /// <summary>
@@ -111,11 +103,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
-            }
-            _canvasDrawer.HandleCanvasLeftMouseReleased(mousePosition);
+            HandleCanvasLeftMouseAction(mousePosition, (mousePositionParameter) => _canvasDrawer.HandleCanvasLeftMouseReleased(mousePositionParameter));
         }
 
         /// <summary>
