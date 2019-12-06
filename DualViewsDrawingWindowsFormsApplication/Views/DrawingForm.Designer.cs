@@ -40,6 +40,7 @@
             // 
             // _canvas
             // 
+            this._canvas.AccessibleName = "CanvasPanel";
             this._canvas.BackColor = System.Drawing.SystemColors.Info;
             this._canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this._canvas.Location = new System.Drawing.Point(3, 48);
@@ -115,6 +116,7 @@
             // 
             // DrawingForm
             // 
+            this.AccessibleName = "DrawingForm";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
