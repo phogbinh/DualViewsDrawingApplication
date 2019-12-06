@@ -52,15 +52,15 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public new void Initialize(double canvasWidth, double canvasHeight, ShapeDrawerType shapeDrawerType)
+        public override void Initialize(double canvasWidth, double canvasHeight, ShapeDrawerType shapeDrawerType)
         {
-            IsCalledClearCanvas = true;
+            IsCalledInitialize = true;
         }
 
         /// <summary>
         /// Sets the size of the canvas.
         /// </summary>
-        public new void SetCanvasSize(double canvasWidth, double canvasHeight)
+        public override void SetCanvasSize(double canvasWidth, double canvasHeight)
         {
             IsCalledSetCanvasSize = true;
         }
@@ -68,7 +68,7 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Sets the type of the current shape drawer.
         /// </summary>
-        public new void SetCurrentShapeDrawerType(ShapeDrawerType shapeDrawerType)
+        public override void SetCurrentShapeDrawerType(ShapeDrawerType shapeDrawerType)
         {
             IsCalledSetCurrentShapeDrawerType = true;
         }
@@ -76,7 +76,7 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Clears the canvas.
         /// </summary>
-        public new void ClearCanvas()
+        public override void ClearCanvas()
         {
             IsCalledClearCanvas = true;
         }
@@ -84,7 +84,7 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Handles the canvas left mouse pressed.
         /// </summary>
-        public new void HandleCanvasLeftMousePressed(Point mousePosition)
+        public override void HandleCanvasLeftMousePressed(Point mousePosition)
         {
             IsCalledHandleCanvasLeftMousePressed = true;
         }
@@ -92,7 +92,7 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Handles the canvas left mouse moved.
         /// </summary>
-        public new void HandleCanvasLeftMouseMoved(Point mousePosition)
+        public override void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
             IsCalledHandleCanvasLeftMouseMoved = true;
         }
@@ -100,7 +100,7 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Handles the canvas left mouse released.
         /// </summary>
-        public new void HandleCanvasLeftMouseReleased(Point mousePosition)
+        public override void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
             IsCalledHandleCanvasLeftMouseReleased = true;
         }
@@ -108,7 +108,7 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Redraw the canvas.
         /// </summary>
-        public new void RefreshDrawCanvas(IGraphics graphics)
+        public override void RefreshDrawCanvas(IGraphics graphics)
         {
             IsCalledRefreshDrawCanvas = true;
         }
