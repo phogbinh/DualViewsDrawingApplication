@@ -256,7 +256,7 @@
               <HashCode>41 目前物件 DualViewsDrawingModel.Point，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Definitions，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Definitions.IsInclusiveInInterval(double, double, double) 以及 DualViewsDrawingModel.Definitions.IsInclusiveInInterval(double, double, double)</HashCode>
               <Severity>Warning</Severity>
               <Weight>1</Weight>
-              <Project>DualViewsDrawingModel</Project>
+              <Project>DualViewsDrawingWindowsFormsApplication</Project>
               <File>D:\Git\phogbinh\DualViewsDrawingApplication\DualViewsDrawingModel\Point.cs</File>
               <Line>41</Line>
               <StartLine>40</StartLine>
@@ -525,10 +525,25 @@
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>DrawingFormTest.cs</RelativePath>
+                <ProjectName>DualViewsDrawingWindowsFormsApplicationTest</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Properties\AssemblyInfo.cs</RelativePath>
+                <ProjectName>DualViewsDrawingWindowsFormsApplicationTest</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Robot.cs</RelativePath>
+                <ProjectName>DualViewsDrawingWindowsFormsApplicationTest</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1403</ProductionLoc>
-          <TestLoc>1777</TestLoc>
+          <ProductionLoc>1405</ProductionLoc>
+          <TestLoc>2515</TestLoc>
         </CodeReview>
       </Data>
     </div>
