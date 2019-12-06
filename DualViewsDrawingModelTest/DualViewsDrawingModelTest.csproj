@@ -57,6 +57,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CanvasDrawerTest.cs" />
+    <Compile Include="CanvasManagerTest.cs" />
     <Compile Include="DefinitionsTest.cs" />
     <Compile Include="Mocks\GraphicsMock.cs" />
     <Compile Include="PointTest.cs" />
