@@ -10,14 +10,9 @@ namespace DualViewsDrawingModel
         {
             get; set;
         }
-        private const string ERROR_CANVAS_WIDTH_IS_NOT_POSITIVE = "The given canvas width is not positive.";
-        private const string ERROR_CANVAS_HEIGHT_IS_NOT_POSITIVE = "The given canvas height is not positive.";
         private const string ERROR_MOUSE_POSITION_IS_NULL = "The given mouse position is null.";
         private const string ERROR_POINT_IS_NULL = "The given point is null.";
         private const string ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED = "Cannot begin a new draw when the previous draw has not ended.";
-        private const string ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS = "The given mouse position is not inclusively inside the canvas.";
-        private double _canvasWidth;
-        private double _canvasHeight;
         private ShapeDrawerType _currentShapeDrawerType;
         private bool _isDrawing;
         private Point _currentDrawingShapeDrawingStartingPoint;
@@ -32,28 +27,10 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public void Initialize(double canvasWidth, double canvasHeight, ShapeDrawerType shapeDrawerType)
+        public void Initialize(ShapeDrawerType shapeDrawerType)
         {
-            SetCanvasSize(canvasWidth, canvasHeight);
             SetCurrentShapeDrawerType(shapeDrawerType);
             ClearCanvas();
-        }
-
-        /// <summary>
-        /// Sets the size of the canvas.
-        /// </summary>
-        public void SetCanvasSize(double canvasWidth, double canvasHeight)
-        {
-            if ( canvasWidth <= 0 )
-            {
-                throw new ArgumentException(ERROR_CANVAS_WIDTH_IS_NOT_POSITIVE);
-            }
-            if ( canvasHeight <= 0 )
-            {
-                throw new ArgumentException(ERROR_CANVAS_HEIGHT_IS_NOT_POSITIVE);
-            }
-            _canvasWidth = canvasWidth;
-            _canvasHeight = canvasHeight;
         }
 
         /// <summary>
@@ -96,27 +73,11 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasLeftMousePressed(Point mousePosition)
         {
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
-            }
             if ( _currentShapeDrawerType == ShapeDrawerType.None )
             {
                 return;
             }
             BeginDrawing(mousePosition);
-        }
-
-        /// <summary>
-        /// Determines whether [is inclusively in canvas] [the specified point].
-        /// </summary>
-        private bool IsInclusiveInCanvas(Point point)
-        {
-            if ( point == null )
-            {
-                throw new ArgumentNullException(ERROR_POINT_IS_NULL);
-            }
-            return point.IsInclusiveInRegion(0, _canvasWidth, 0, _canvasHeight);
         }
 
         /// <summary>
@@ -142,10 +103,6 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
-            }
             if ( !_isDrawing )
             {
                 return;
@@ -171,10 +128,6 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
-            if ( !IsInclusiveInCanvas(mousePosition) )
-            {
-                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
-            }
             if ( !_isDrawing )
             {
                 return;
@@ -215,22 +168,6 @@ namespace DualViewsDrawingModel
             {
                 _currentDrawingShapeHintShapeDrawer.Draw(graphics);
             }
-        }
-
-        /// <summary>
-        /// Gets the width of the canvas.
-        /// </summary>
-        public double GetCanvasWidth()
-        {
-            return _canvasWidth;
-        }
-
-        /// <summary>
-        /// Gets the height of the canvas.
-        /// </summary>
-        public double GetCanvasHeight()
-        {
-            return _canvasHeight;
         }
     }
 }
