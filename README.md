@@ -23,3 +23,7 @@ The application has 100% code coverage for model.
 The application possesses two simple GUI tests.
 
 ## Preview
+### Windows Forms Application
+![Windows Forms Application - Preview](https://github.com/phogbinh/DualViewsDrawingApplication/blob/master/Documentations/Images/img_preview_windows_forms_application.png)
+### Windows Universal Application
+![Windows Universal Application - Preview](https://github.com/phogbinh/DualViewsDrawingApplication/blob/master/Documentations/Images/img_preview_windows_universal_application.png)
