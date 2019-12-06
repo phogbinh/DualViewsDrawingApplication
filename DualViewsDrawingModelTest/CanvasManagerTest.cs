@@ -30,6 +30,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the set property canvas refresh draw requested.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetPropertyCanvasRefreshDrawRequested()
+        {
+            _canvasManager.CanvasRefreshDrawRequested += () => { };
+            Assert.IsNotNull(_canvasManager.CanvasRefreshDrawRequested);
+        }
+
+        /// <summary>
         /// Tests the canvas manager.
         /// </summary>
         [TestMethod()]
