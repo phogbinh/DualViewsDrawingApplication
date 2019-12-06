@@ -456,6 +456,11 @@
                 <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>Mocks\CanvasManagerMock.cs</RelativePath>
+                <ProjectName>DualViewsDrawingModelTest</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>Mocks\GraphicsMock.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
@@ -517,8 +522,8 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1396</ProductionLoc>
-          <TestLoc>1502</TestLoc>
+          <ProductionLoc>1403</ProductionLoc>
+          <TestLoc>1628</TestLoc>
         </CodeReview>
       </Data>
     </div>
