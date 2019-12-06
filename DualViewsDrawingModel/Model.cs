@@ -2,7 +2,7 @@
 {
     public class Model
     {
-        public CanvasManager.CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
+        public CanvasDrawer.CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
         {
             get
             {

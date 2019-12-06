@@ -1,34 +1,31 @@
-﻿using DualViewsDrawingModel.ShapeDrawers;
-using System;
+﻿using System;
 
 namespace DualViewsDrawingModel
 {
     public class CanvasManager
     {
-        public delegate void CanvasRefreshDrawRequestedEventHandler();
-        public CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
+        public CanvasDrawer.CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
         {
-            get; set;
+            get
+            {
+                return _canvasDrawer.CanvasRefreshDrawRequested;
+            }
+            set
+            {
+                _canvasDrawer.CanvasRefreshDrawRequested = value;
+            }
         }
         private const string ERROR_CANVAS_WIDTH_IS_NOT_POSITIVE = "The given canvas width is not positive.";
         private const string ERROR_CANVAS_HEIGHT_IS_NOT_POSITIVE = "The given canvas height is not positive.";
-        private const string ERROR_MOUSE_POSITION_IS_NULL = "The given mouse position is null.";
         private const string ERROR_POINT_IS_NULL = "The given point is null.";
-        private const string ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED = "Cannot begin a new draw when the previous draw has not ended.";
         private const string ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS = "The given mouse position is not inclusively inside the canvas.";
         private double _canvasWidth;
         private double _canvasHeight;
         private CanvasDrawer _canvasDrawer;
-        private ShapeDrawerType _currentShapeDrawerType;
-        private bool _isDrawing;
-        private Point _currentDrawingShapeDrawingStartingPoint;
-        private ShapeDrawer _currentDrawingShapeHintShapeDrawer;
-        private ShapeDrawersManager _shapeDrawersManager;
 
         public CanvasManager()
         {
             _canvasDrawer = new CanvasDrawer();
-            _shapeDrawersManager = new ShapeDrawersManager();
         }
 
         /// <summary>
@@ -37,8 +34,7 @@ namespace DualViewsDrawingModel
         public void Initialize(double canvasWidth, double canvasHeight, ShapeDrawerType shapeDrawerType)
         {
             SetCanvasSize(canvasWidth, canvasHeight);
-            SetCurrentShapeDrawerType(shapeDrawerType);
-            ClearCanvas();
+            _canvasDrawer.Initialize(shapeDrawerType);
         }
 
         /// <summary>
@@ -63,11 +59,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void SetCurrentShapeDrawerType(ShapeDrawerType drawingShapeType)
         {
-            if ( !ShapeDrawerTypeHelper.IsValidShapeDrawerType(drawingShapeType) )
-            {
-                throw new ArgumentException(Definitions.ERROR_SHAPE_DRAWER_TYPE_IS_INVALID);
-            }
-            _currentShapeDrawerType = drawingShapeType;
+            _canvasDrawer.SetCurrentShapeDrawerType(drawingShapeType);
         }
 
         /// <summary>
@@ -75,22 +67,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void ClearCanvas()
         {
-            _isDrawing = false;
-            _currentDrawingShapeDrawingStartingPoint = null;
-            _currentDrawingShapeHintShapeDrawer = null;
-            _shapeDrawersManager.Clear();
-            NotifyCanvasRefreshDrawRequested();
-        }
-
-        /// <summary>
-        /// Notifies the canvas refresh draw requested.
-        /// </summary>
-        private void NotifyCanvasRefreshDrawRequested()
-        {
-            if ( CanvasRefreshDrawRequested != null )
-            {
-                CanvasRefreshDrawRequested();
-            }
+            _canvasDrawer.ClearCanvas();
         }
 
         /// <summary>
@@ -102,11 +79,7 @@ namespace DualViewsDrawingModel
             {
                 throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
             }
-            if ( _currentShapeDrawerType == ShapeDrawerType.None )
-            {
-                return;
-            }
-            BeginDrawing(mousePosition);
+            _canvasDrawer.HandleCanvasLeftMousePressed(mousePosition);
         }
 
         /// <summary>
@@ -122,24 +95,6 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
-        /// Begins the drawing.
-        /// </summary>
-        private void BeginDrawing(Point mousePosition)
-        {
-            if ( mousePosition == null )
-            {
-                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
-            }
-            if ( _isDrawing )
-            {
-                throw new ApplicationException(ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED);
-            }
-            _isDrawing = true;
-            _currentDrawingShapeDrawingStartingPoint = mousePosition;
-            _currentDrawingShapeHintShapeDrawer = _shapeDrawersManager.CreateShapeDrawer(mousePosition, mousePosition, _currentShapeDrawerType);
-        }
-
-        /// <summary>
         /// Handles the canvas left mouse moved.
         /// </summary>
         public void HandleCanvasLeftMouseMoved(Point mousePosition)
@@ -148,24 +103,7 @@ namespace DualViewsDrawingModel
             {
                 throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
             }
-            if ( !_isDrawing )
-            {
-                return;
-            }
-            UpdateCurrentDrawingShapeHint(mousePosition);
-        }
-
-        /// <summary>
-        /// Updates the current drawing shape hint.
-        /// </summary>
-        private void UpdateCurrentDrawingShapeHint(Point mousePosition)
-        {
-            if ( mousePosition == null )
-            {
-                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
-            }
-            _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
-            NotifyCanvasRefreshDrawRequested();
+            _canvasDrawer.HandleCanvasLeftMouseMoved(mousePosition);
         }
 
         /// <summary>
@@ -177,21 +115,7 @@ namespace DualViewsDrawingModel
             {
                 throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
             }
-            if ( !_isDrawing )
-            {
-                return;
-            }
-            EndDrawing(mousePosition);
-        }
-
-        /// <summary>
-        /// Ends the drawing.
-        /// </summary>
-        private void EndDrawing(Point mousePosition)
-        {
-            _shapeDrawersManager.AddShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition, _currentShapeDrawerType);
-            _isDrawing = false;
-            NotifyCanvasRefreshDrawRequested();
+            _canvasDrawer.HandleCanvasLeftMouseReleased(mousePosition);
         }
 
         /// <summary>
@@ -199,24 +123,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public void RefreshDrawCanvas(IGraphics graphics)
         {
-            if ( graphics == null )
-            {
-                throw new ArgumentNullException(Definitions.ERROR_GRAPHICS_IS_NULL);
-            }
-            graphics.ClearAll();
-            Draw(graphics);
-        }
-
-        /// <summary>
-        /// Draws the specified graphics.
-        /// </summary>
-        private void Draw(IGraphics graphics)
-        {
-            _shapeDrawersManager.Draw(graphics);
-            if ( _isDrawing )
-            {
-                _currentDrawingShapeHintShapeDrawer.Draw(graphics);
-            }
+            _canvasDrawer.RefreshDrawCanvas(graphics);
         }
 
         /// <summary>
