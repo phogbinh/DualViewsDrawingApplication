@@ -119,6 +119,18 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
+        /// Handles the canvas left mouse action.
+        /// </summary>
+        private void HandleCanvasLeftMouseAction(Point mousePosition, Action<Point> canvasDrawerHandleCanvasLeftMouseAction)
+        {
+            if ( !IsInclusiveInCanvas(mousePosition) )
+            {
+                throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
+            }
+            canvasDrawerHandleCanvasLeftMouseAction(mousePosition);
+        }
+
+        /// <summary>
         /// Redraw the canvas.
         /// </summary>
         public void RefreshDrawCanvas(IGraphics graphics)
