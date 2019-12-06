@@ -24,7 +24,7 @@ namespace DualViewsDrawingWindowsUniversalApplication
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            _model = new Model();
+            _model = new Model(new CanvasManager());
         }
 
         /// <summary>

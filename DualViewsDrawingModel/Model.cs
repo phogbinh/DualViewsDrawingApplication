@@ -1,4 +1,6 @@
-﻿namespace DualViewsDrawingModel
+﻿using System;
+
+namespace DualViewsDrawingModel
 {
     public class Model
     {
@@ -27,11 +29,16 @@
                 return _canvasManager.CanvasHeight;
             }
         }
+        private const string ERROR_CANVAS_MANAGER_IS_NULL = "The given canvas manager is null.";
         private CanvasManager _canvasManager;
 
-        public Model()
+        public Model(CanvasManager canvasManagerData)
         {
-            _canvasManager = new CanvasManager();
+            if ( canvasManagerData == null )
+            {
+                throw new ArgumentNullException(ERROR_CANVAS_MANAGER_IS_NULL);
+            }
+            _canvasManager = canvasManagerData;
         }
 
         /// <summary>
