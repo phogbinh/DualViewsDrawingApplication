@@ -441,6 +441,11 @@
                 <AnalysisFileType>ViewOrController</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>CanvasDrawerTest.cs</RelativePath>
+                <ProjectName>DualViewsDrawingModelTest</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>DefinitionsTest.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
@@ -508,7 +513,7 @@
             </AnalysisFiles>
           </AnalysisFileManager>
           <ProductionLoc>1396</ProductionLoc>
-          <TestLoc>919</TestLoc>
+          <TestLoc>1310</TestLoc>
         </CodeReview>
       </Data>
     </div>
