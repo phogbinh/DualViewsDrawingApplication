@@ -26,6 +26,34 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the set property canvas refresh draw requested.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetPropertyCanvasRefreshDrawRequested()
+        {
+            _model.CanvasRefreshDrawRequested += () => { };
+            Assert.IsNotNull(_model.CanvasRefreshDrawRequested);
+        }
+
+        /// <summary>
+        /// Tests the width of the get property canvas.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetPropertyCanvasWidth()
+        {
+            Assert.AreEqual(_model.CanvasWidth, _canvasManager.CanvasWidth);
+        }
+
+        /// <summary>
+        /// Tests the height of the get property canvas.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetPropertyCanvasHeight()
+        {
+            Assert.AreEqual(_model.CanvasHeight, _canvasManager.CanvasHeight);
+        }
+
+        /// <summary>
         /// Tests the model.
         /// </summary>
         [TestMethod()]
