@@ -466,6 +466,11 @@
                 <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>ModelTest.cs</RelativePath>
+                <ProjectName>DualViewsDrawingModelTest</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>PointTest.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
@@ -523,7 +528,7 @@
             </AnalysisFiles>
           </AnalysisFileManager>
           <ProductionLoc>1403</ProductionLoc>
-          <TestLoc>1628</TestLoc>
+          <TestLoc>1777</TestLoc>
         </CodeReview>
       </Data>
     </div>
