@@ -52,15 +52,15 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
-        /// Tests the create line.
+        /// Tests the get line.
         /// </summary>
         [TestMethod()]
-        public void TestCreateLine()
+        public void TestGetLine()
         {
-            const string MEMBER_FUNCTION_NAME_CREATE_LINE = "CreateLine";
+            const string MEMBER_FUNCTION_NAME_GET_LINE = "GetLine";
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT, new Point(1.0, 5.0));
             _lineDrawer.DrawingEndingPoint = new Point(-1.0, 2.0);
-            Line expectedLine = ( Line )_target.Invoke(MEMBER_FUNCTION_NAME_CREATE_LINE);
+            Line expectedLine = ( Line )_target.Invoke(MEMBER_FUNCTION_NAME_GET_LINE);
             Assert.AreEqual(expectedLine.X1, 1.0);
             Assert.AreEqual(expectedLine.Y1, 5.0);
             Assert.AreEqual(expectedLine.X2, -1.0);

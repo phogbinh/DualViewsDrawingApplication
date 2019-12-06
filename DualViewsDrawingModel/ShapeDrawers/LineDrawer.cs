@@ -19,13 +19,13 @@ namespace DualViewsDrawingModel.ShapeDrawers
             {
                 throw new ArgumentNullException(Definitions.ERROR_GRAPHICS_IS_NULL);
             }
-            graphics.Draw(CreateLine());
+            graphics.Draw(GetLine());
         }
 
         /// <summary>
-        /// Creates the line.
+        /// Gets the line.
         /// </summary>
-        private Line CreateLine()
+        private Line GetLine()
         {
             return new Line(_drawingStartingPoint, _drawingEndingPoint);
         }
