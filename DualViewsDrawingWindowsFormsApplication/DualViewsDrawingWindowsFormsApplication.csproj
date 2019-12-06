@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\DualViewsDrawingModel\CanvasDrawer.cs">
+      <Link>Models\CanvasDrawer.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\CanvasManager.cs">
       <Link>Models\CanvasManager.cs</Link>
     </Compile>

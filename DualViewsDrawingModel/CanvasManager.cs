@@ -18,6 +18,7 @@ namespace DualViewsDrawingModel
         private const string ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS = "The given mouse position is not inclusively inside the canvas.";
         private double _canvasWidth;
         private double _canvasHeight;
+        private CanvasDrawer _canvasDrawer;
         private ShapeDrawerType _currentShapeDrawerType;
         private bool _isDrawing;
         private Point _currentDrawingShapeDrawingStartingPoint;
@@ -26,6 +27,7 @@ namespace DualViewsDrawingModel
 
         public CanvasManager()
         {
+            _canvasDrawer = new CanvasDrawer();
             _shapeDrawersManager = new ShapeDrawersManager();
         }
 
