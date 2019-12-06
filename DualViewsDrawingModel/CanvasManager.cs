@@ -79,18 +79,6 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
-        /// Determines whether [is inclusively in canvas] [the specified point].
-        /// </summary>
-        private bool IsInclusiveInCanvas(Point point)
-        {
-            if ( point == null )
-            {
-                throw new ArgumentNullException(ERROR_POINT_IS_NULL);
-            }
-            return point.IsInclusiveInRegion(0, _canvasWidth, 0, _canvasHeight);
-        }
-
-        /// <summary>
         /// Handles the canvas left mouse moved.
         /// </summary>
         public void HandleCanvasLeftMouseMoved(Point mousePosition)
@@ -116,6 +104,18 @@ namespace DualViewsDrawingModel
                 throw new ArgumentException(ERROR_MOUSE_POSITION_IS_NOT_INCLUSIVE_IN_CANVAS);
             }
             canvasDrawerHandleCanvasLeftMouseAction(mousePosition);
+        }
+
+        /// <summary>
+        /// Determines whether [is inclusively in canvas] [the specified point].
+        /// </summary>
+        private bool IsInclusiveInCanvas(Point point)
+        {
+            if ( point == null )
+            {
+                throw new ArgumentNullException(ERROR_POINT_IS_NULL);
+            }
+            return point.IsInclusiveInRegion(0, _canvasWidth, 0, _canvasHeight);
         }
 
         /// <summary>
