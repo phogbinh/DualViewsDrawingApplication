@@ -13,6 +13,20 @@
                 _canvasManager.CanvasRefreshDrawRequested = value;
             }
         }
+        public double CanvasWidth
+        {
+            get
+            {
+                return _canvasManager.CanvasWidth;
+            }
+        }
+        public double CanvasHeight
+        {
+            get
+            {
+                return _canvasManager.CanvasHeight;
+            }
+        }
         private CanvasManager _canvasManager;
 
         public Model()
@@ -82,22 +96,6 @@
         public void RefreshDrawCanvas(IGraphics graphics)
         {
             _canvasManager.RefreshDrawCanvas(graphics);
-        }
-
-        /// <summary>
-        /// Gets the width of the canvas.
-        /// </summary>
-        public double GetCanvasWidth()
-        {
-            return _canvasManager.GetCanvasWidth();
-        }
-
-        /// <summary>
-        /// Gets the height of the canvas.
-        /// </summary>
-        public double GetCanvasHeight()
-        {
-            return _canvasManager.GetCanvasHeight();
         }
     }
 }

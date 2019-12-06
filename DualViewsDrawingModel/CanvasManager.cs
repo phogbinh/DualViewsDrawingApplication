@@ -15,6 +15,20 @@ namespace DualViewsDrawingModel
                 _canvasDrawer.CanvasRefreshDrawRequested = value;
             }
         }
+        public double CanvasWidth
+        {
+            get
+            {
+                return _canvasWidth;
+            }
+        }
+        public double CanvasHeight
+        {
+            get
+            {
+                return _canvasHeight;
+            }
+        }
         private const string ERROR_CANVAS_WIDTH_IS_NOT_POSITIVE = "The given canvas width is not positive.";
         private const string ERROR_CANVAS_HEIGHT_IS_NOT_POSITIVE = "The given canvas height is not positive.";
         private const string ERROR_POINT_IS_NULL = "The given point is null.";
@@ -124,22 +138,6 @@ namespace DualViewsDrawingModel
         public void RefreshDrawCanvas(IGraphics graphics)
         {
             _canvasDrawer.RefreshDrawCanvas(graphics);
-        }
-
-        /// <summary>
-        /// Gets the width of the canvas.
-        /// </summary>
-        public double GetCanvasWidth()
-        {
-            return _canvasWidth;
-        }
-
-        /// <summary>
-        /// Gets the height of the canvas.
-        /// </summary>
-        public double GetCanvasHeight()
-        {
-            return _canvasHeight;
         }
     }
 }

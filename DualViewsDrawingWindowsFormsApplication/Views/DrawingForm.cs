@@ -77,7 +77,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             if ( eventArguments.Button == MouseButtons.Left )
             {
                 Point mousePosition = new Point(eventArguments.X, eventArguments.Y);
-                mousePosition.ResizeToBeInBoundRegion(0, _model.GetCanvasWidth(), 0, _model.GetCanvasHeight());
+                mousePosition.ResizeToBeInBoundRegion(0, _model.CanvasWidth, 0, _model.CanvasHeight);
                 modelHandleCanvasMouseAction(mousePosition);
             }
         }

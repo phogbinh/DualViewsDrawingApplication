@@ -104,13 +104,13 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         /// </summary>
         private void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
-            mousePosition.ResizeToBeInBoundRegion(0, _model.GetCanvasWidth(), 0, _model.GetCanvasHeight()); // This mouse position resizing is required to counter the bug of Windows Universal Application - the pointer moved event is sometimes triggered when the pointer is at the edges of the canvas or slightly outside the range of the canvas.
+            mousePosition.ResizeToBeInBoundRegion(0, _model.CanvasWidth, 0, _model.CanvasHeight); // This mouse position resizing is required to counter the bug of Windows Universal Application - the pointer moved event is sometimes triggered when the pointer is at the edges of the canvas or slightly outside the range of the canvas.
             // Unlike Windows Forms, Windows Universal Application does not trigger the pointer released event when the pointer is outside the range of the canvas.
             // This causes a problem: If the user presses, dragging the mouse outside of the canvas and then releases, no new shape is drawn. Instead, the current drawing shape hint is stuck on the canvas and if the user then presses to start a new drawing, my exception set in the model will be thrown, stating that the previous draw has not finished.
             // My solution to the fore-mentioned problem: If the user presses, dragging the mouse outside of the canvas, the model left mouse released event handler will be manually called to end the current drawing, regardless whether the user releases the mouse or not.
             // A propagated problem to my solution: Since in the Windows Universal Application, the pointer moved event, in most of the time, is not triggered when the pointer is at the edges of the canvas and outside the range of the canvas, I cannot detect whether the mouse is dragged outside of the canvas by checking whether the current position of the mouse is inclusively inside the canvas.
             // My solution to the fore-mentioned propagated problem: Instead of checking whether the current position of the mouse is inclusively inside the canvas, I define a canvas drawing region inside the canvas and impose the mouse position check on this region.
-            if ( !mousePosition.IsInclusiveInRegion(CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, _model.GetCanvasWidth() - CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, _model.GetCanvasHeight() - CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET) )
+            if ( !mousePosition.IsInclusiveInRegion(CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, _model.CanvasWidth - CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET, _model.CanvasHeight - CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET) )
             {
                 _model.HandleCanvasLeftMouseReleased(mousePosition);
                 return;
