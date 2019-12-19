@@ -52,8 +52,16 @@ namespace DualViewsDrawingModel
             _isDrawing = false;
             _currentDrawingShapeDrawingStartingPoint = null;
             _currentDrawingShapeHintShapeDrawer = null;
-            _shapeDrawersManager.Clear();
+            ClearShapeDrawersManager();
             NotifyCanvasRefreshDrawRequested();
+        }
+
+        /// <summary>
+        /// Clears the shape drawers manager.
+        /// </summary>
+        public void ClearShapeDrawersManager()
+        {
+            _shapeDrawersManager.Clear();
         }
 
         /// <summary>
