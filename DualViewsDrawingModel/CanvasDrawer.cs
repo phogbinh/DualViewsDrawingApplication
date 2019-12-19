@@ -10,6 +10,13 @@ namespace DualViewsDrawingModel
         {
             get; set;
         }
+        public ShapeDrawerType CurrentShapeDrawerType
+        {
+            get
+            {
+                return _currentShapeDrawerType;
+            }
+        }
         private const string ERROR_MOUSE_POSITION_IS_NULL = "The given mouse position is null.";
         private const string ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED = "Cannot begin a new draw when the previous draw has not ended.";
         private ShapeDrawerType _currentShapeDrawerType;
