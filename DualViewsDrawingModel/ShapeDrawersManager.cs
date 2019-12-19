@@ -16,7 +16,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Adds the shape drawer.
         /// </summary>
-        public void AddShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
+        public virtual void AddShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
         {
             _shapeDrawers.Add(CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, shapeDrawerType));
         }
@@ -24,7 +24,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Creates the shape drawer.
         /// </summary>
-        public ShapeDrawer CreateShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
+        public virtual ShapeDrawer CreateShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
         {
             return ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, shapeDrawerType);
         }
@@ -32,7 +32,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Clears this instance.
         /// </summary>
-        public void Clear()
+        public virtual void Clear()
         {
             _shapeDrawers.Clear();
         }
@@ -40,7 +40,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Draws the specified graphics.
         /// </summary>
-        public void Draw(IGraphics graphics)
+        public virtual void Draw(IGraphics graphics)
         {
             foreach ( ShapeDrawer shapeDrawer in _shapeDrawers )
             {
