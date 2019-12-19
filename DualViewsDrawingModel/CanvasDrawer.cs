@@ -67,7 +67,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Notifies the canvas refresh draw requested.
         /// </summary>
-        private void NotifyCanvasRefreshDrawRequested()
+        public void NotifyCanvasRefreshDrawRequested()
         {
             if ( CanvasRefreshDrawRequested != null )
             {
