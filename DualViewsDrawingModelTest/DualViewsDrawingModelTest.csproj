@@ -61,6 +61,7 @@
     <Compile Include="DefinitionsTest.cs" />
     <Compile Include="Mocks\CanvasManagerMock.cs" />
     <Compile Include="Mocks\GraphicsMock.cs" />
+    <Compile Include="Mocks\ShapeDrawersManagerMock.cs" />
     <Compile Include="ModelTest.cs" />
     <Compile Include="PointTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
