@@ -38,6 +38,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views.Utilities
         /// </summary>
         public void Draw(DualViewsDrawingModel.Shapes.Rectangle rectangle)
         {
+            _graphics.FillRectangle(Brushes.SkyBlue, ( float )rectangle.X, ( float )rectangle.Y, ( float )rectangle.Width, ( float )rectangle.Height);
             _graphics.DrawRectangle(Pens.Black, ( float )rectangle.X, ( float )rectangle.Y, ( float )rectangle.Width, ( float )rectangle.Height);
         }
     }
