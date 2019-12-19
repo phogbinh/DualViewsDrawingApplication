@@ -51,6 +51,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views.Utilities
             drawingPageCanvasRectangle.Width = rectangle.Width;
             drawingPageCanvasRectangle.Height = rectangle.Height;
             drawingPageCanvasRectangle.Stroke = new SolidColorBrush(Colors.Black);
+            drawingPageCanvasRectangle.Fill = new SolidColorBrush(Colors.SkyBlue);
             _canvas.Children.Add(drawingPageCanvasRectangle);
             Canvas.SetLeft(drawingPageCanvasRectangle, rectangle.X);
             Canvas.SetTop(drawingPageCanvasRectangle, rectangle.Y);
