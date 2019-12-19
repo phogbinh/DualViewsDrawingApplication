@@ -183,5 +183,13 @@ namespace DualViewsDrawingModel
                 _currentDrawingShapeHintShapeDrawer.Draw(graphics);
             }
         }
+
+        /// <summary>
+        /// Adds the current shape drawer.
+        /// </summary>
+        public void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
+        {
+            _shapeDrawersManager.AddShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType);
+        }
     }
 }
