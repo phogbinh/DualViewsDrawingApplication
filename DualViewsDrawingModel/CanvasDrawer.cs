@@ -18,7 +18,7 @@ namespace DualViewsDrawingModel
             }
         }
         private const string ERROR_CANVAS_DRAWER_STATE_IS_NULL = "The given canvas drawer state is null.";
-        private ShapeDrawerType _currentShapeDrawerType;
+        protected ShapeDrawerType _currentShapeDrawerType;
         private ICanvasDrawerState _currentState;
         private ShapeDrawersManager _shapeDrawersManager;
 
@@ -40,7 +40,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Clears the shape drawers manager.
         /// </summary>
-        public void ClearShapeDrawersManager()
+        public virtual void ClearShapeDrawersManager()
         {
             _shapeDrawersManager.Clear();
         }
@@ -114,7 +114,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Sets the state of the current.
         /// </summary>
-        public void SetCurrentState(ICanvasDrawerState value)
+        public virtual void SetCurrentState(ICanvasDrawerState value)
         {
             if ( value == null )
             {
@@ -134,7 +134,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Notifies the canvas refresh draw requested.
         /// </summary>
-        public void NotifyCanvasRefreshDrawRequested()
+        public virtual void NotifyCanvasRefreshDrawRequested()
         {
             if ( CanvasRefreshDrawRequested != null )
             {
