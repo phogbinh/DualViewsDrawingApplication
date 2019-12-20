@@ -1,10 +1,15 @@
 ﻿using DualViewsDrawingModel;
+using DualViewsDrawingModel.CanvasDrawerStates;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
     public class CanvasDrawerMock : CanvasDrawer
     {
         public bool IsCalledInitialize
+        {
+            get; set;
+        }
+        public bool IsCalledClearShapeDrawersManager
         {
             get; set;
         }
@@ -32,16 +37,32 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledSetCurrentState
+        {
+            get; set;
+        }
+        public bool IsCalledNotifyCanvasRefreshDrawRequested
+        {
+            get; set;
+        }
+        public ICanvasDrawerState CurrentState
+        {
+            get; set;
+        }
 
         public CanvasDrawerMock()
         {
             IsCalledInitialize = false;
+            IsCalledClearShapeDrawersManager = false;
             IsCalledSetCurrentShapeDrawerType = false;
             IsCalledClearCanvas = false;
             IsCalledHandleCanvasLeftMousePressed = false;
             IsCalledHandleCanvasLeftMouseMoved = false;
             IsCalledHandleCanvasLeftMouseReleased = false;
             IsCalledRefreshDrawCanvas = false;
+            IsCalledSetCurrentState = false;
+            IsCalledNotifyCanvasRefreshDrawRequested = false;
+            CurrentState = null;
         }
 
         /// <summary>
@@ -53,11 +74,20 @@ namespace DualViewsDrawingModelTest.Mocks
         }
 
         /// <summary>
+        /// Clears the shape drawers manager.
+        /// </summary>
+        public override void ClearShapeDrawersManager()
+        {
+            IsCalledClearShapeDrawersManager = true;
+        }
+
+        /// <summary>
         /// Sets the type of the current drawing shape.
         /// </summary>
         public override void SetCurrentShapeDrawerType(ShapeDrawerType drawingShapeType)
         {
             IsCalledSetCurrentShapeDrawerType = true;
+            _currentShapeDrawerType = drawingShapeType;
         }
 
         /// <summary>
@@ -98,6 +128,23 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void RefreshDrawCanvas(IGraphics graphics)
         {
             IsCalledRefreshDrawCanvas = true;
+        }
+
+        /// <summary>
+        /// Sets the state of the current.
+        /// </summary>
+        public override void SetCurrentState(ICanvasDrawerState value)
+        {
+            IsCalledSetCurrentState = true;
+            CurrentState = value;
+        }
+
+        /// <summary>
+        /// Notifies the canvas refresh draw requested.
+        /// </summary>
+        public override void NotifyCanvasRefreshDrawRequested()
+        {
+            IsCalledNotifyCanvasRefreshDrawRequested = true;
         }
     }
 }
