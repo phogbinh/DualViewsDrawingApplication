@@ -71,6 +71,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         public void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
             EndDrawing(mousePosition);
+            _canvasDrawer.SetCurrentState(new CanvasDrawerPointerState(_canvasDrawer));
         }
 
         /// <summary>
@@ -79,7 +80,6 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         private void EndDrawing(Point mousePosition)
         {
             _canvasDrawer.AddCurrentShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition);
-            _canvasDrawer.SetCurrentState(new CanvasDrawerPointerState(_canvasDrawer));
             _canvasDrawer.NotifyCanvasRefreshDrawRequested();
         }
 
