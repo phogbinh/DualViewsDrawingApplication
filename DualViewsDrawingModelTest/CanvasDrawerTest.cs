@@ -57,6 +57,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the clear shape drawers manager.
+        /// </summary>
+        [TestMethod()]
+        public void TestClearShapeDrawersManager()
+        {
+            _canvasDrawer.ClearShapeDrawersManager();
+            Assert.IsTrue(_shapeDrawersManager.IsCalledClear);
+        }
+
+        /// <summary>
         /// Tests the type of the set current shape drawer.
         /// </summary>
         [TestMethod()]
@@ -77,31 +87,6 @@ namespace DualViewsDrawingModel.Test
         {
             _canvasDrawer.ClearCanvas();
             Assert.IsTrue(_currentState.IsCalledClearCanvas);
-        }
-
-        /// <summary>
-        /// Tests the clear shape drawers manager.
-        /// </summary>
-        [TestMethod()]
-        public void TestClearShapeDrawersManager()
-        {
-            _canvasDrawer.ClearShapeDrawersManager();
-            Assert.IsTrue(_shapeDrawersManager.IsCalledClear);
-        }
-
-        /// <summary>
-        /// Tests the notify canvas refresh draw requested.
-        /// </summary>
-        [TestMethod()]
-        public void TestNotifyCanvasRefreshDrawRequested()
-        {
-            const string MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED = "NotifyCanvasRefreshDrawRequested";
-            int count = 0;
-            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
-            _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED);
-            Assert.AreEqual(count, 1);
-            _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED);
-            Assert.AreEqual(count, 2);
         }
 
         /// <summary>
@@ -162,6 +147,18 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the state of the set current.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetCurrentState()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => _canvasDrawer.SetCurrentState(null));
+            var currentState = new CanvasDrawerPointerState(_canvasDrawer);
+            _canvasDrawer.SetCurrentState(currentState);
+            Assert.AreSame(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_STATE), currentState);
+        }
+
+        /// <summary>
         /// Tests the add current shape drawer.
         /// </summary>
         [TestMethod()]
@@ -172,15 +169,18 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
-        /// Tests the state of the set current.
+        /// Tests the notify canvas refresh draw requested.
         /// </summary>
         [TestMethod()]
-        public void TestSetCurrentState()
+        public void TestNotifyCanvasRefreshDrawRequested()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => _canvasDrawer.SetCurrentState(null));
-            var currentState = new CanvasDrawerPointerState(_canvasDrawer);
-            _canvasDrawer.SetCurrentState(currentState);
-            Assert.AreSame(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_STATE), currentState);
+            const string MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED = "NotifyCanvasRefreshDrawRequested";
+            int count = 0;
+            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
+            _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED);
+            Assert.AreEqual(count, 1);
+            _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED);
+            Assert.AreEqual(count, 2);
         }
     }
 }

@@ -38,6 +38,14 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
+        /// Clears the shape drawers manager.
+        /// </summary>
+        public void ClearShapeDrawersManager()
+        {
+            _shapeDrawersManager.Clear();
+        }
+
+        /// <summary>
         /// Sets the type of the current drawing shape.
         /// </summary>
         public void SetCurrentShapeDrawerType(ShapeDrawerType drawingShapeType)
@@ -55,25 +63,6 @@ namespace DualViewsDrawingModel
         public void ClearCanvas()
         {
             _currentState.ClearCanvas();
-        }
-
-        /// <summary>
-        /// Clears the shape drawers manager.
-        /// </summary>
-        public void ClearShapeDrawersManager()
-        {
-            _shapeDrawersManager.Clear();
-        }
-
-        /// <summary>
-        /// Notifies the canvas refresh draw requested.
-        /// </summary>
-        public void NotifyCanvasRefreshDrawRequested()
-        {
-            if ( CanvasRefreshDrawRequested != null )
-            {
-                CanvasRefreshDrawRequested();
-            }
         }
 
         /// <summary>
@@ -123,14 +112,6 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
-        /// Adds the current shape drawer.
-        /// </summary>
-        public void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
-        {
-            _shapeDrawersManager.AddShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType);
-        }
-
-        /// <summary>
         /// Sets the state of the current.
         /// </summary>
         public void SetCurrentState(ICanvasDrawerState value)
@@ -140,6 +121,25 @@ namespace DualViewsDrawingModel
                 throw new ArgumentNullException(ERROR_CANVAS_DRAWER_STATE_IS_NULL);
             }
             _currentState = value;
+        }
+
+        /// <summary>
+        /// Adds the current shape drawer.
+        /// </summary>
+        public void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
+        {
+            _shapeDrawersManager.AddShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType);
+        }
+
+        /// <summary>
+        /// Notifies the canvas refresh draw requested.
+        /// </summary>
+        public void NotifyCanvasRefreshDrawRequested()
+        {
+            if ( CanvasRefreshDrawRequested != null )
+            {
+                CanvasRefreshDrawRequested();
+            }
         }
     }
 }
