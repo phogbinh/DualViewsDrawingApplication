@@ -57,23 +57,6 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
-        /// Tests the create shape drawer.
-        /// </summary>
-        [TestMethod()]
-        public void TestCreateShapeDrawer()
-        {
-            const string SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT = "_drawingStartingPoint";
-            const string SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT = "_drawingEndingPoint";
-            var drawingStartingPoint = new Point();
-            var drawingEndingPoint = new Point();
-            ShapeDrawer expectedShapeDrawer = _shapeDrawersManager.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, ShapeDrawerType.Line);
-            var target = new PrivateObject(expectedShapeDrawer);
-            Assert.AreSame(target.GetFieldOrProperty(SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT), drawingStartingPoint);
-            Assert.AreSame(target.GetFieldOrProperty(SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT), drawingEndingPoint);
-            Assert.IsInstanceOfType(expectedShapeDrawer, typeof(LineDrawer));
-        }
-
-        /// <summary>
         /// Tests the clear.
         /// </summary>
         [TestMethod()]
