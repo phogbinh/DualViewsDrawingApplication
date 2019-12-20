@@ -49,6 +49,15 @@
     <Compile Include="..\DualViewsDrawingModel\CanvasDrawer.cs">
       <Link>Models\CanvasDrawer.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\CanvasDrawerStates\CanvasDrawerDrawingState.cs">
+      <Link>Models\CanvasDrawerStates\CanvasDrawerDrawingState.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\CanvasDrawerStates\CanvasDrawerPointerState.cs">
+      <Link>Models\CanvasDrawerStates\CanvasDrawerPointerState.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\CanvasDrawerStates\ICanvasDrawerState.cs">
+      <Link>Models\CanvasDrawerStates\ICanvasDrawerState.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\CanvasManager.cs">
       <Link>Models\CanvasManager.cs</Link>
     </Compile>
