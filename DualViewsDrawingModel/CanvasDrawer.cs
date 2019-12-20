@@ -30,7 +30,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public void Initialize(ShapeDrawerType shapeDrawerType)
+        public virtual void Initialize(ShapeDrawerType shapeDrawerType)
         {
             SetCurrentShapeDrawerType(shapeDrawerType);
             SetCurrentState(new CanvasDrawerPointerState(this));
@@ -48,7 +48,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Sets the type of the current drawing shape.
         /// </summary>
-        public void SetCurrentShapeDrawerType(ShapeDrawerType drawingShapeType)
+        public virtual void SetCurrentShapeDrawerType(ShapeDrawerType drawingShapeType)
         {
             if ( !ShapeDrawerTypeHelper.IsValidShapeDrawerType(drawingShapeType) )
             {
@@ -60,7 +60,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Clears the canvas.
         /// </summary>
-        public void ClearCanvas()
+        public virtual void ClearCanvas()
         {
             _currentState.ClearCanvas();
         }
@@ -68,7 +68,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Handles the canvas left mouse pressed.
         /// </summary>
-        public void HandleCanvasLeftMousePressed(Point mousePosition)
+        public virtual void HandleCanvasLeftMousePressed(Point mousePosition)
         {
             _currentState.HandleCanvasLeftMousePressed(mousePosition);
         }
@@ -76,7 +76,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Handles the canvas left mouse moved.
         /// </summary>
-        public void HandleCanvasLeftMouseMoved(Point mousePosition)
+        public virtual void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
             _currentState.HandleCanvasLeftMouseMoved(mousePosition);
         }
@@ -84,7 +84,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Handles the canvas left mouse released.
         /// </summary>
-        public void HandleCanvasLeftMouseReleased(Point mousePosition)
+        public virtual void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
             _currentState.HandleCanvasLeftMouseReleased(mousePosition);
         }
@@ -92,7 +92,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Redraw the canvas.
         /// </summary>
-        public void RefreshDrawCanvas(IGraphics graphics)
+        public virtual void RefreshDrawCanvas(IGraphics graphics)
         {
             if ( graphics == null )
             {
