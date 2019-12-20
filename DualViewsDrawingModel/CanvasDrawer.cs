@@ -126,7 +126,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Adds the current shape drawer.
         /// </summary>
-        public void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
+        public virtual void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
         {
             _shapeDrawersManager.AddShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType);
         }
