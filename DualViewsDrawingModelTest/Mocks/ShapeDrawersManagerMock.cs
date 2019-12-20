@@ -1,15 +1,10 @@
 ﻿using DualViewsDrawingModel;
-using DualViewsDrawingModel.ShapeDrawers;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
     public class ShapeDrawersManagerMock : ShapeDrawersManager
     {
         public bool IsCalledAddShapeDrawer
-        {
-            get; set;
-        }
-        public bool IsCalledCreateShapeDrawer
         {
             get; set;
         }
@@ -25,7 +20,6 @@ namespace DualViewsDrawingModelTest.Mocks
         public ShapeDrawersManagerMock()
         {
             IsCalledAddShapeDrawer = false;
-            IsCalledCreateShapeDrawer = false;
             IsCalledClear = false;
             IsCalledDraw = false;
         }
@@ -36,15 +30,6 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void AddShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
         {
             IsCalledAddShapeDrawer = true;
-        }
-
-        /// <summary>
-        /// Creates the shape drawer.
-        /// </summary>
-        public override ShapeDrawer CreateShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
-        {
-            IsCalledCreateShapeDrawer = true;
-            return ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, shapeDrawerType);
         }
 
         /// <summary>

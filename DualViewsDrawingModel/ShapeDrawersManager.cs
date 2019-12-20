@@ -1,5 +1,4 @@
 ﻿using DualViewsDrawingModel.ShapeDrawers;
-using System;
 using System.Collections.Generic;
 
 namespace DualViewsDrawingModel
@@ -18,15 +17,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public virtual void AddShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
         {
-            _shapeDrawers.Add(CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, shapeDrawerType));
-        }
-
-        /// <summary>
-        /// Creates the shape drawer.
-        /// </summary>
-        public virtual ShapeDrawer CreateShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
-        {
-            return ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, shapeDrawerType);
+            _shapeDrawers.Add(ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, shapeDrawerType));
         }
 
         /// <summary>
