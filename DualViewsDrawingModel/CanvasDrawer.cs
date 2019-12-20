@@ -1,4 +1,4 @@
-﻿using DualViewsDrawingModel.ShapeDrawers;
+﻿using DualViewsDrawingModel.CanvasDrawerStates;
 using System;
 
 namespace DualViewsDrawingModel
@@ -10,12 +10,16 @@ namespace DualViewsDrawingModel
         {
             get; set;
         }
-        private const string ERROR_MOUSE_POSITION_IS_NULL = "The given mouse position is null.";
-        private const string ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED = "Cannot begin a new draw when the previous draw has not ended.";
-        private ShapeDrawerType _currentShapeDrawerType;
-        private bool _isDrawing;
-        private Point _currentDrawingShapeDrawingStartingPoint;
-        private ShapeDrawer _currentDrawingShapeHintShapeDrawer;
+        public ShapeDrawerType CurrentShapeDrawerType
+        {
+            get
+            {
+                return _currentShapeDrawerType;
+            }
+        }
+        private const string ERROR_CANVAS_DRAWER_STATE_IS_NULL = "The given canvas drawer state is null.";
+        protected ShapeDrawerType _currentShapeDrawerType;
+        private ICanvasDrawerState _currentState;
         private ShapeDrawersManager _shapeDrawersManager;
 
         public CanvasDrawer()
@@ -26,16 +30,25 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        public void Initialize(ShapeDrawerType shapeDrawerType)
+        public virtual void Initialize(ShapeDrawerType shapeDrawerType)
         {
             SetCurrentShapeDrawerType(shapeDrawerType);
-            ClearCanvas();
+            SetCurrentState(new CanvasDrawerPointerState(this));
+            ClearShapeDrawersManager();
+        }
+
+        /// <summary>
+        /// Clears the shape drawers manager.
+        /// </summary>
+        public virtual void ClearShapeDrawersManager()
+        {
+            _shapeDrawersManager.Clear();
         }
 
         /// <summary>
         /// Sets the type of the current drawing shape.
         /// </summary>
-        public void SetCurrentShapeDrawerType(ShapeDrawerType drawingShapeType)
+        public virtual void SetCurrentShapeDrawerType(ShapeDrawerType drawingShapeType)
         {
             if ( !ShapeDrawerTypeHelper.IsValidShapeDrawerType(drawingShapeType) )
             {
@@ -47,107 +60,39 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Clears the canvas.
         /// </summary>
-        public void ClearCanvas()
+        public virtual void ClearCanvas()
         {
-            _isDrawing = false;
-            _currentDrawingShapeDrawingStartingPoint = null;
-            _currentDrawingShapeHintShapeDrawer = null;
-            _shapeDrawersManager.Clear();
-            NotifyCanvasRefreshDrawRequested();
-        }
-
-        /// <summary>
-        /// Notifies the canvas refresh draw requested.
-        /// </summary>
-        private void NotifyCanvasRefreshDrawRequested()
-        {
-            if ( CanvasRefreshDrawRequested != null )
-            {
-                CanvasRefreshDrawRequested();
-            }
+            _currentState.ClearCanvas();
         }
 
         /// <summary>
         /// Handles the canvas left mouse pressed.
         /// </summary>
-        public void HandleCanvasLeftMousePressed(Point mousePosition)
+        public virtual void HandleCanvasLeftMousePressed(Point mousePosition)
         {
-            if ( _currentShapeDrawerType == ShapeDrawerType.None )
-            {
-                return;
-            }
-            BeginDrawing(mousePosition);
-        }
-
-        /// <summary>
-        /// Begins the drawing.
-        /// </summary>
-        private void BeginDrawing(Point mousePosition)
-        {
-            if ( mousePosition == null )
-            {
-                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
-            }
-            if ( _isDrawing )
-            {
-                throw new ApplicationException(ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED);
-            }
-            _isDrawing = true;
-            _currentDrawingShapeDrawingStartingPoint = mousePosition;
-            _currentDrawingShapeHintShapeDrawer = _shapeDrawersManager.CreateShapeDrawer(mousePosition, mousePosition, _currentShapeDrawerType);
+            _currentState.HandleCanvasLeftMousePressed(mousePosition);
         }
 
         /// <summary>
         /// Handles the canvas left mouse moved.
         /// </summary>
-        public void HandleCanvasLeftMouseMoved(Point mousePosition)
+        public virtual void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
-            if ( !_isDrawing )
-            {
-                return;
-            }
-            UpdateCurrentDrawingShapeHint(mousePosition);
-        }
-
-        /// <summary>
-        /// Updates the current drawing shape hint.
-        /// </summary>
-        private void UpdateCurrentDrawingShapeHint(Point mousePosition)
-        {
-            if ( mousePosition == null )
-            {
-                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
-            }
-            _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
-            NotifyCanvasRefreshDrawRequested();
+            _currentState.HandleCanvasLeftMouseMoved(mousePosition);
         }
 
         /// <summary>
         /// Handles the canvas left mouse released.
         /// </summary>
-        public void HandleCanvasLeftMouseReleased(Point mousePosition)
+        public virtual void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
-            if ( !_isDrawing )
-            {
-                return;
-            }
-            EndDrawing(mousePosition);
-        }
-
-        /// <summary>
-        /// Ends the drawing.
-        /// </summary>
-        private void EndDrawing(Point mousePosition)
-        {
-            _shapeDrawersManager.AddShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition, _currentShapeDrawerType);
-            _isDrawing = false;
-            NotifyCanvasRefreshDrawRequested();
+            _currentState.HandleCanvasLeftMouseReleased(mousePosition);
         }
 
         /// <summary>
         /// Redraw the canvas.
         /// </summary>
-        public void RefreshDrawCanvas(IGraphics graphics)
+        public virtual void RefreshDrawCanvas(IGraphics graphics)
         {
             if ( graphics == null )
             {
@@ -163,9 +108,37 @@ namespace DualViewsDrawingModel
         private void Draw(IGraphics graphics)
         {
             _shapeDrawersManager.Draw(graphics);
-            if ( _isDrawing )
+            _currentState.Draw(graphics);
+        }
+
+        /// <summary>
+        /// Sets the state of the current.
+        /// </summary>
+        public virtual void SetCurrentState(ICanvasDrawerState value)
+        {
+            if ( value == null )
             {
-                _currentDrawingShapeHintShapeDrawer.Draw(graphics);
+                throw new ArgumentNullException(ERROR_CANVAS_DRAWER_STATE_IS_NULL);
+            }
+            _currentState = value;
+        }
+
+        /// <summary>
+        /// Adds the current shape drawer.
+        /// </summary>
+        public virtual void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
+        {
+            _shapeDrawersManager.AddShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType);
+        }
+
+        /// <summary>
+        /// Notifies the canvas refresh draw requested.
+        /// </summary>
+        public virtual void NotifyCanvasRefreshDrawRequested()
+        {
+            if ( CanvasRefreshDrawRequested != null )
+            {
+                CanvasRefreshDrawRequested();
             }
         }
     }

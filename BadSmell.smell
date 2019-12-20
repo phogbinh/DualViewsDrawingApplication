@@ -232,6 +232,21 @@
                 <AnalysisFileType>Model</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>CanvasDrawerStates\CanvasDrawerDrawingState.cs</RelativePath>
+                <ProjectName>DualViewsDrawingModel</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>CanvasDrawerStates\CanvasDrawerPointerState.cs</RelativePath>
+                <ProjectName>DualViewsDrawingModel</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>CanvasDrawerStates\ICanvasDrawerState.cs</RelativePath>
+                <ProjectName>DualViewsDrawingModel</ProjectName>
+                <AnalysisFileType>Model</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>CanvasManager.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModel</ProjectName>
                 <AnalysisFileType>Model</AnalysisFileType>
@@ -392,12 +407,22 @@
                 <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>Mocks\CanvasDrawerStateMock.cs</RelativePath>
+                <ProjectName>DualViewsDrawingModelTest</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>Mocks\CanvasManagerMock.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Mocks\GraphicsMock.cs</RelativePath>
+                <ProjectName>DualViewsDrawingModelTest</ProjectName>
+                <AnalysisFileType>Test</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
+                <RelativePath>Mocks\ShapeDrawersManagerMock.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
@@ -478,8 +503,8 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1405</ProductionLoc>
-          <TestLoc>2515</TestLoc>
+          <ProductionLoc>1568</ProductionLoc>
+          <TestLoc>2454</TestLoc>
         </CodeReview>
       </Data>
     </div>

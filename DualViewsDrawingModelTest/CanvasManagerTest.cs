@@ -14,7 +14,7 @@ namespace DualViewsDrawingModel.Test
         private const string MEMBER_VARIABLE_NAME_CANVAS_DRAWER = "_canvasDrawer";
         private CanvasManager _canvasManager;
         private PrivateObject _target;
-        private PrivateObject _canvasDrawerTarget;
+        private CanvasDrawerMock _canvasDrawer;
 
         /// <summary>
         /// Initializes this instance.
@@ -25,8 +25,8 @@ namespace DualViewsDrawingModel.Test
         {
             _canvasManager = new CanvasManager();
             _target = new PrivateObject(_canvasManager);
-            CanvasDrawer canvasDrawer = ( CanvasDrawer )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_DRAWER);
-            _canvasDrawerTarget = new PrivateObject(canvasDrawer);
+            _canvasDrawer = new CanvasDrawerMock();
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_DRAWER, _canvasDrawer);
         }
 
         /// <summary>
@@ -59,25 +59,7 @@ namespace DualViewsDrawingModel.Test
             _canvasManager.Initialize(0.1, 9.9, ShapeDrawerType.Rectangle);
             Assert.AreEqual(_canvasManager.CanvasWidth, 0.1);
             Assert.AreEqual(_canvasManager.CanvasHeight, 9.9);
-            Assert.AreEqual(GetCanvasDrawerCurrentShapeDrawerType(), ShapeDrawerType.Rectangle);
-        }
-
-        /// <summary>
-        /// Gets the type of the canvas drawer current shape drawer.
-        /// </summary>
-        private ShapeDrawerType GetCanvasDrawerCurrentShapeDrawerType()
-        {
-            const string CANVAS_DRAWER_MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE = "_currentShapeDrawerType";
-            return ( ShapeDrawerType )_canvasDrawerTarget.GetFieldOrProperty(CANVAS_DRAWER_MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE);
-        }
-
-        /// <summary>
-        /// Gets the canvas drawer is drawing.
-        /// </summary>
-        private bool GetCanvasDrawerIsDrawing()
-        {
-            const string CANVAS_DRAWER_MEMBER_VARIABLE_NAME_IS_DRAWING = "_isDrawing";
-            return ( bool )_canvasDrawerTarget.GetFieldOrProperty(CANVAS_DRAWER_MEMBER_VARIABLE_NAME_IS_DRAWING);
+            Assert.IsTrue(_canvasDrawer.IsCalledInitialize);
         }
 
         /// <summary>
@@ -100,7 +82,7 @@ namespace DualViewsDrawingModel.Test
         public void TestSetCurrentShapeDrawerType()
         {
             _canvasManager.SetCurrentShapeDrawerType(ShapeDrawerType.Line);
-            Assert.AreEqual(GetCanvasDrawerCurrentShapeDrawerType(), ShapeDrawerType.Line);
+            Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentShapeDrawerType);
         }
 
         /// <summary>
@@ -110,7 +92,7 @@ namespace DualViewsDrawingModel.Test
         public void TestClearCanvas()
         {
             _canvasManager.ClearCanvas();
-            Assert.IsFalse(GetCanvasDrawerIsDrawing());
+            Assert.IsTrue(_canvasDrawer.IsCalledClearCanvas);
         }
 
         /// <summary>
@@ -120,7 +102,7 @@ namespace DualViewsDrawingModel.Test
         public void TestHandleCanvasLeftMousePressed()
         {
             _canvasManager.HandleCanvasLeftMousePressed(new Point());
-            Assert.IsFalse(GetCanvasDrawerIsDrawing());
+            Assert.IsTrue(_canvasDrawer.IsCalledHandleCanvasLeftMousePressed);
         }
 
         /// <summary>
@@ -130,7 +112,7 @@ namespace DualViewsDrawingModel.Test
         public void TestHandleCanvasLeftMouseMoved()
         {
             _canvasManager.HandleCanvasLeftMouseMoved(new Point());
-            Assert.IsFalse(GetCanvasDrawerIsDrawing());
+            Assert.IsTrue(_canvasDrawer.IsCalledHandleCanvasLeftMouseMoved);
         }
 
         /// <summary>
@@ -140,7 +122,7 @@ namespace DualViewsDrawingModel.Test
         public void TestHandleCanvasLeftMouseReleased()
         {
             _canvasManager.HandleCanvasLeftMouseReleased(new Point());
-            Assert.IsFalse(GetCanvasDrawerIsDrawing());
+            Assert.IsTrue(_canvasDrawer.IsCalledHandleCanvasLeftMouseReleased);
         }
 
         /// <summary>
@@ -150,8 +132,6 @@ namespace DualViewsDrawingModel.Test
         public void TestHandleCanvasLeftMouseAction()
         {
             const string MEMBER_FUNCTION_NAME_HANDLE_CANVAS_LEFT_MOUSE_ACTION = "HandleCanvasLeftMouseAction";
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_WIDTH, 1.0);
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_HEIGHT, 2.0);
             var arguments = new object[] { new Point(1.1, TestDefinitions.DUMP_DOUBLE), new Action<Point>((mousePositionParameter) => { }) };
             TargetInvocationException expectedException = Assert.ThrowsException<TargetInvocationException>(() => _target.Invoke(MEMBER_FUNCTION_NAME_HANDLE_CANVAS_LEFT_MOUSE_ACTION, arguments));
             Assert.IsInstanceOfType(expectedException.InnerException, typeof(ArgumentException));
@@ -196,7 +176,7 @@ namespace DualViewsDrawingModel.Test
         public void TestRefreshDrawCanvas()
         {
             _canvasManager.RefreshDrawCanvas(new GraphicsMock());
-            Assert.IsFalse(GetCanvasDrawerIsDrawing());
+            Assert.IsTrue(_canvasDrawer.IsCalledRefreshDrawCanvas);
         }
     }
 }
