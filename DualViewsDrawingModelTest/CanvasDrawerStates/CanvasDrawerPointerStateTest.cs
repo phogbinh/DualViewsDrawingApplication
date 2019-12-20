@@ -10,7 +10,6 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
     {
         private const string MEMBER_VARIABLE_NAME_CANVAS_DRAWER = "_canvasDrawer";
         private CanvasDrawerPointerState _canvasDrawerPointerState;
-        private PrivateObject _target;
         private CanvasDrawerMock _canvasDrawer;
 
         /// <summary>
@@ -22,7 +21,6 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         {
             _canvasDrawer = new CanvasDrawerMock();
             _canvasDrawerPointerState = new CanvasDrawerPointerState(_canvasDrawer);
-            _target = new PrivateObject(_canvasDrawer);
         }
 
         /// <summary>
