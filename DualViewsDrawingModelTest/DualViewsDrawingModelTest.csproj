@@ -59,6 +59,7 @@
     <Compile Include="CanvasDrawerTest.cs" />
     <Compile Include="CanvasManagerTest.cs" />
     <Compile Include="DefinitionsTest.cs" />
+    <Compile Include="Mocks\CanvasDrawerMock.cs" />
     <Compile Include="Mocks\CanvasDrawerStateMock.cs" />
     <Compile Include="Mocks\CanvasManagerMock.cs" />
     <Compile Include="Mocks\GraphicsMock.cs" />
