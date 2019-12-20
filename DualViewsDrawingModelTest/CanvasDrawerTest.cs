@@ -1,10 +1,8 @@
-﻿using DualViewsDrawingModel.ShapeDrawers;
+﻿using DualViewsDrawingModel.CanvasDrawerStates;
 using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Reflection;
 
 namespace DualViewsDrawingModel.Test
 {
@@ -12,12 +10,12 @@ namespace DualViewsDrawingModel.Test
     public class CanvasDrawerTest
     {
         private const string MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE = "_currentShapeDrawerType";
-        private const string MEMBER_VARIABLE_NAME_IS_DRAWING = "_isDrawing";
-        private const string MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_DRAWING_STARTING_POINT = "_currentDrawingShapeDrawingStartingPoint";
-        private const string MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_HINT_SHAPE_DRAWER = "_currentDrawingShapeHintShapeDrawer";
+        private const string MEMBER_VARIABLE_NAME_CURRENT_STATE = "_currentState";
         private const string MEMBER_VARIABLE_NAME_SHAPE_DRAWERS_MANAGER = "_shapeDrawersManager";
         private CanvasDrawer _canvasDrawer;
         private PrivateObject _target;
+        private CanvasDrawerStateMock _currentState;
+        private ShapeDrawersManagerMock _shapeDrawersManager;
 
         /// <summary>
         /// Initializes this instance.
@@ -28,46 +26,10 @@ namespace DualViewsDrawingModel.Test
         {
             _canvasDrawer = new CanvasDrawer();
             _target = new PrivateObject(_canvasDrawer);
-        }
-
-        /// <summary>
-        /// Sets the type of the current shape drawer.
-        /// </summary>
-        private void SetCurrentShapeDrawerType(ShapeDrawerType value)
-        {
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, value);
-        }
-
-        /// <summary>
-        /// Sets the is drawing.
-        /// </summary>
-        private void SetIsDrawing(bool value)
-        {
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_IS_DRAWING, value);
-        }
-
-        /// <summary>
-        /// Sets the current drawing shape drawing starting point.
-        /// </summary>
-        private void SetCurrentDrawingShapeDrawingStartingPoint(Point value)
-        {
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_DRAWING_STARTING_POINT, value);
-        }
-
-        /// <summary>
-        /// Sets the current drawing shape hint shape drawer.
-        /// </summary>
-        private void SetCurrentDrawingShapeHintShapeDrawer(ShapeDrawer value)
-        {
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_HINT_SHAPE_DRAWER, value);
-        }
-
-        /// <summary>
-        /// Sets the shape drawers manager.
-        /// </summary>
-        private void SetShapeDrawersManager(ShapeDrawersManager value)
-        {
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_SHAPE_DRAWERS_MANAGER, value);
+            _currentState = new CanvasDrawerStateMock();
+            _shapeDrawersManager = new ShapeDrawersManagerMock();
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_STATE, _currentState);
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_SHAPE_DRAWERS_MANAGER, _shapeDrawersManager);
         }
 
         /// <summary>
@@ -87,14 +49,11 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestInitialize()
         {
-            PrivateObject shapeDrawersManagerTarget = PrepareTestClearCanvas();
-            int count = 0;
-            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
-            SetCurrentShapeDrawerType(ShapeDrawerType.Line);
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, ShapeDrawerType.Line);
             _canvasDrawer.Initialize(ShapeDrawerType.Rectangle);
-            AssertTestClearCanvas(shapeDrawersManagerTarget);
-            Assert.AreEqual(count, 1);
-            Assert.AreEqual(( ShapeDrawerType )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE), ShapeDrawerType.Rectangle); // The only different assert from that of TestClearCanvas.
+            Assert.AreEqual(_canvasDrawer.CurrentShapeDrawerType, ShapeDrawerType.Rectangle);
+            Assert.IsInstanceOfType(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_STATE), typeof(CanvasDrawerPointerState));
+            Assert.IsTrue(_shapeDrawersManager.IsCalledClear);
         }
 
         /// <summary>
@@ -105,7 +64,7 @@ namespace DualViewsDrawingModel.Test
         {
             Assert.ThrowsException<ArgumentException>(() => _canvasDrawer.SetCurrentShapeDrawerType(( ShapeDrawerType )( -1 )));
             Assert.ThrowsException<ArgumentException>(() => _canvasDrawer.SetCurrentShapeDrawerType(( ShapeDrawerType )3));
-            SetCurrentShapeDrawerType(ShapeDrawerType.None);
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, ShapeDrawerType.None);
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Line);
             Assert.AreEqual(( ShapeDrawerType )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE), ShapeDrawerType.Line);
         }
@@ -116,38 +75,18 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestClearCanvas()
         {
-            PrivateObject shapeDrawersManagerTarget = PrepareTestClearCanvas();
-            int count = 0;
-            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
             _canvasDrawer.ClearCanvas();
-            AssertTestClearCanvas(shapeDrawersManagerTarget);
-            Assert.AreEqual(count, 1);
+            Assert.IsTrue(_currentState.IsCalledClearCanvas);
         }
 
         /// <summary>
-        /// Prepares the test clear canvas.
+        /// Tests the clear shape drawers manager.
         /// </summary>
-        private PrivateObject PrepareTestClearCanvas()
+        [TestMethod()]
+        public void TestClearShapeDrawersManager()
         {
-            SetIsDrawing(true);
-            SetCurrentDrawingShapeDrawingStartingPoint(new Point());
-            SetCurrentDrawingShapeHintShapeDrawer(new LineDrawer(new Point(), new Point()));
-            var shapeDrawersManager = new ShapeDrawersManager();
-            shapeDrawersManager.AddShapeDrawer(new Point(), new Point(), ShapeDrawerType.Rectangle);
-            SetShapeDrawersManager(shapeDrawersManager);
-            return new PrivateObject(shapeDrawersManager);
-        }
-
-        /// <summary>
-        /// Asserts the test clear canvas.
-        /// </summary>
-        private void AssertTestClearCanvas(PrivateObject shapeDrawersManagerTarget)
-        {
-            const string SHAPE_DRAWERS_MANAGER_MEMBER_VARIABLE_NAME_SHAPE_DRAWERS = "_shapeDrawers";
-            Assert.IsFalse(( bool )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_IS_DRAWING));
-            Assert.IsNull(( Point )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_DRAWING_STARTING_POINT));
-            Assert.IsNull(( ShapeDrawer )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_HINT_SHAPE_DRAWER));
-            Assert.AreEqual(( ( List<ShapeDrawer> )shapeDrawersManagerTarget.GetFieldOrProperty(SHAPE_DRAWERS_MANAGER_MEMBER_VARIABLE_NAME_SHAPE_DRAWERS) ).Count, 0);
+            _canvasDrawer.ClearShapeDrawersManager();
+            Assert.IsTrue(_shapeDrawersManager.IsCalledClear);
         }
 
         /// <summary>
@@ -171,54 +110,8 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestHandleCanvasLeftMousePressed()
         {
-            SetIsDrawing(false);
-            SetCurrentShapeDrawerType(ShapeDrawerType.None);
             _canvasDrawer.HandleCanvasLeftMousePressed(new Point());
-            Assert.IsFalse(( bool )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_IS_DRAWING));
-            Point mousePosition = new Point();
-            PrepareTestBeginDrawing();
-            _canvasDrawer.HandleCanvasLeftMousePressed(mousePosition);
-            AssertTestBeginDrawing(mousePosition);
-        }
-
-        /// <summary>
-        /// Tests the begin drawing.
-        /// </summary>
-        [TestMethod()]
-        public void TestBeginDrawing()
-        {
-            const string MEMBER_FUNCTION_NAME_BEGIN_DRAWING = "BeginDrawing";
-            var arguments = new object[] { null };
-            TargetInvocationException expectedException = Assert.ThrowsException<TargetInvocationException>(() => _target.Invoke(MEMBER_FUNCTION_NAME_BEGIN_DRAWING, arguments));
-            Assert.IsInstanceOfType(expectedException.InnerException, typeof(ArgumentNullException));
-            SetIsDrawing(true);
-            arguments = new object[] { new Point() };
-            expectedException = Assert.ThrowsException<TargetInvocationException>(() => _target.Invoke(MEMBER_FUNCTION_NAME_BEGIN_DRAWING, arguments));
-            Assert.IsInstanceOfType(expectedException.InnerException, typeof(ApplicationException));
-            Point mousePosition = new Point();
-            PrepareTestBeginDrawing();
-            arguments = new object[] { mousePosition };
-            _target.Invoke(MEMBER_FUNCTION_NAME_BEGIN_DRAWING, arguments);
-            AssertTestBeginDrawing(mousePosition);
-        }
-
-        /// <summary>
-        /// Prepares the test begin drawing.
-        /// </summary>
-        private void PrepareTestBeginDrawing()
-        {
-            SetIsDrawing(false);
-            SetCurrentShapeDrawerType(ShapeDrawerType.Rectangle);
-        }
-
-        /// <summary>
-        /// Asserts the test begin drawing.
-        /// </summary>
-        private void AssertTestBeginDrawing(Point mousePosition)
-        {
-            Assert.IsTrue(( bool )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_IS_DRAWING));
-            Assert.AreSame(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_DRAWING_STARTING_POINT), mousePosition);
-            Assert.IsInstanceOfType(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_HINT_SHAPE_DRAWER), typeof(RectangleDrawer));
+            Assert.IsTrue(_currentState.IsCalledHandleCanvasLeftMousePressed);
         }
 
         /// <summary>
@@ -227,50 +120,8 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestHandleCanvasLeftMouseMoved()
         {
-            var oldDrawingEndingPoint = new Point();
-            SetCurrentDrawingShapeHintShapeDrawer(new RectangleDrawer(new Point(), oldDrawingEndingPoint));
-            SetIsDrawing(false);
-            var mousePosition = new Point();
-            _canvasDrawer.HandleCanvasLeftMouseMoved(mousePosition);
-            AssertCurrentDrawingShapeHintShapeDrawerDrawingEndingPoint(oldDrawingEndingPoint);
-            SetIsDrawing(true);
-            int count = 0;
-            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
-            _canvasDrawer.HandleCanvasLeftMouseMoved(mousePosition);
-            AssertCurrentDrawingShapeHintShapeDrawerDrawingEndingPoint(mousePosition);
-            Assert.AreEqual(count, 1);
-        }
-
-        /// <summary>
-        /// Tests the update current drawing shape hint.
-        /// </summary>
-        [TestMethod()]
-        public void TestUpdateCurrentDrawingShapeHint()
-        {
-            const string MEMBER_FUNCTION_NAME_UPDATE_CURRENT_DRAWING_SHAPE_HINT = "UpdateCurrentDrawingShapeHint";
-
-            var arguments = new object[] { null };
-            TargetInvocationException expectedException = Assert.ThrowsException<TargetInvocationException>(() => _target.Invoke(MEMBER_FUNCTION_NAME_UPDATE_CURRENT_DRAWING_SHAPE_HINT, arguments));
-            Assert.IsInstanceOfType(expectedException.InnerException, typeof(ArgumentNullException));
-            SetCurrentDrawingShapeHintShapeDrawer(new RectangleDrawer(new Point(), new Point()));
-            var mousePosition = new Point();
-            int count = 0;
-            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
-            arguments = new object[] { mousePosition };
-            _target.Invoke(MEMBER_FUNCTION_NAME_UPDATE_CURRENT_DRAWING_SHAPE_HINT, arguments);
-            AssertCurrentDrawingShapeHintShapeDrawerDrawingEndingPoint(mousePosition);
-            Assert.AreEqual(count, 1);
-        }
-
-        /// <summary>
-        /// Asserts the current drawing shape hint shape drawer drawing ending point.
-        /// </summary>
-        private void AssertCurrentDrawingShapeHintShapeDrawerDrawingEndingPoint(Point mousePosition)
-        {
-            const string SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT = "_drawingEndingPoint";
-            ShapeDrawer expectedCurrentDrawingShapeHintShapeDrawer = ( ShapeDrawer )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_HINT_SHAPE_DRAWER);
-            var target = new PrivateObject(expectedCurrentDrawingShapeHintShapeDrawer);
-            Assert.AreSame(target.GetFieldOrProperty(SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT), mousePosition);
+            _canvasDrawer.HandleCanvasLeftMouseMoved(new Point());
+            Assert.IsTrue(_currentState.IsCalledHandleCanvasLeftMouseMoved);
         }
 
         /// <summary>
@@ -279,64 +130,8 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestHandleCanvasLeftMouseReleased()
         {
-            // Negative test.
-            const string SHAPE_DRAWERS_MANAGER_MEMBER_VARIABLE_NAME_SHAPE_DRAWERS = "_shapeDrawers";
-            SetIsDrawing(false);
-            var shapeDrawersManager = new ShapeDrawersManager();
-            var shapeDrawersManagerTarget = new PrivateObject(shapeDrawersManager);
-            shapeDrawersManager.AddShapeDrawer(new Point(), new Point(), ShapeDrawerType.Rectangle);
-            SetShapeDrawersManager(shapeDrawersManager);
             _canvasDrawer.HandleCanvasLeftMouseReleased(new Point());
-            Assert.AreEqual(( ( List<ShapeDrawer> )shapeDrawersManagerTarget.GetFieldOrProperty(SHAPE_DRAWERS_MANAGER_MEMBER_VARIABLE_NAME_SHAPE_DRAWERS) ).Count, 1);
-            // Positive test.
-            shapeDrawersManagerTarget = PrepareTestEndDrawing();
-            int count = 0;
-            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
-            _canvasDrawer.HandleCanvasLeftMouseReleased(new Point());
-            AssertTestEndDrawing(shapeDrawersManagerTarget);
-            Assert.AreEqual(count, 1);
-        }
-
-        /// <summary>
-        /// Tests the end drawing.
-        /// </summary>
-        [TestMethod()]
-        public void TestEndDrawing()
-        {
-            const string MEMBER_FUNCTION_NAME_END_DRAWING = "EndDrawing";
-            PrivateObject shapeDrawersManagerTarget = PrepareTestEndDrawing();
-            int count = 0;
-            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
-            var arguments = new object[] { new Point() };
-            _target.Invoke(MEMBER_FUNCTION_NAME_END_DRAWING, arguments);
-            AssertTestEndDrawing(shapeDrawersManagerTarget);
-            Assert.AreEqual(count, 1);
-        }
-
-        /// <summary>
-        /// Prepares the test end drawing.
-        /// </summary>
-        private PrivateObject PrepareTestEndDrawing()
-        {
-            var shapeDrawersManager = new ShapeDrawersManager();
-            shapeDrawersManager.AddShapeDrawer(new Point(), new Point(), ShapeDrawerType.Rectangle);
-            SetShapeDrawersManager(shapeDrawersManager);
-            SetCurrentDrawingShapeDrawingStartingPoint(new Point());
-            SetCurrentShapeDrawerType(ShapeDrawerType.Line);
-            SetIsDrawing(true);
-            return new PrivateObject(shapeDrawersManager);
-        }
-
-        /// <summary>
-        /// Asserts the test end drawing.
-        /// </summary>
-        private void AssertTestEndDrawing(PrivateObject shapeDrawersManagerTarget)
-        {
-            const string SHAPE_DRAWERS_MANAGER_MEMBER_VARIABLE_NAME_SHAPE_DRAWERS = "_shapeDrawers";
-            List<ShapeDrawer> expectedShapeDrawers = ( List<ShapeDrawer> )shapeDrawersManagerTarget.GetFieldOrProperty(SHAPE_DRAWERS_MANAGER_MEMBER_VARIABLE_NAME_SHAPE_DRAWERS);
-            Assert.AreEqual(expectedShapeDrawers.Count, 2);
-            Assert.IsInstanceOfType(expectedShapeDrawers[ 1 ], typeof(LineDrawer));
-            Assert.IsFalse(( bool )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_IS_DRAWING));
+            Assert.IsTrue(_currentState.IsCalledHandleCanvasLeftMouseReleased);
         }
 
         /// <summary>
@@ -346,11 +141,11 @@ namespace DualViewsDrawingModel.Test
         public void TestRefreshDrawCanvas()
         {
             Assert.ThrowsException<ArgumentNullException>(() => _canvasDrawer.RefreshDrawCanvas(null));
-            PrepareTestDraw();
             var graphics = new GraphicsMock();
             _canvasDrawer.RefreshDrawCanvas(graphics);
             Assert.IsTrue(graphics.IsCalledClearAll);
-            AssertTestDraw(graphics);
+            Assert.IsTrue(_shapeDrawersManager.IsCalledDraw);
+            Assert.IsTrue(_currentState.IsCalledDraw);
         }
 
         /// <summary>
@@ -360,32 +155,32 @@ namespace DualViewsDrawingModel.Test
         public void TestDraw()
         {
             const string MEMBER_FUNCTION_NAME_DRAW = "Draw";
-            PrepareTestDraw();
-            var graphics = new GraphicsMock();
-            var arguments = new object[] { graphics };
+            var arguments = new object[] { new GraphicsMock() };
             _target.Invoke(MEMBER_FUNCTION_NAME_DRAW, arguments);
-            AssertTestDraw(graphics);
+            Assert.IsTrue(_shapeDrawersManager.IsCalledDraw);
+            Assert.IsTrue(_currentState.IsCalledDraw);
         }
 
         /// <summary>
-        /// Prepares the test draw.
+        /// Tests the add current shape drawer.
         /// </summary>
-        private void PrepareTestDraw()
+        [TestMethod()]
+        public void TestAddCurrentShapeDrawer()
         {
-            SetIsDrawing(true);
-            var shapeDrawersManager = new ShapeDrawersManager();
-            shapeDrawersManager.AddShapeDrawer(new Point(), new Point(), ShapeDrawerType.Rectangle);
-            SetShapeDrawersManager(shapeDrawersManager);
-            SetCurrentDrawingShapeHintShapeDrawer(new LineDrawer(new Point(), new Point()));
+            _canvasDrawer.AddCurrentShapeDrawer(new Point(), new Point());
+            Assert.IsTrue(_shapeDrawersManager.IsCalledAddShapeDrawer);
         }
 
         /// <summary>
-        /// Asserts the test draw.
+        /// Tests the state of the set current.
         /// </summary>
-        private void AssertTestDraw(GraphicsMock graphics)
+        [TestMethod()]
+        public void TestSetCurrentState()
         {
-            Assert.IsTrue(graphics.IsCalledDrawLine);
-            Assert.IsTrue(graphics.IsCalledDrawRectangle);
+            Assert.ThrowsException<ArgumentNullException>(() => _canvasDrawer.SetCurrentState(null));
+            var currentState = new CanvasDrawerPointerState(_canvasDrawer);
+            _canvasDrawer.SetCurrentState(currentState);
+            Assert.AreSame(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_STATE), currentState);
         }
     }
 }
