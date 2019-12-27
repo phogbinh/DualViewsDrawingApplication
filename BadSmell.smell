@@ -269,15 +269,15 @@
             <Smell>
               <Id>6</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>115 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.HandleCanvasLeftMouseReleased(DualViewsDrawingModel.Point) 以及 DualViewsDrawingModel.Model.CanvasWidth 以及 DualViewsDrawingModel.Model.CanvasHeight</HashCode>
+              <HashCode>121 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.HandleCanvasLeftMouseReleased(DualViewsDrawingModel.Point) 以及 DualViewsDrawingModel.Model.CanvasWidth 以及 DualViewsDrawingModel.Model.CanvasHeight</HashCode>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>DualViewsDrawingWindowsUniversalApplication</Project>
               <File>D:\Git\phogbinh\DualViewsDrawingApplication\DualViewsDrawingWindowsUniversalApplication\Views\DrawingPage.xaml.cs</File>
-              <Line>115</Line>
-              <StartLine>114</StartLine>
+              <Line>121</Line>
+              <StartLine>120</StartLine>
               <StartCol>0</StartCol>
-              <EndLine>115</EndLine>
+              <EndLine>121</EndLine>
               <EndCol>0</EndCol>
               <Comment>目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.HandleCanvasLeftMouseReleased(DualViewsDrawingModel.Point) 以及 DualViewsDrawingModel.Model.CanvasWidth 以及 DualViewsDrawingModel.Model.CanvasHeight</Comment>
               <Auto>false</Auto>
@@ -286,7 +286,6 @@
           <HashCodeIgnoreList />
           <HashCodeRequestIgnoreList>
             <string>41 目前物件 DualViewsDrawingModel.Point，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Definitions，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Definitions.IsInclusiveInInterval(double, double, double) 以及 DualViewsDrawingModel.Definitions.IsInclusiveInInterval(double, double, double)</string>
-            <string>115 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.HandleCanvasLeftMouseReleased(DualViewsDrawingModel.Point) 以及 DualViewsDrawingModel.Model.CanvasWidth 以及 DualViewsDrawingModel.Model.CanvasHeight</string>
           </HashCodeRequestIgnoreList>
           <AnalysisFileManager>
             <AnalysisFiles>
@@ -471,6 +470,11 @@
                 <AnalysisFileType>ViewOrController</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
+                <RelativePath>Views\Utilities\DrawingPageNavigationEventArgumentsParameter.cs</RelativePath>
+                <ProjectName>DualViewsDrawingWindowsUniversalApplication</ProjectName>
+                <AnalysisFileType>ViewOrController</AnalysisFileType>
+              </AnalysisFile>
+              <AnalysisFile>
                 <RelativePath>ButtonEnabledStatesManagerTest.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
                 <AnalysisFileType>Test</AnalysisFileType>
@@ -617,8 +621,8 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>1771</ProductionLoc>
-          <TestLoc>3149</TestLoc>
+          <ProductionLoc>1806</ProductionLoc>
+          <TestLoc>3155</TestLoc>
         </CodeReview>
       </Data>
     </div>
