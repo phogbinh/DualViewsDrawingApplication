@@ -9,12 +9,11 @@ The application is implemented applying the following design patterns:
 * Observer Pattern
 * Adapter Pattern
 * Simple Factory Pattern
+* State Pattern
 
 ## Incoming Design Patterns
 The design patterns listed below will be applied for the application in the near future:
 * Command Pattern
-* State Pattern
-* Prototype Pattern
 
 ## Unit Testing
 The application has 100% code coverage for model.
