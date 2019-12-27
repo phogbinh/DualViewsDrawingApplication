@@ -15,7 +15,7 @@ namespace DualViewsDrawingWindowsFormsApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DrawingForm(new Model(new CanvasManager())));
+            Application.Run(new DrawingForm(new DrawingPresentationModel(), new Model(new CanvasManager())));
         }
     }
 }
