@@ -56,11 +56,15 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ButtonEnabledStatesManagerTest.cs" />
+    <Compile Include="ButtonEnabledStateTest.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerDrawingStateTest.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerPointerStateTest.cs" />
     <Compile Include="CanvasDrawerTest.cs" />
     <Compile Include="CanvasManagerTest.cs" />
     <Compile Include="DefinitionsTest.cs" />
+    <Compile Include="DrawingPresentationModelTest.cs" />
+    <Compile Include="Mocks\ButtonEnabledStatesManagerMock.cs" />
     <Compile Include="Mocks\CanvasDrawerMock.cs" />
     <Compile Include="Mocks\CanvasDrawerStateMock.cs" />
     <Compile Include="Mocks\CanvasManagerMock.cs" />
