@@ -40,7 +40,10 @@ namespace DualViewsDrawingModel
             _rectangleButtonEnabledState = new ButtonEnabledState();
             _lineButtonEnabledState = new ButtonEnabledState();
             _clearButtonEnabledState = new ButtonEnabledState();
-            _buttonEnabledStates = new List<ButtonEnabledState>() { _rectangleButtonEnabledState, _lineButtonEnabledState, _clearButtonEnabledState };
+            _buttonEnabledStates = new List<ButtonEnabledState>();
+            _buttonEnabledStates.Add(_rectangleButtonEnabledState);
+            _buttonEnabledStates.Add(_lineButtonEnabledState);
+            _buttonEnabledStates.Add(_clearButtonEnabledState);
         }
 
         /// <summary>
