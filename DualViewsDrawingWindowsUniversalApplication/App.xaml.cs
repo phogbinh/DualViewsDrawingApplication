@@ -1,5 +1,6 @@
 ﻿using DualViewsDrawingModel;
 using DualViewsDrawingWindowsUniversalApplication.Views;
+using DualViewsDrawingWindowsUniversalApplication.Views.Utilities;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -14,7 +15,9 @@ namespace DualViewsDrawingWindowsUniversalApplication
     /// </summary>
     sealed partial class App : Application
     {
+        private DrawingPresentationModel _drawingPresentationModel;
         private Model _model;
+        private DrawingPageNavigationEventArgumentsParameter _drawingPageNavigationEventArgumentsParameter;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -24,7 +27,10 @@ namespace DualViewsDrawingWindowsUniversalApplication
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            _drawingPresentationModel = new DrawingPresentationModel();
             _model = new Model(new CanvasManager());
+            _drawingPageNavigationEventArgumentsParameter = new DrawingPageNavigationEventArgumentsParameter(_drawingPresentationModel, _model);
+
         }
 
         /// <summary>
@@ -61,7 +67,7 @@ namespace DualViewsDrawingWindowsUniversalApplication
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(DrawingPage), _model);
+                    rootFrame.Navigate(typeof(DrawingPage), _drawingPageNavigationEventArgumentsParameter);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

@@ -7,14 +7,17 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
 {
     public partial class DrawingForm : Form
     {
+        private DrawingPresentationModel _drawingPresentationModel;
         private Model _model;
 
-        public DrawingForm(Model modelData)
+        public DrawingForm(DrawingPresentationModel drawingPresentationModelData, Model modelData)
         {
             InitializeComponent();
+            _drawingPresentationModel = drawingPresentationModelData;
             _model = modelData;
             this.Disposed += RemoveEvents;
             // Observers
+            _drawingPresentationModel.ButtonEnabledStatesChanged += UpdateButtonEnabledStates;
             _model.CanvasRefreshDrawRequested += HandleCanvasRefreshDrawRequested;
             // UI
             _canvas.Resize += (sender, eventArguments) => _model.SetCanvasSize(_canvas.Size.Width, _canvas.Size.Height);
@@ -26,6 +29,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             _lineButton.Click += HandleLineButtonClicked;
             _clearButton.Click += HandleClearButtonClicked;
             // Initial UI States
+            _drawingPresentationModel.Initialize();
             _model.Initialize(_canvas.Size.Width, _canvas.Size.Height, ShapeDrawerType.None);
         }
 
@@ -34,6 +38,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void RemoveEvents(object sender, EventArgs eventArguments)
         {
+            _drawingPresentationModel.ButtonEnabledStatesChanged -= UpdateButtonEnabledStates;
             _model.CanvasRefreshDrawRequested -= HandleCanvasRefreshDrawRequested;
         }
 
@@ -87,9 +92,8 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleRectangleButtonClicked(object sender, EventArgs eventArguments)
         {
+            _drawingPresentationModel.HandleRectangleButtonClicked();
             _model.SetCurrentShapeDrawerType(ShapeDrawerType.Rectangle);
-            _lineButton.Enabled = true;
-            _rectangleButton.Enabled = false;
         }
 
         /// <summary>
@@ -97,9 +101,8 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleLineButtonClicked(object sender, EventArgs eventArguments)
         {
+            _drawingPresentationModel.HandleLineButtonClicked();
             _model.SetCurrentShapeDrawerType(ShapeDrawerType.Line);
-            _lineButton.Enabled = false;
-            _rectangleButton.Enabled = true;
         }
 
         /// <summary>
@@ -107,9 +110,18 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         /// </summary>
         private void HandleClearButtonClicked(object sender, EventArgs eventArguments)
         {
+            _drawingPresentationModel.HandleClearButtonClicked();
             _model.ClearCanvas();
-            _lineButton.Enabled = true;
-            _rectangleButton.Enabled = true;
+        }
+
+        /// <summary>
+        /// Updates the button enabled states.
+        /// </summary>
+        private void UpdateButtonEnabledStates()
+        {
+            _rectangleButton.Enabled = _drawingPresentationModel.RectangleButtonEnabled;
+            _lineButton.Enabled = _drawingPresentationModel.LineButtonEnabled;
+            _clearButton.Enabled = _drawingPresentationModel.ClearButtonEnabled;
         }
     }
 }

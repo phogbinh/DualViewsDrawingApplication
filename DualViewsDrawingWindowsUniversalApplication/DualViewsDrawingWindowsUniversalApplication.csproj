@@ -116,6 +116,12 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\DualViewsDrawingModel\ButtonEnabledState.cs">
+      <Link>Models\ButtonEnabledState.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\ButtonEnabledStatesManager.cs">
+      <Link>Models\ButtonEnabledStatesManager.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\CanvasDrawer.cs">
       <Link>Models\CanvasDrawer.cs</Link>
     </Compile>
@@ -133,6 +139,9 @@
     </Compile>
     <Compile Include="..\DualViewsDrawingModel\Definitions.cs">
       <Link>Models\Definitions.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\DrawingPresentationModel.cs">
+      <Link>Models\DrawingPresentationModel.cs</Link>
     </Compile>
     <Compile Include="..\DualViewsDrawingModel\IGraphics.cs">
       <Link>Models\IGraphics.cs</Link>
@@ -175,6 +184,7 @@
       <DependentUpon>DrawingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Utilities\DrawingPageGraphicsAdapter.cs" />
+    <Compile Include="Views\Utilities\DrawingPageNavigationEventArgumentsParameter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

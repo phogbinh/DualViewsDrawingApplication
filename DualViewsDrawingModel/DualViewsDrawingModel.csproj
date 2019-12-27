@@ -41,12 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButtonEnabledState.cs" />
+    <Compile Include="ButtonEnabledStatesManager.cs" />
     <Compile Include="CanvasDrawer.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerDrawingState.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerPointerState.cs" />
     <Compile Include="CanvasDrawerStates\ICanvasDrawerState.cs" />
     <Compile Include="CanvasManager.cs" />
     <Compile Include="Definitions.cs" />
+    <Compile Include="DrawingPresentationModel.cs" />
     <Compile Include="IGraphics.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Point.cs" />

@@ -11,6 +11,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
     public sealed partial class DrawingPage : Page
     {
         private const double CANVAS_DRAWING_REGION_TO_CANVAS_OFFSET = 10.0;
+        private DrawingPresentationModel _drawingPresentationModel;
         private Model _model;
         private DrawingPageGraphicsAdapter _graphicsAdapter;
 
@@ -25,17 +26,20 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         protected override void OnNavigatedTo(NavigationEventArgs eventArguments)
         {
             base.OnNavigatedTo(eventArguments);
-            Initialize(( Model )eventArguments.Parameter);
+            DrawingPageNavigationEventArgumentsParameter drawingPageNavigationEventArgumentsParameter = ( DrawingPageNavigationEventArgumentsParameter )eventArguments.Parameter;
+            Initialize(drawingPageNavigationEventArgumentsParameter.DrawingPresentationModel, drawingPageNavigationEventArgumentsParameter.Model);
         }
 
         /// <summary>
         /// Initializes this instance.
         /// </summary>
-        private void Initialize(Model modelData)
+        private void Initialize(DrawingPresentationModel drawingPresentationModelData, Model modelData)
         {
+            _drawingPresentationModel = drawingPresentationModelData;
             _model = modelData;
             _graphicsAdapter = new DrawingPageGraphicsAdapter(_canvas);
             // Observers
+            _drawingPresentationModel.ButtonEnabledStatesChanged += UpdateButtonEnabledStates;
             _model.CanvasRefreshDrawRequested += HandleCanvasRefreshDrawRequested;
             // UI
             _canvas.SizeChanged += (sender, eventArguments) => _model.SetCanvasSize(_canvas.ActualWidth, _canvas.ActualHeight);
@@ -46,6 +50,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
             _lineButton.Click += HandleLineButtonClicked;
             _clearButton.Click += HandleClearButtonClicked;
             // Initial UI States
+            _drawingPresentationModel.Initialize();
             _canvas.Loaded += (sender, eventArguments) => _model.Initialize(_canvas.ActualWidth, _canvas.ActualHeight, ShapeDrawerType.None); // The actual width and height of the canvas can only be determined after it is completely loaded.
         }
 
@@ -62,6 +67,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         /// </summary>
         private void RemoveEvents()
         {
+            _drawingPresentationModel.ButtonEnabledStatesChanged -= UpdateButtonEnabledStates;
             _model.CanvasRefreshDrawRequested -= HandleCanvasRefreshDrawRequested;
         }
 
@@ -132,9 +138,8 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         /// </summary>
         private void HandleRectangleButtonClicked(object sender, RoutedEventArgs eventArguments)
         {
+            _drawingPresentationModel.HandleRectangleButtonClicked();
             _model.SetCurrentShapeDrawerType(ShapeDrawerType.Rectangle);
-            _lineButton.IsEnabled = true;
-            _rectangleButton.IsEnabled = false;
         }
 
         /// <summary>
@@ -142,9 +147,8 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         /// </summary>
         private void HandleLineButtonClicked(object sender, RoutedEventArgs eventArguments)
         {
+            _drawingPresentationModel.HandleLineButtonClicked();
             _model.SetCurrentShapeDrawerType(ShapeDrawerType.Line);
-            _lineButton.IsEnabled = false;
-            _rectangleButton.IsEnabled = true;
         }
 
         /// <summary>
@@ -152,9 +156,18 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         /// </summary>
         private void HandleClearButtonClicked(object sender, RoutedEventArgs eventArguments)
         {
+            _drawingPresentationModel.HandleClearButtonClicked();
             _model.ClearCanvas();
-            _lineButton.IsEnabled = true;
-            _rectangleButton.IsEnabled = true;
+        }
+
+        /// <summary>
+        /// Updates the button enabled states.
+        /// </summary>
+        private void UpdateButtonEnabledStates()
+        {
+            _rectangleButton.IsEnabled = _drawingPresentationModel.RectangleButtonEnabled;
+            _lineButton.IsEnabled = _drawingPresentationModel.LineButtonEnabled;
+            _clearButton.IsEnabled = _drawingPresentationModel.ClearButtonEnabled;
         }
     }
 }
