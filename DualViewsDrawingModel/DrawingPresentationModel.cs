@@ -50,6 +50,14 @@
         }
 
         /// <summary>
+        /// Handles the drawing ended.
+        /// </summary>
+        public void HandleDrawingEnded()
+        {
+            _buttonEnabledStatesManager.HandleDrawingEnded();
+        }
+
+        /// <summary>
         /// Handles the rectangle button clicked.
         /// </summary>
         public void HandleRectangleButtonClicked()
