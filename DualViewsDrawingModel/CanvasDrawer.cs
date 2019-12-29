@@ -6,7 +6,12 @@ namespace DualViewsDrawingModel
     public class CanvasDrawer
     {
         public delegate void CanvasRefreshDrawRequestedEventHandler();
+        public delegate void DrawingEndedEventHandler();
         public CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
+        {
+            get; set;
+        }
+        public DrawingEndedEventHandler DrawingEnded
         {
             get; set;
         }
@@ -139,6 +144,17 @@ namespace DualViewsDrawingModel
             if ( CanvasRefreshDrawRequested != null )
             {
                 CanvasRefreshDrawRequested();
+            }
+        }
+
+        /// <summary>
+        /// Notifies the drawing ended.
+        /// </summary>
+        public virtual void NotifyDrawingEnded()
+        {
+            if ( DrawingEnded != null )
+            {
+                DrawingEnded();
             }
         }
     }

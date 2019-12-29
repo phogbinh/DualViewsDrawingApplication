@@ -81,6 +81,19 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the handle drawing ended.
+        /// </summary>
+        [TestMethod()]
+        public void TestHandleDrawingEnded()
+        {
+            _buttonEnabledStatesManager.HandleDrawingEnded();
+            foreach ( ButtonEnabledState buttonEnabledState in _buttonEnabledStates )
+            {
+                Assert.IsTrue(buttonEnabledState.Value);
+            }
+        }
+
+        /// <summary>
         /// Tests the handle rectangle button clicked.
         /// </summary>
         [TestMethod()]

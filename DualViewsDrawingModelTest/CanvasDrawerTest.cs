@@ -182,5 +182,19 @@ namespace DualViewsDrawingModel.Test
             _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED);
             Assert.AreEqual(count, 2);
         }
+
+        /// <summary>
+        /// Tests the notify drawing ended.
+        /// </summary>
+        [TestMethod()]
+        public void TestNotifyDrawingEnded()
+        {
+            int count = 0;
+            _canvasDrawer.DrawingEnded += () => count++;
+            _canvasDrawer.NotifyDrawingEnded();
+            Assert.AreEqual(count, 1);
+            _canvasDrawer.NotifyDrawingEnded();
+            Assert.AreEqual(count, 2);
+        }
     }
 }

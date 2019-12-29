@@ -67,6 +67,15 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
+        /// Handles the drawing ended.
+        /// </summary>
+        public virtual void HandleDrawingEnded()
+        {
+            SetButtonEnabledStates(true);
+            NotifyButtonEnabledStatesChanged();
+        }
+
+        /// <summary>
         /// Handles the rectangle button clicked.
         /// </summary>
         public virtual void HandleRectangleButtonClicked()

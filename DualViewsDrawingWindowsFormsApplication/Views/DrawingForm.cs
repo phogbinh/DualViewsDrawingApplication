@@ -19,6 +19,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             // Observers
             _drawingPresentationModel.ButtonEnabledStatesChanged += UpdateButtonEnabledStates;
             _model.CanvasRefreshDrawRequested += HandleCanvasRefreshDrawRequested;
+            _model.DrawingEnded += HandleDrawingEnded;
             // UI
             _canvas.Resize += (sender, eventArguments) => _model.SetCanvasSize(_canvas.Size.Width, _canvas.Size.Height);
             _canvas.Paint += (sender, eventArguments) => _model.RefreshDrawCanvas(new DrawingFormGraphicsAdapter(eventArguments.Graphics));
@@ -40,6 +41,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         {
             _drawingPresentationModel.ButtonEnabledStatesChanged -= UpdateButtonEnabledStates;
             _model.CanvasRefreshDrawRequested -= HandleCanvasRefreshDrawRequested;
+            _model.DrawingEnded -= HandleDrawingEnded;
         }
 
         /// <summary>
@@ -48,6 +50,15 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         private void HandleCanvasRefreshDrawRequested()
         {
             Invalidate(true); // Triggers canvas Paint event.
+        }
+
+        /// <summary>
+        /// Handles the drawing ended.
+        /// </summary>
+        private void HandleDrawingEnded()
+        {
+            _drawingPresentationModel.HandleDrawingEnded();
+            _model.SetCurrentShapeDrawerType(ShapeDrawerType.None);
         }
 
         /// <summary>

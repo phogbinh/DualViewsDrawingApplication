@@ -118,6 +118,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             var arguments = new object[] { new Point() };
             _target.Invoke(MEMBER_FUNCTION_NAME_END_DRAWING, arguments);
             Assert.IsTrue(_canvasDrawer.IsCalledAddCurrentShapeDrawer);
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyDrawingEnded);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyCanvasRefreshDrawRequested);
         }
 

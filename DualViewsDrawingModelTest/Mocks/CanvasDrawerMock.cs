@@ -49,6 +49,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledNotifyDrawingEnded
+        {
+            get; set;
+        }
         public ICanvasDrawerState CurrentState
         {
             get; set;
@@ -67,6 +71,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledSetCurrentState = false;
             IsCalledAddCurrentShapeDrawer = false;
             IsCalledNotifyCanvasRefreshDrawRequested = false;
+            IsCalledNotifyDrawingEnded = false;
             CurrentState = null;
         }
 
@@ -158,6 +163,14 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void NotifyCanvasRefreshDrawRequested()
         {
             IsCalledNotifyCanvasRefreshDrawRequested = true;
+        }
+
+        /// <summary>
+        /// Notifies the canvas refresh draw requested.
+        /// </summary>
+        public override void NotifyDrawingEnded()
+        {
+            IsCalledNotifyDrawingEnded = true;
         }
     }
 }
