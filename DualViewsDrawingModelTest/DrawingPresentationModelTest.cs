@@ -93,6 +93,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the handle drawing ended.
+        /// </summary>
+        [TestMethod()]
+        public void TestHandleDrawingEnded()
+        {
+            _drawingPresentationModel.HandleDrawingEnded();
+            Assert.IsTrue(_buttonEnabledStatesManager.IsCalledHandleDrawingEnded);
+        }
+
+        /// <summary>
         /// Tests the handle rectangle button clicked.
         /// </summary>
         [TestMethod()]

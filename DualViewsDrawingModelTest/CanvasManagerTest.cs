@@ -40,6 +40,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the set property drawing ended.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetPropertyDrawingEnded()
+        {
+            _canvasManager.DrawingEnded += () => { };
+            Assert.IsNotNull(_canvasManager.DrawingEnded);
+        }
+
+        /// <summary>
         /// Tests the canvas manager.
         /// </summary>
         [TestMethod()]

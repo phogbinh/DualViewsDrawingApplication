@@ -8,6 +8,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledHandleDrawingEnded
+        {
+            get; set;
+        }
         public bool IsCalledHandleRectangleButtonClicked
         {
             get; set;
@@ -24,6 +28,7 @@ namespace DualViewsDrawingModelTest.Mocks
         public ButtonEnabledStatesManagerMock()
         {
             IsCalledInitialize = false;
+            IsCalledHandleDrawingEnded = false;
             IsCalledHandleRectangleButtonClicked = false;
             IsCalledHandleLineButtonClicked = false;
             IsCalledHandleClearButtonClicked = false;
@@ -35,6 +40,14 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void Initialize()
         {
             IsCalledInitialize = true;
+        }
+
+        /// <summary>
+        /// Handles the drawing ended.
+        /// </summary>
+        public override void HandleDrawingEnded()
+        {
+            IsCalledHandleDrawingEnded = true;
         }
 
         /// <summary>
