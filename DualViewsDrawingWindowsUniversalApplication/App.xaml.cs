@@ -28,7 +28,7 @@ namespace DualViewsDrawingWindowsUniversalApplication
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             _drawingPresentationModel = new DrawingPresentationModel();
-            _model = new Model(new CanvasManager());
+            _model = new Model();
             _drawingPageNavigationEventArgumentsParameter = new DrawingPageNavigationEventArgumentsParameter(_drawingPresentationModel, _model);
 
         }
