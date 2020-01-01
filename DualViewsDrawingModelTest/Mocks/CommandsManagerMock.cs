@@ -9,10 +9,20 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledUndo
+        {
+            get; set;
+        }
+        public bool IsCalledRedo
+        {
+            get; set;
+        }
 
         public CommandsManagerMock()
         {
             IsCalledAddThenExecuteCommand = false;
+            IsCalledUndo = false;
+            IsCalledRedo = false;
         }
 
         /// <summary>
@@ -21,6 +31,22 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void AddThenExecuteCommand(ICommand command)
         {
             IsCalledAddThenExecuteCommand = true;
+        }
+
+        /// <summary>
+        /// Undoes this instance.
+        /// </summary>
+        public override void Undo()
+        {
+            IsCalledUndo = true;
+        }
+
+        /// <summary>
+        /// Redoes this instance.
+        /// </summary>
+        public override void Redo()
+        {
+            IsCalledRedo = true;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Undoes this instance.
         /// </summary>
-        public void Undo()
+        public virtual void Undo()
         {
             ICommand undoCommand = _undoStack.Pop();
             _redoStack.Push(undoCommand);
@@ -55,7 +55,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Redoes this instance.
         /// </summary>
-        public void Redo()
+        public virtual void Redo()
         {
             ICommand redoCommand = _redoStack.Pop();
             _undoStack.Push(redoCommand);

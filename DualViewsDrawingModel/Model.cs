@@ -111,5 +111,21 @@
         {
             _canvasManager.RefreshDrawCanvas(graphics);
         }
+
+        /// <summary>
+        /// Undoes this instance.
+        /// </summary>
+        public void Undo()
+        {
+            _commandsManager.Undo();
+        }
+
+        /// <summary>
+        /// Redoes this instance.
+        /// </summary>
+        public void Redo()
+        {
+            _commandsManager.Redo();
+        }
     }
 }
