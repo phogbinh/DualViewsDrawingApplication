@@ -140,6 +140,15 @@
     <Compile Include="..\DualViewsDrawingModel\CanvasShapeDrawersHelper.cs">
       <Link>Models\CanvasShapeDrawersHelper.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\CommandsManager.cs">
+      <Link>Models\CommandsManager.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Commands\DrawingCommand.cs">
+      <Link>Models\Commands\DrawingCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Commands\ICommand.cs">
+      <Link>Models\Commands\ICommand.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\Definitions.cs">
       <Link>Models\Definitions.cs</Link>
     </Compile>

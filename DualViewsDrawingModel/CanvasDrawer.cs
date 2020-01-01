@@ -24,12 +24,18 @@ namespace DualViewsDrawingModel
             }
         }
         private const string ERROR_CANVAS_DRAWER_STATE_IS_NULL = "The given canvas drawer state is null.";
+        private CommandsManager _commandsManager;
         protected ShapeDrawerType _currentShapeDrawerType;
         private ICanvasDrawerState _currentState;
         private CanvasShapeDrawersHelper _canvasShapeDrawersHelper;
 
-        public CanvasDrawer()
+        public CanvasDrawer(CommandsManager commandsManagerData)
         {
+            if ( commandsManagerData == null )
+            {
+                throw new ArgumentNullException(Definitions.ERROR_COMMANDS_MANAGER_IS_NULL);
+            }
+            _commandsManager = commandsManagerData;
             _canvasShapeDrawersHelper = new CanvasShapeDrawersHelper();
         }
 

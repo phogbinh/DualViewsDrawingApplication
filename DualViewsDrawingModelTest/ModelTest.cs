@@ -8,6 +8,7 @@ namespace DualViewsDrawingModel.Test
     [TestClass()]
     public class ModelTest
     {
+        private const string MEMBER_VARIABLE_NAME_COMMANDS_MANAGER = "_commandsManager";
         private const string MEMBER_VARIABLE_NAME_CANVAS_MANAGER = "_canvasManager";
         private Model _model;
         private PrivateObject _target;
@@ -22,7 +23,7 @@ namespace DualViewsDrawingModel.Test
         {
             _model = new Model();
             _target = new PrivateObject(_model);
-            _canvasManager = new CanvasManagerMock();
+            _canvasManager = new CanvasManagerMock(( CommandsManager )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_COMMANDS_MANAGER));
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_MANAGER, _canvasManager);
         }
 
@@ -72,6 +73,7 @@ namespace DualViewsDrawingModel.Test
         {
             var model = new Model();
             var target = new PrivateObject(model);
+            Assert.IsNotNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_COMMANDS_MANAGER));
             Assert.IsNotNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_MANAGER));
         }
 

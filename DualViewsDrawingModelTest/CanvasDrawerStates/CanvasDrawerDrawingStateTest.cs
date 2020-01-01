@@ -24,7 +24,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            _canvasDrawer = new CanvasDrawerMock();
+            _canvasDrawer = new CanvasDrawerMock(new CommandsManager());
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Line);
             _canvasDrawerDrawingState = new CanvasDrawerDrawingState(_canvasDrawer, new Point());
             _target = new PrivateObject(_canvasDrawerDrawingState);
@@ -37,8 +37,8 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         public void TestCanvasDrawerDrawingState()
         {
             Assert.ThrowsException<ArgumentNullException>(() => new CanvasDrawerDrawingState(null, new Point()));
-            Assert.ThrowsException<ArgumentNullException>(() => new CanvasDrawerDrawingState(new CanvasDrawerMock(), null));
-            var canvasDrawer = new CanvasDrawerMock();
+            Assert.ThrowsException<ArgumentNullException>(() => new CanvasDrawerDrawingState(new CanvasDrawerMock(new CommandsManager()), null));
+            var canvasDrawer = new CanvasDrawerMock(new CommandsManager());
             canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Rectangle);
             var currentDrawingShapeDrawingStartingPoint = new Point();
             var canvasDrawerDrawingState = new CanvasDrawerDrawingState(canvasDrawer, currentDrawingShapeDrawingStartingPoint);

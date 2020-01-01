@@ -49,9 +49,9 @@ namespace DualViewsDrawingModel
         private double _canvasHeight;
         private CanvasDrawer _canvasDrawer;
 
-        public CanvasManager()
+        public CanvasManager(CommandsManager commandsManagerData)
         {
-            _canvasDrawer = new CanvasDrawer();
+            _canvasDrawer = new CanvasDrawer(commandsManagerData);
         }
 
         /// <summary>

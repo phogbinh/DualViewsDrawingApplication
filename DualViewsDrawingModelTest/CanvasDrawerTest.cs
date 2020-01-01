@@ -10,9 +10,11 @@ namespace DualViewsDrawingModel.Test
     [TestClass()]
     public class CanvasDrawerTest
     {
+        private const string MEMBER_VARIABLE_NAME_COMMANDS_MANAGER = "_commandsManager";
         private const string MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE = "_currentShapeDrawerType";
         private const string MEMBER_VARIABLE_NAME_CURRENT_STATE = "_currentState";
         private const string MEMBER_VARIABLE_NAME_CANVAS_SHAPE_DRAWERS_HELPER = "_canvasShapeDrawersHelper";
+        private CommandsManager _commandsManager;
         private CanvasDrawer _canvasDrawer;
         private PrivateObject _target;
         private CanvasDrawerStateMock _currentState;
@@ -25,7 +27,8 @@ namespace DualViewsDrawingModel.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            _canvasDrawer = new CanvasDrawer();
+            _commandsManager = new CommandsManager();
+            _canvasDrawer = new CanvasDrawer(_commandsManager);
             _target = new PrivateObject(_canvasDrawer);
             _currentState = new CanvasDrawerStateMock();
             _canvasShapeDrawersHelper = new CanvasShapeDrawersHelperMock();
@@ -39,8 +42,11 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestCanvasDrawer()
         {
-            var canvasDrawer = new CanvasDrawer();
+            Assert.ThrowsException<ArgumentNullException>(() => new CanvasDrawer(null));
+            var commandsManager = new CommandsManager();
+            var canvasDrawer = new CanvasDrawer(commandsManager);
             var target = new PrivateObject(canvasDrawer);
+            Assert.AreEqual(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_COMMANDS_MANAGER), commandsManager);
             Assert.IsNotNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_SHAPE_DRAWERS_HELPER));
         }
 

@@ -67,7 +67,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public CanvasDrawerMock()
+        public CanvasDrawerMock(CommandsManager commandsManagerData) : base(commandsManagerData)
         {
             IsCalledInitialize = false;
             IsCalledClearShapeDrawersManager = false;
