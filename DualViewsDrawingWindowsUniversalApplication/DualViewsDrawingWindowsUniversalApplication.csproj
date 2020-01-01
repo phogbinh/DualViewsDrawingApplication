@@ -146,6 +146,9 @@
     <Compile Include="..\DualViewsDrawingModel\DrawingPresentationModel.cs">
       <Link>Models\DrawingPresentationModel.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\IDrawingCommandAgent.cs">
+      <Link>Models\IDrawingCommandAgent.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\IGraphics.cs">
       <Link>Models\IGraphics.cs</Link>
     </Compile>

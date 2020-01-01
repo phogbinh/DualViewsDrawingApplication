@@ -2,7 +2,7 @@
 
 namespace DualViewsDrawingModel
 {
-    public class Model
+    public class Model : IDrawingCommandAgent
     {
         public CanvasDrawer.CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
         {

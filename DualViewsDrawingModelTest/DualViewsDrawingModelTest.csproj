@@ -63,6 +63,7 @@
     <Compile Include="CanvasDrawerTest.cs" />
     <Compile Include="CanvasManagerTest.cs" />
     <Compile Include="CommandsManagerTest.cs" />
+    <Compile Include="Commands\DrawingCommandTest.cs" />
     <Compile Include="DefinitionsTest.cs" />
     <Compile Include="DrawingPresentationModelTest.cs" />
     <Compile Include="Mocks\ButtonEnabledStatesManagerMock.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Mocks\CanvasDrawerStateMock.cs" />
     <Compile Include="Mocks\CanvasManagerMock.cs" />
     <Compile Include="Mocks\CommandMock.cs" />
+    <Compile Include="Mocks\DrawingCommandAgentMock.cs" />
     <Compile Include="Mocks\GraphicsMock.cs" />
     <Compile Include="Mocks\CanvasShapeDrawersHelperMock.cs" />
     <Compile Include="ModelTest.cs" />
