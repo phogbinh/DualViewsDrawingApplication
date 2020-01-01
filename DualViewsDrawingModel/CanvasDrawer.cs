@@ -1,10 +1,11 @@
 ﻿using DualViewsDrawingModel.CanvasDrawerStates;
+using DualViewsDrawingModel.Commands;
 using DualViewsDrawingModel.ShapeDrawers;
 using System;
 
 namespace DualViewsDrawingModel
 {
-    public class CanvasDrawer
+    public class CanvasDrawer : IDrawingCommandAgent
     {
         public delegate void CanvasRefreshDrawRequestedEventHandler();
         public delegate void DrawingEndedEventHandler();
@@ -181,6 +182,14 @@ namespace DualViewsDrawingModel
         {
             _canvasShapeDrawersHelper.RemoveShapeDrawer(shapeDrawer);
             NotifyCanvasRefreshDrawRequested();
+        }
+
+        /// <summary>
+        /// Creates then executes the drawing command to draw shape using current shape drawer.
+        /// </summary>
+        public virtual void CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
+        {
+            _commandsManager.AddThenExecuteCommand(new DrawingCommand(this, drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType));
         }
     }
 }
