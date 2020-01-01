@@ -1,4 +1,5 @@
-﻿using DualViewsDrawingModelTest;
+﻿using DualViewsDrawingModel.ShapeDrawers;
+using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -187,6 +188,16 @@ namespace DualViewsDrawingModel.Test
         {
             _canvasManager.RefreshDrawCanvas(new GraphicsMock());
             Assert.IsTrue(_canvasDrawer.IsCalledRefreshDrawCanvas);
+        }
+
+        /// <summary>
+        /// Tests the draw shape on to canvas.
+        /// </summary>
+        [TestMethod()]
+        public void TestDrawShapeOnToCanvas()
+        {
+            _canvasManager.DrawShapeOnToCanvas(new LineDrawer(new Point(), new Point()));
+            Assert.IsTrue(_canvasDrawer.IsCalledDrawShape);
         }
     }
 }

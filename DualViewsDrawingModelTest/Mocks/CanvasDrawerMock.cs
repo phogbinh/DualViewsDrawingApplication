@@ -1,5 +1,6 @@
 ﻿using DualViewsDrawingModel;
 using DualViewsDrawingModel.CanvasDrawerStates;
+using DualViewsDrawingModel.ShapeDrawers;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
@@ -53,6 +54,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledDrawShape
+        {
+            get; set;
+        }
         public ICanvasDrawerState CurrentState
         {
             get; set;
@@ -72,6 +77,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledAddCurrentShapeDrawer = false;
             IsCalledNotifyCanvasRefreshDrawRequested = false;
             IsCalledNotifyDrawingEnded = false;
+            IsCalledDrawShape = false;
             CurrentState = null;
         }
 
@@ -171,6 +177,14 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void NotifyDrawingEnded()
         {
             IsCalledNotifyDrawingEnded = true;
+        }
+
+        /// <summary>
+        /// Draws the shape.
+        /// </summary>
+        public override void DrawShape(ShapeDrawer shapeDrawer)
+        {
+            IsCalledDrawShape = true;
         }
     }
 }

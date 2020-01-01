@@ -1,4 +1,5 @@
 ﻿using DualViewsDrawingModel.CanvasDrawerStates;
+using DualViewsDrawingModel.ShapeDrawers;
 using System;
 
 namespace DualViewsDrawingModel
@@ -156,6 +157,15 @@ namespace DualViewsDrawingModel
             {
                 DrawingEnded();
             }
+        }
+
+        /// <summary>
+        /// Draws the shape.
+        /// </summary>
+        public virtual void DrawShape(ShapeDrawer shapeDrawer)
+        {
+            _canvasShapeDrawersHelper.AddShapeDrawer(shapeDrawer);
+            NotifyCanvasRefreshDrawRequested();
         }
     }
 }

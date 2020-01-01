@@ -1,4 +1,5 @@
 ﻿using DualViewsDrawingModel.CanvasDrawerStates;
+using DualViewsDrawingModel.ShapeDrawers;
 using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -195,6 +196,19 @@ namespace DualViewsDrawingModel.Test
             Assert.AreEqual(count, 1);
             _canvasDrawer.NotifyDrawingEnded();
             Assert.AreEqual(count, 2);
+        }
+
+        /// <summary>
+        /// Tests the draw shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestDrawShape()
+        {
+            int count = 0;
+            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
+            _canvasDrawer.DrawShape(new LineDrawer(new Point(), new Point()));
+            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledAddShapeDrawer);
+            Assert.AreEqual(count, 1);
         }
     }
 }

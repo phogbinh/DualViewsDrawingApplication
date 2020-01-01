@@ -1,4 +1,5 @@
 ﻿using DualViewsDrawingModel;
+using DualViewsDrawingModel.ShapeDrawers;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
@@ -36,6 +37,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledDrawShapeOnToCanvas
+        {
+            get; set;
+        }
 
         public CanvasManagerMock() : base()
         {
@@ -47,6 +52,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledHandleCanvasLeftMouseMoved = false;
             IsCalledHandleCanvasLeftMouseReleased = false;
             IsCalledRefreshDrawCanvas = false;
+            IsCalledDrawShapeOnToCanvas = false;
         }
 
         /// <summary>
@@ -111,6 +117,14 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void RefreshDrawCanvas(IGraphics graphics)
         {
             IsCalledRefreshDrawCanvas = true;
+        }
+
+        /// <summary>
+        /// Draws the shape on to canvas.
+        /// </summary>
+        public override void DrawShapeOnToCanvas(ShapeDrawer shapeDrawer)
+        {
+            IsCalledDrawShapeOnToCanvas = true;
         }
     }
 }
