@@ -48,8 +48,10 @@
     <Compile Include="CanvasDrawerStates\CanvasDrawerPointerState.cs" />
     <Compile Include="CanvasDrawerStates\ICanvasDrawerState.cs" />
     <Compile Include="CanvasManager.cs" />
+    <Compile Include="CommandsManager.cs" />
     <Compile Include="Definitions.cs" />
     <Compile Include="DrawingPresentationModel.cs" />
+    <Compile Include="Commands\ICommand.cs" />
     <Compile Include="IGraphics.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Point.cs" />
