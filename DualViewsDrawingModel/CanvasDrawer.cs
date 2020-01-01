@@ -137,14 +137,6 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
-        /// Adds the current shape drawer.
-        /// </summary>
-        public virtual void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
-        {
-            _canvasShapeDrawersHelper.AddShapeDrawer(ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType));
-        }
-
-        /// <summary>
         /// Notifies the canvas refresh draw requested.
         /// </summary>
         public virtual void NotifyCanvasRefreshDrawRequested()

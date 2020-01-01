@@ -42,10 +42,6 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
-        public bool IsCalledAddCurrentShapeDrawer
-        {
-            get; set;
-        }
         public bool IsCalledNotifyCanvasRefreshDrawRequested
         {
             get; set;
@@ -82,7 +78,6 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledHandleCanvasLeftMouseReleased = false;
             IsCalledRefreshDrawCanvas = false;
             IsCalledSetCurrentState = false;
-            IsCalledAddCurrentShapeDrawer = false;
             IsCalledNotifyCanvasRefreshDrawRequested = false;
             IsCalledNotifyDrawingEnded = false;
             IsCalledDrawShape = false;
@@ -163,14 +158,6 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             IsCalledSetCurrentState = true;
             CurrentState = value;
-        }
-
-        /// <summary>
-        /// Adds the current shape drawer.
-        /// </summary>
-        public override void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
-        {
-            IsCalledAddCurrentShapeDrawer = true;
         }
 
         /// <summary>

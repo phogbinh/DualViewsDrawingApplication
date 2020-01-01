@@ -166,17 +166,6 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
-        /// Tests the add current shape drawer.
-        /// </summary>
-        [TestMethod()]
-        public void TestAddCurrentShapeDrawer()
-        {
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, ShapeDrawerType.Line);
-            _canvasDrawer.AddCurrentShapeDrawer(new Point(), new Point());
-            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledAddShapeDrawer);
-        }
-
-        /// <summary>
         /// Tests the notify canvas refresh draw requested.
         /// </summary>
         [TestMethod()]
