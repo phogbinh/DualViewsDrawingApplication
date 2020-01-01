@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DualViewsDrawingModel
+﻿namespace DualViewsDrawingModel
 {
     public class Model
     {
@@ -43,13 +41,9 @@ namespace DualViewsDrawingModel
         private const string ERROR_CANVAS_MANAGER_IS_NULL = "The given canvas manager is null.";
         private CanvasManager _canvasManager;
 
-        public Model(CanvasManager canvasManagerData)
+        public Model()
         {
-            if ( canvasManagerData == null )
-            {
-                throw new ArgumentNullException(ERROR_CANVAS_MANAGER_IS_NULL);
-            }
-            _canvasManager = canvasManagerData;
+            _canvasManager = new CanvasManager();
         }
 
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace DualViewsDrawingModel.Test
 {
@@ -9,9 +8,9 @@ namespace DualViewsDrawingModel.Test
     public class ModelTest
     {
         private const string MEMBER_VARIABLE_NAME_CANVAS_MANAGER = "_canvasManager";
-        private CanvasManagerMock _canvasManager;
         private Model _model;
         private PrivateObject _target;
+        private CanvasManagerMock _canvasManager;
 
         /// <summary>
         /// Initializes this instance.
@@ -20,9 +19,10 @@ namespace DualViewsDrawingModel.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            _canvasManager = new CanvasManagerMock();
-            _model = new Model(_canvasManager);
+            _model = new Model();
             _target = new PrivateObject(_model);
+            _canvasManager = new CanvasManagerMock();
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_MANAGER, _canvasManager);
         }
 
         /// <summary>
@@ -69,11 +69,9 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestModel()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => new Model(null));
-            var canvasManager = new CanvasManagerMock();
-            var model = new Model(canvasManager);
+            var model = new Model();
             var target = new PrivateObject(model);
-            Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_MANAGER), canvasManager);
+            Assert.IsNotNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_MANAGER));
         }
 
         /// <summary>
