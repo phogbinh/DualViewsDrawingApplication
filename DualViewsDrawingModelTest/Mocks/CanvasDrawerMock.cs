@@ -58,6 +58,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledRemoveShape
+        {
+            get; set;
+        }
         public ICanvasDrawerState CurrentState
         {
             get; set;
@@ -78,6 +82,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledNotifyCanvasRefreshDrawRequested = false;
             IsCalledNotifyDrawingEnded = false;
             IsCalledDrawShape = false;
+            IsCalledRemoveShape = false;
             CurrentState = null;
         }
 
@@ -185,6 +190,14 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void DrawShape(ShapeDrawer shapeDrawer)
         {
             IsCalledDrawShape = true;
+        }
+
+        /// <summary>
+        /// Removes the shape.
+        /// </summary>
+        public override void RemoveShape(ShapeDrawer shapeDrawer)
+        {
+            IsCalledRemoveShape = true;
         }
     }
 }

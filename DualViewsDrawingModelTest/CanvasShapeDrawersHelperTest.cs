@@ -2,6 +2,7 @@
 using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace DualViewsDrawingModel.Test
@@ -51,6 +52,19 @@ namespace DualViewsDrawingModel.Test
             _canvasShapeDrawersHelper.AddShapeDrawer(rectangleDrawer);
             Assert.AreEqual(_shapeDrawers.Count, 2);
             Assert.AreSame(_shapeDrawers[ 1 ], rectangleDrawer);
+        }
+
+        /// <summary>
+        /// Tests the remove shape drawer.
+        /// </summary>
+        [TestMethod()]
+        public void TestRemoveShapeDrawer()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => _canvasShapeDrawersHelper.RemoveShapeDrawer(null));
+            var lineDrawer = new LineDrawer(new Point(), new Point());
+            _shapeDrawers.Add(lineDrawer);
+            _canvasShapeDrawersHelper.RemoveShapeDrawer(lineDrawer);
+            Assert.IsFalse(_shapeDrawers.Contains(lineDrawer));
         }
 
         /// <summary>

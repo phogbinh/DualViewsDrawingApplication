@@ -210,5 +210,18 @@ namespace DualViewsDrawingModel.Test
             Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledAddShapeDrawer);
             Assert.AreEqual(count, 1);
         }
+
+        /// <summary>
+        /// Tests the remove shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestRemoveShape()
+        {
+            int count = 0;
+            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
+            _canvasDrawer.RemoveShape(new LineDrawer(new Point(), new Point()));
+            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledRemoveShapeDrawer);
+            Assert.AreEqual(count, 1);
+        }
     }
 }

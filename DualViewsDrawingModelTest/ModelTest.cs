@@ -164,5 +164,15 @@ namespace DualViewsDrawingModel.Test
             _model.DrawShapeOnToCanvas(new RectangleDrawer(new Point(), new Point()));
             Assert.IsTrue(_canvasManager.IsCalledDrawShapeOnToCanvas);
         }
+
+        /// <summary>
+        /// Tests the remove shape from canvas.
+        /// </summary>
+        [TestMethod()]
+        public void TestRemoveShapeFromCanvas()
+        {
+            _model.RemoveShapeFromCanvas(new LineDrawer(new Point(), new Point()));
+            Assert.IsTrue(_canvasManager.IsCalledRemoveShapeFromCanvas);
+        }
     }
 }

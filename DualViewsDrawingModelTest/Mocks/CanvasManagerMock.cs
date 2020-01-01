@@ -41,6 +41,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledRemoveShapeFromCanvas
+        {
+            get; set;
+        }
 
         public CanvasManagerMock() : base()
         {
@@ -53,6 +57,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledHandleCanvasLeftMouseReleased = false;
             IsCalledRefreshDrawCanvas = false;
             IsCalledDrawShapeOnToCanvas = false;
+            IsCalledRemoveShapeFromCanvas = false;
         }
 
         /// <summary>
@@ -125,6 +130,14 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void DrawShapeOnToCanvas(ShapeDrawer shapeDrawer)
         {
             IsCalledDrawShapeOnToCanvas = true;
+        }
+
+        /// <summary>
+        /// Removes the shape from canvas.
+        /// </summary>
+        public override void RemoveShapeFromCanvas(ShapeDrawer shapeDrawer)
+        {
+            IsCalledRemoveShapeFromCanvas = true;
         }
     }
 }

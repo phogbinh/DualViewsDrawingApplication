@@ -167,5 +167,14 @@ namespace DualViewsDrawingModel
             _canvasShapeDrawersHelper.AddShapeDrawer(shapeDrawer);
             NotifyCanvasRefreshDrawRequested();
         }
+
+        /// <summary>
+        /// Removes the shape.
+        /// </summary>
+        public virtual void RemoveShape(ShapeDrawer shapeDrawer)
+        {
+            _canvasShapeDrawersHelper.RemoveShapeDrawer(shapeDrawer);
+            NotifyCanvasRefreshDrawRequested();
+        }
     }
 }

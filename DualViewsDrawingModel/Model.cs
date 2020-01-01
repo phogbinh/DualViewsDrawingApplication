@@ -119,5 +119,13 @@ namespace DualViewsDrawingModel
         {
             _canvasManager.DrawShapeOnToCanvas(shapeDrawer);
         }
+
+        /// <summary>
+        /// Removes the shape from canvas.
+        /// </summary>
+        public void RemoveShapeFromCanvas(ShapeDrawer shapeDrawer)
+        {
+            _canvasManager.RemoveShapeFromCanvas(shapeDrawer);
+        }
     }
 }
