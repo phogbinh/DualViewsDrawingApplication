@@ -1,8 +1,6 @@
-﻿using DualViewsDrawingModel.ShapeDrawers;
-
-namespace DualViewsDrawingModel
+﻿namespace DualViewsDrawingModel
 {
-    public class Model : IDrawingCommandAgent
+    public class Model
     {
         public CanvasDrawer.CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
         {
@@ -112,22 +110,6 @@ namespace DualViewsDrawingModel
         public void RefreshDrawCanvas(IGraphics graphics)
         {
             _canvasManager.RefreshDrawCanvas(graphics);
-        }
-
-        /// <summary>
-        /// Draws the shape on to canvas.
-        /// </summary>
-        public void DrawShapeOnToCanvas(ShapeDrawer shapeDrawer)
-        {
-            _canvasManager.DrawShapeOnToCanvas(shapeDrawer);
-        }
-
-        /// <summary>
-        /// Removes the shape from canvas.
-        /// </summary>
-        public void RemoveShapeFromCanvas(ShapeDrawer shapeDrawer)
-        {
-            _canvasManager.RemoveShapeFromCanvas(shapeDrawer);
         }
     }
 }

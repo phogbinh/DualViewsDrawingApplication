@@ -1,5 +1,4 @@
-﻿using DualViewsDrawingModel.ShapeDrawers;
-using System;
+﻿using System;
 
 namespace DualViewsDrawingModel
 {
@@ -150,22 +149,6 @@ namespace DualViewsDrawingModel
         public virtual void RefreshDrawCanvas(IGraphics graphics)
         {
             _canvasDrawer.RefreshDrawCanvas(graphics);
-        }
-
-        /// <summary>
-        /// Draws the shape on to canvas.
-        /// </summary>
-        public virtual void DrawShapeOnToCanvas(ShapeDrawer shapeDrawer)
-        {
-            _canvasDrawer.DrawShape(shapeDrawer);
-        }
-
-        /// <summary>
-        /// Removes the shape from canvas.
-        /// </summary>
-        public virtual void RemoveShapeFromCanvas(ShapeDrawer shapeDrawer)
-        {
-            _canvasDrawer.RemoveShape(shapeDrawer);
         }
     }
 }
