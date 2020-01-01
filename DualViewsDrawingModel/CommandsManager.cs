@@ -19,7 +19,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Adds then executes command.
         /// </summary>
-        public void AddThenExecuteCommand(ICommand command)
+        public virtual void AddThenExecuteCommand(ICommand command)
         {
             if ( command == null )
             {
