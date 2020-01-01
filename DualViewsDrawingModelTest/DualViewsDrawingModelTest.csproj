@@ -69,12 +69,12 @@
     <Compile Include="Mocks\CanvasDrawerStateMock.cs" />
     <Compile Include="Mocks\CanvasManagerMock.cs" />
     <Compile Include="Mocks\GraphicsMock.cs" />
-    <Compile Include="Mocks\ShapeDrawersManagerMock.cs" />
+    <Compile Include="Mocks\CanvasShapeDrawersHelperMock.cs" />
     <Compile Include="ModelTest.cs" />
     <Compile Include="PointTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeDrawerFactoryTest.cs" />
-    <Compile Include="ShapeDrawersManagerTest.cs" />
+    <Compile Include="CanvasShapeDrawersHelperTest.cs" />
     <Compile Include="ShapeDrawers\LineDrawerTest.cs" />
     <Compile Include="ShapeDrawers\RectangleDrawerTest.cs" />
     <Compile Include="ShapeDrawers\ShapeDrawerTest.cs" />

@@ -2,7 +2,7 @@
 
 namespace DualViewsDrawingModelTest.Mocks
 {
-    public class ShapeDrawersManagerMock : ShapeDrawersManager
+    public class CanvasShapeDrawersHelperMock : CanvasShapeDrawersHelper
     {
         public bool IsCalledAddShapeDrawer
         {
@@ -17,7 +17,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public ShapeDrawersManagerMock()
+        public CanvasShapeDrawersHelperMock()
         {
             IsCalledAddShapeDrawer = false;
             IsCalledClear = false;

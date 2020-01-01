@@ -67,6 +67,9 @@
     <Compile Include="..\DualViewsDrawingModel\CanvasManager.cs">
       <Link>Models\CanvasManager.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\CanvasShapeDrawersHelper.cs">
+      <Link>Models\CanvasShapeDrawersHelper.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\Definitions.cs">
       <Link>Models\Definitions.cs</Link>
     </Compile>
@@ -84,9 +87,6 @@
     </Compile>
     <Compile Include="..\DualViewsDrawingModel\ShapeDrawerFactory.cs">
       <Link>Models\ShapeDrawerFactory.cs</Link>
-    </Compile>
-    <Compile Include="..\DualViewsDrawingModel\ShapeDrawersManager.cs">
-      <Link>Models\ShapeDrawersManager.cs</Link>
     </Compile>
     <Compile Include="..\DualViewsDrawingModel\ShapeDrawers\LineDrawer.cs">
       <Link>Models\ShapeDrawers\LineDrawer.cs</Link>
