@@ -1,5 +1,6 @@
 ﻿using DualViewsDrawingModel;
 using DualViewsDrawingModel.CanvasDrawerStates;
+using DualViewsDrawingModel.ShapeDrawers;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
@@ -41,10 +42,6 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
-        public bool IsCalledAddCurrentShapeDrawer
-        {
-            get; set;
-        }
         public bool IsCalledNotifyCanvasRefreshDrawRequested
         {
             get; set;
@@ -53,12 +50,24 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledDrawShape
+        {
+            get; set;
+        }
+        public bool IsCalledRemoveShape
+        {
+            get; set;
+        }
+        public bool IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer
+        {
+            get; set;
+        }
         public ICanvasDrawerState CurrentState
         {
             get; set;
         }
 
-        public CanvasDrawerMock()
+        public CanvasDrawerMock(CommandsManager commandsManagerData) : base(commandsManagerData)
         {
             IsCalledInitialize = false;
             IsCalledClearShapeDrawersManager = false;
@@ -69,9 +78,11 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledHandleCanvasLeftMouseReleased = false;
             IsCalledRefreshDrawCanvas = false;
             IsCalledSetCurrentState = false;
-            IsCalledAddCurrentShapeDrawer = false;
             IsCalledNotifyCanvasRefreshDrawRequested = false;
             IsCalledNotifyDrawingEnded = false;
+            IsCalledDrawShape = false;
+            IsCalledRemoveShape = false;
+            IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = false;
             CurrentState = null;
         }
 
@@ -150,14 +161,6 @@ namespace DualViewsDrawingModelTest.Mocks
         }
 
         /// <summary>
-        /// Adds the current shape drawer.
-        /// </summary>
-        public override void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
-        {
-            IsCalledAddCurrentShapeDrawer = true;
-        }
-
-        /// <summary>
         /// Notifies the canvas refresh draw requested.
         /// </summary>
         public override void NotifyCanvasRefreshDrawRequested()
@@ -171,6 +174,30 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void NotifyDrawingEnded()
         {
             IsCalledNotifyDrawingEnded = true;
+        }
+
+        /// <summary>
+        /// Draws the shape.
+        /// </summary>
+        public override void DrawShape(ShapeDrawer shapeDrawer)
+        {
+            IsCalledDrawShape = true;
+        }
+
+        /// <summary>
+        /// Removes the shape.
+        /// </summary>
+        public override void RemoveShape(ShapeDrawer shapeDrawer)
+        {
+            IsCalledRemoveShape = true;
+        }
+
+        /// <summary>
+        /// Creates then executes the drawing command to draw shape using current shape drawer.
+        /// </summary>
+        public override void CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
+        {
+            IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = true;
         }
     }
 }

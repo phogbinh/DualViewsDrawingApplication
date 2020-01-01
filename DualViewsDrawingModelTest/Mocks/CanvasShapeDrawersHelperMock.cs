@@ -9,6 +9,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledRemoveShapeDrawer
+        {
+            get; set;
+        }
         public bool IsCalledClear
         {
             get; set;
@@ -21,6 +25,7 @@ namespace DualViewsDrawingModelTest.Mocks
         public CanvasShapeDrawersHelperMock()
         {
             IsCalledAddShapeDrawer = false;
+            IsCalledRemoveShapeDrawer = false;
             IsCalledClear = false;
             IsCalledDraw = false;
         }
@@ -31,6 +36,14 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void AddShapeDrawer(ShapeDrawer shapeDrawer)
         {
             IsCalledAddShapeDrawer = true;
+        }
+
+        /// <summary>
+        /// Removes the shape drawer.
+        /// </summary>
+        public override void RemoveShapeDrawer(ShapeDrawer shapeDrawer)
+        {
+            IsCalledRemoveShapeDrawer = true;
         }
 
         /// <summary>

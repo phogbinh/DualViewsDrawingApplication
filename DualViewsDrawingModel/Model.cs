@@ -39,11 +39,13 @@
             }
         }
         private const string ERROR_CANVAS_MANAGER_IS_NULL = "The given canvas manager is null.";
+        private CommandsManager _commandsManager;
         private CanvasManager _canvasManager;
 
         public Model()
         {
-            _canvasManager = new CanvasManager();
+            _commandsManager = new CommandsManager();
+            _canvasManager = new CanvasManager(_commandsManager);
         }
 
         /// <summary>

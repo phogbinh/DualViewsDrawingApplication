@@ -1,9 +1,11 @@
 ﻿using DualViewsDrawingModel.CanvasDrawerStates;
+using DualViewsDrawingModel.Commands;
+using DualViewsDrawingModel.ShapeDrawers;
 using System;
 
 namespace DualViewsDrawingModel
 {
-    public class CanvasDrawer
+    public class CanvasDrawer : IDrawingCommandAgent
     {
         public delegate void CanvasRefreshDrawRequestedEventHandler();
         public delegate void DrawingEndedEventHandler();
@@ -23,12 +25,18 @@ namespace DualViewsDrawingModel
             }
         }
         private const string ERROR_CANVAS_DRAWER_STATE_IS_NULL = "The given canvas drawer state is null.";
+        private CommandsManager _commandsManager;
         protected ShapeDrawerType _currentShapeDrawerType;
         private ICanvasDrawerState _currentState;
         private CanvasShapeDrawersHelper _canvasShapeDrawersHelper;
 
-        public CanvasDrawer()
+        public CanvasDrawer(CommandsManager commandsManagerData)
         {
+            if ( commandsManagerData == null )
+            {
+                throw new ArgumentNullException(Definitions.ERROR_COMMANDS_MANAGER_IS_NULL);
+            }
+            _commandsManager = commandsManagerData;
             _canvasShapeDrawersHelper = new CanvasShapeDrawersHelper();
         }
 
@@ -129,14 +137,6 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
-        /// Adds the current shape drawer.
-        /// </summary>
-        public virtual void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
-        {
-            _canvasShapeDrawersHelper.AddShapeDrawer(ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType));
-        }
-
-        /// <summary>
         /// Notifies the canvas refresh draw requested.
         /// </summary>
         public virtual void NotifyCanvasRefreshDrawRequested()
@@ -156,6 +156,32 @@ namespace DualViewsDrawingModel
             {
                 DrawingEnded();
             }
+        }
+
+        /// <summary>
+        /// Draws the shape.
+        /// </summary>
+        public virtual void DrawShape(ShapeDrawer shapeDrawer)
+        {
+            _canvasShapeDrawersHelper.AddShapeDrawer(shapeDrawer);
+            NotifyCanvasRefreshDrawRequested();
+        }
+
+        /// <summary>
+        /// Removes the shape.
+        /// </summary>
+        public virtual void RemoveShape(ShapeDrawer shapeDrawer)
+        {
+            _canvasShapeDrawersHelper.RemoveShapeDrawer(shapeDrawer);
+            NotifyCanvasRefreshDrawRequested();
+        }
+
+        /// <summary>
+        /// Creates then executes the drawing command to draw shape using current shape drawer.
+        /// </summary>
+        public virtual void CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
+        {
+            _commandsManager.AddThenExecuteCommand(new DrawingCommand(this, drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType));
         }
     }
 }

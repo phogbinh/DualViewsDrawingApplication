@@ -1,4 +1,5 @@
 ﻿using DualViewsDrawingModel.CanvasDrawerStates;
+using DualViewsDrawingModel.ShapeDrawers;
 using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,9 +10,11 @@ namespace DualViewsDrawingModel.Test
     [TestClass()]
     public class CanvasDrawerTest
     {
+        private const string MEMBER_VARIABLE_NAME_COMMANDS_MANAGER = "_commandsManager";
         private const string MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE = "_currentShapeDrawerType";
         private const string MEMBER_VARIABLE_NAME_CURRENT_STATE = "_currentState";
         private const string MEMBER_VARIABLE_NAME_CANVAS_SHAPE_DRAWERS_HELPER = "_canvasShapeDrawersHelper";
+        private CommandsManagerMock _commandsManager;
         private CanvasDrawer _canvasDrawer;
         private PrivateObject _target;
         private CanvasDrawerStateMock _currentState;
@@ -24,7 +27,8 @@ namespace DualViewsDrawingModel.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            _canvasDrawer = new CanvasDrawer();
+            _commandsManager = new CommandsManagerMock();
+            _canvasDrawer = new CanvasDrawer(_commandsManager);
             _target = new PrivateObject(_canvasDrawer);
             _currentState = new CanvasDrawerStateMock();
             _canvasShapeDrawersHelper = new CanvasShapeDrawersHelperMock();
@@ -38,8 +42,11 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestCanvasDrawer()
         {
-            var canvasDrawer = new CanvasDrawer();
+            Assert.ThrowsException<ArgumentNullException>(() => new CanvasDrawer(null));
+            var commandsManager = new CommandsManagerMock();
+            var canvasDrawer = new CanvasDrawer(commandsManager);
             var target = new PrivateObject(canvasDrawer);
+            Assert.AreEqual(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_COMMANDS_MANAGER), commandsManager);
             Assert.IsNotNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_SHAPE_DRAWERS_HELPER));
         }
 
@@ -159,17 +166,6 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
-        /// Tests the add current shape drawer.
-        /// </summary>
-        [TestMethod()]
-        public void TestAddCurrentShapeDrawer()
-        {
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, ShapeDrawerType.Line);
-            _canvasDrawer.AddCurrentShapeDrawer(new Point(), new Point());
-            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledAddShapeDrawer);
-        }
-
-        /// <summary>
         /// Tests the notify canvas refresh draw requested.
         /// </summary>
         [TestMethod()]
@@ -195,6 +191,43 @@ namespace DualViewsDrawingModel.Test
             Assert.AreEqual(count, 1);
             _canvasDrawer.NotifyDrawingEnded();
             Assert.AreEqual(count, 2);
+        }
+
+        /// <summary>
+        /// Tests the draw shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestDrawShape()
+        {
+            int count = 0;
+            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
+            _canvasDrawer.DrawShape(new LineDrawer(new Point(), new Point()));
+            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledAddShapeDrawer);
+            Assert.AreEqual(count, 1);
+        }
+
+        /// <summary>
+        /// Tests the remove shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestRemoveShape()
+        {
+            int count = 0;
+            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
+            _canvasDrawer.RemoveShape(new LineDrawer(new Point(), new Point()));
+            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledRemoveShapeDrawer);
+            Assert.AreEqual(count, 1);
+        }
+
+        /// <summary>
+        /// Tests the create then execute drawing command to draw shape using current shape drawer.
+        /// </summary>
+        [TestMethod()]
+        public void TestCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer()
+        {
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, ShapeDrawerType.Line);
+            _canvasDrawer.CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(new Point(), new Point());
+            Assert.IsTrue(_commandsManager.IsCalledAddThenExecuteCommand);
         }
     }
 }
