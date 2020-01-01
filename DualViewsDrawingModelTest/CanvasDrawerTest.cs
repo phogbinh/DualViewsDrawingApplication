@@ -174,12 +174,11 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestNotifyCanvasRefreshDrawRequested()
         {
-            const string MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED = "NotifyCanvasRefreshDrawRequested";
             int count = 0;
             _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
-            _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED);
+            _canvasDrawer.NotifyCanvasRefreshDrawRequested();
             Assert.AreEqual(count, 1);
-            _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_CANVAS_REFRESH_DRAW_REQUESTED);
+            _canvasDrawer.NotifyCanvasRefreshDrawRequested();
             Assert.AreEqual(count, 2);
         }
 
