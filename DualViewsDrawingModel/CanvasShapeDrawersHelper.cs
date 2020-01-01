@@ -15,9 +15,9 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Adds the shape drawer.
         /// </summary>
-        public virtual void AddShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
+        public virtual void AddShapeDrawer(ShapeDrawer shapeDrawer)
         {
-            _shapeDrawers.Add(ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, shapeDrawerType));
+            _shapeDrawers.Add(shapeDrawer);
         }
 
         /// <summary>

@@ -133,7 +133,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public virtual void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
         {
-            _canvasShapeDrawersHelper.AddShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType);
+            _canvasShapeDrawersHelper.AddShapeDrawer(ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType));
         }
 
         /// <summary>

@@ -43,17 +43,14 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestAddShapeDrawer()
         {
-            const string SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT = "_drawingStartingPoint";
-            const string SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT = "_drawingEndingPoint";
-            var drawingStartingPoint = new Point();
-            var drawingEndingPoint = new Point();
-            _canvasShapeDrawersHelper.AddShapeDrawer(drawingStartingPoint, drawingEndingPoint, ShapeDrawerType.Rectangle);
+            var lineDrawer = new LineDrawer(new Point(), new Point());
+            _canvasShapeDrawersHelper.AddShapeDrawer(lineDrawer);
             Assert.AreEqual(_shapeDrawers.Count, 1);
-            ShapeDrawer expectedShapeDrawer = _shapeDrawers[ 0 ];
-            var target = new PrivateObject(expectedShapeDrawer);
-            Assert.AreSame(target.GetFieldOrProperty(SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT), drawingStartingPoint);
-            Assert.AreSame(target.GetFieldOrProperty(SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT), drawingEndingPoint);
-            Assert.IsInstanceOfType(expectedShapeDrawer, typeof(RectangleDrawer));
+            Assert.AreSame(_shapeDrawers[ 0 ], lineDrawer);
+            var rectangleDrawer = new RectangleDrawer(new Point(), new Point());
+            _canvasShapeDrawersHelper.AddShapeDrawer(rectangleDrawer);
+            Assert.AreEqual(_shapeDrawers.Count, 2);
+            Assert.AreSame(_shapeDrawers[ 1 ], rectangleDrawer);
         }
 
         /// <summary>

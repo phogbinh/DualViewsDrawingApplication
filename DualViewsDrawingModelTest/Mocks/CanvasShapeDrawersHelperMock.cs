@@ -1,4 +1,5 @@
 ﻿using DualViewsDrawingModel;
+using DualViewsDrawingModel.ShapeDrawers;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
@@ -27,7 +28,7 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Adds the shape drawer.
         /// </summary>
-        public override void AddShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
+        public override void AddShapeDrawer(ShapeDrawer shapeDrawer)
         {
             IsCalledAddShapeDrawer = true;
         }
