@@ -24,7 +24,7 @@ namespace DualViewsDrawingModel.Commands
         /// </summary>
         public void Execute()
         {
-            _agent.DrawShapeOnToCanvas(_shapeDrawer);
+            _agent.DrawShape(_shapeDrawer);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace DualViewsDrawingModel.Commands
         /// </summary>
         public void ReverseExecution()
         {
-            _agent.RemoveShapeFromCanvas(_shapeDrawer);
+            _agent.RemoveShape(_shapeDrawer);
         }
     }
 }

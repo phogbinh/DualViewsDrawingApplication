@@ -5,35 +5,35 @@ namespace DualViewsDrawingModelTest.Mocks
 {
     public class DrawingCommandAgentMock : IDrawingCommandAgent
     {
-        public bool IsCalledDrawShapeOnToCanvas
+        public bool IsCalledDrawShape
         {
             get; set;
         }
-        public bool IsCalledRemoveShapeFromCanvas
+        public bool IsCalledRemoveShape
         {
             get; set;
         }
 
         public DrawingCommandAgentMock()
         {
-            IsCalledDrawShapeOnToCanvas = false;
-            IsCalledRemoveShapeFromCanvas = false;
+            IsCalledDrawShape = false;
+            IsCalledRemoveShape = false;
         }
 
         /// <summary>
-        /// Draws the shape on to canvas.
+        /// Draws the shape.
         /// </summary>
-        public void DrawShapeOnToCanvas(ShapeDrawer shapeDrawer)
+        public void DrawShape(ShapeDrawer shapeDrawer)
         {
-            IsCalledDrawShapeOnToCanvas = true;
+            IsCalledDrawShape = true;
         }
 
         /// <summary>
-        /// Removes the shape from canvas.
+        /// Removes the shape.
         /// </summary>
-        public void RemoveShapeFromCanvas(ShapeDrawer shapeDrawer)
+        public void RemoveShape(ShapeDrawer shapeDrawer)
         {
-            IsCalledRemoveShapeFromCanvas = true;
+            IsCalledRemoveShape = true;
         }
     }
 }

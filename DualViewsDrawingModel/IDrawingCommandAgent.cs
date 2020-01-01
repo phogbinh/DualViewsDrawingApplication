@@ -5,13 +5,13 @@ namespace DualViewsDrawingModel
     public interface IDrawingCommandAgent
     {
         /// <summary>
-        /// Draws the shape on to canvas.
+        /// Draws the shape.
         /// </summary>
-        void DrawShapeOnToCanvas(ShapeDrawer shapeDrawer);
+        void DrawShape(ShapeDrawer shapeDrawer);
 
         /// <summary>
-        /// Removes the shape from canvas.
+        /// Removes the shape.
         /// </summary>
-        void RemoveShapeFromCanvas(ShapeDrawer shapeDrawer);
+        void RemoveShape(ShapeDrawer shapeDrawer);
     }
 }

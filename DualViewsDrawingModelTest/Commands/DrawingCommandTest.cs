@@ -56,7 +56,7 @@ namespace DualViewsDrawingModel.Commands.Test
         public void TestExecute()
         {
             _drawingCommand.Execute();
-            Assert.IsTrue(_agent.IsCalledDrawShapeOnToCanvas);
+            Assert.IsTrue(_agent.IsCalledDrawShape);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace DualViewsDrawingModel.Commands.Test
         public void TestReverseExecution()
         {
             _drawingCommand.ReverseExecution();
-            Assert.IsTrue(_agent.IsCalledRemoveShapeFromCanvas);
+            Assert.IsTrue(_agent.IsCalledRemoveShape);
         }
     }
 }
