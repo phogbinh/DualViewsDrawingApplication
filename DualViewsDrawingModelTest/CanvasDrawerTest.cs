@@ -164,6 +164,7 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestAddCurrentShapeDrawer()
         {
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, ShapeDrawerType.Line);
             _canvasDrawer.AddCurrentShapeDrawer(new Point(), new Point());
             Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledAddShapeDrawer);
         }
