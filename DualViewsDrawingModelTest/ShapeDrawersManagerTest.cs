@@ -10,7 +10,7 @@ namespace DualViewsDrawingModel.Test
     public class ShapeDrawersManagerTest
     {
         private const string MEMBER_VARIABLE_NAME_SHAPE_DRAWERS = "_shapeDrawers";
-        private ShapeDrawersManager _shapeDrawersManager;
+        private CanvasShapeDrawersHelper _shapeDrawersManager;
         private PrivateObject _target;
         private List<ShapeDrawer> _shapeDrawers;
 
@@ -21,7 +21,7 @@ namespace DualViewsDrawingModel.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            _shapeDrawersManager = new ShapeDrawersManager();
+            _shapeDrawersManager = new CanvasShapeDrawersHelper();
             _target = new PrivateObject(_shapeDrawersManager);
             _shapeDrawers = ( List<ShapeDrawer> )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_SHAPE_DRAWERS);
         }
@@ -32,7 +32,7 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestShapeDrawersManager()
         {
-            var shapeDrawersManager = new ShapeDrawersManager();
+            var shapeDrawersManager = new CanvasShapeDrawersHelper();
             var target = new PrivateObject(shapeDrawersManager);
             Assert.IsNotNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_SHAPE_DRAWERS));
         }

@@ -25,11 +25,11 @@ namespace DualViewsDrawingModel
         private const string ERROR_CANVAS_DRAWER_STATE_IS_NULL = "The given canvas drawer state is null.";
         protected ShapeDrawerType _currentShapeDrawerType;
         private ICanvasDrawerState _currentState;
-        private ShapeDrawersManager _shapeDrawersManager;
+        private CanvasShapeDrawersHelper _shapeDrawersManager;
 
         public CanvasDrawer()
         {
-            _shapeDrawersManager = new ShapeDrawersManager();
+            _shapeDrawersManager = new CanvasShapeDrawersHelper();
         }
 
         /// <summary>

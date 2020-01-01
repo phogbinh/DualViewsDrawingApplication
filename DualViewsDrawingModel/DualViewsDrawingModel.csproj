@@ -56,7 +56,7 @@
     <Compile Include="ShapeDrawers\LineDrawer.cs" />
     <Compile Include="ShapeDrawers\RectangleDrawer.cs" />
     <Compile Include="ShapeDrawers\ShapeDrawer.cs" />
-    <Compile Include="ShapeDrawersManager.cs" />
+    <Compile Include="CanvasShapeDrawersHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeDrawerFactory.cs" />
     <Compile Include="Shapes\Line.cs" />

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace DualViewsDrawingModel
 {
-    public class ShapeDrawersManager
+    public class CanvasShapeDrawersHelper
     {
         private List<ShapeDrawer> _shapeDrawers;
 
-        public ShapeDrawersManager()
+        public CanvasShapeDrawersHelper()
         {
             _shapeDrawers = new List<ShapeDrawer>();
         }
