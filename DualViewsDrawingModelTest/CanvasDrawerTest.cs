@@ -15,7 +15,7 @@ namespace DualViewsDrawingModel.Test
         private CanvasDrawer _canvasDrawer;
         private PrivateObject _target;
         private CanvasDrawerStateMock _currentState;
-        private ShapeDrawersManagerMock _shapeDrawersManager;
+        private CanvasShapeDrawersHelperMock _shapeDrawersManager;
 
         /// <summary>
         /// Initializes this instance.
@@ -27,7 +27,7 @@ namespace DualViewsDrawingModel.Test
             _canvasDrawer = new CanvasDrawer();
             _target = new PrivateObject(_canvasDrawer);
             _currentState = new CanvasDrawerStateMock();
-            _shapeDrawersManager = new ShapeDrawersManagerMock();
+            _shapeDrawersManager = new CanvasShapeDrawersHelperMock();
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_STATE, _currentState);
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_SHAPE_DRAWERS_HELPER, _shapeDrawersManager);
         }
