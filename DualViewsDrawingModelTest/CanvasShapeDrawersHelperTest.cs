@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace DualViewsDrawingModel.Test
 {
     [TestClass()]
-    public class ShapeDrawersManagerTest
+    public class CanvasShapeDrawersHelperTest
     {
         private const string MEMBER_VARIABLE_NAME_SHAPE_DRAWERS = "_shapeDrawers";
         private CanvasShapeDrawersHelper _canvasShapeDrawersHelper;

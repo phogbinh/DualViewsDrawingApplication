@@ -74,7 +74,7 @@
     <Compile Include="PointTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShapeDrawerFactoryTest.cs" />
-    <Compile Include="ShapeDrawersManagerTest.cs" />
+    <Compile Include="CanvasShapeDrawersHelperTest.cs" />
     <Compile Include="ShapeDrawers\LineDrawerTest.cs" />
     <Compile Include="ShapeDrawers\RectangleDrawerTest.cs" />
     <Compile Include="ShapeDrawers\ShapeDrawerTest.cs" />
