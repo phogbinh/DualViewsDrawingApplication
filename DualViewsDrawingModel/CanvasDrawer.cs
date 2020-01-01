@@ -25,11 +25,11 @@ namespace DualViewsDrawingModel
         private const string ERROR_CANVAS_DRAWER_STATE_IS_NULL = "The given canvas drawer state is null.";
         protected ShapeDrawerType _currentShapeDrawerType;
         private ICanvasDrawerState _currentState;
-        private CanvasShapeDrawersHelper _shapeDrawersManager;
+        private CanvasShapeDrawersHelper _canvasShapeDrawersHelper;
 
         public CanvasDrawer()
         {
-            _shapeDrawersManager = new CanvasShapeDrawersHelper();
+            _canvasShapeDrawersHelper = new CanvasShapeDrawersHelper();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public virtual void ClearShapeDrawersManager()
         {
-            _shapeDrawersManager.Clear();
+            _canvasShapeDrawersHelper.Clear();
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         private void Draw(IGraphics graphics)
         {
-            _shapeDrawersManager.Draw(graphics);
+            _canvasShapeDrawersHelper.Draw(graphics);
             _currentState.Draw(graphics);
         }
 
@@ -133,7 +133,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public virtual void AddCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
         {
-            _shapeDrawersManager.AddShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType);
+            _canvasShapeDrawersHelper.AddShapeDrawer(drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType);
         }
 
         /// <summary>

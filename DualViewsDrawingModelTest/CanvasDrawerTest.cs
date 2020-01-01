@@ -11,7 +11,7 @@ namespace DualViewsDrawingModel.Test
     {
         private const string MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE = "_currentShapeDrawerType";
         private const string MEMBER_VARIABLE_NAME_CURRENT_STATE = "_currentState";
-        private const string MEMBER_VARIABLE_NAME_SHAPE_DRAWERS_MANAGER = "_shapeDrawersManager";
+        private const string MEMBER_VARIABLE_NAME_CANVAS_SHAPE_DRAWERS_HELPER = "_canvasShapeDrawersHelper";
         private CanvasDrawer _canvasDrawer;
         private PrivateObject _target;
         private CanvasDrawerStateMock _currentState;
@@ -29,7 +29,7 @@ namespace DualViewsDrawingModel.Test
             _currentState = new CanvasDrawerStateMock();
             _shapeDrawersManager = new ShapeDrawersManagerMock();
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_STATE, _currentState);
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_SHAPE_DRAWERS_MANAGER, _shapeDrawersManager);
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_SHAPE_DRAWERS_HELPER, _shapeDrawersManager);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace DualViewsDrawingModel.Test
         {
             var canvasDrawer = new CanvasDrawer();
             var target = new PrivateObject(canvasDrawer);
-            Assert.IsNotNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_SHAPE_DRAWERS_MANAGER));
+            Assert.IsNotNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_SHAPE_DRAWERS_HELPER));
         }
 
         /// <summary>
