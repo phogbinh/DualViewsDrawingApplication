@@ -8,7 +8,7 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
-        public bool IsCalledUnExecute
+        public bool IsCalledReverseExecution
         {
             get; set;
         }
@@ -16,7 +16,7 @@ namespace DualViewsDrawingModelTest.Mocks
         public CommandMock()
         {
             IsCalledExecute = false;
-            IsCalledUnExecute = false;
+            IsCalledReverseExecution = false;
         }
 
         /// <summary>
@@ -28,11 +28,11 @@ namespace DualViewsDrawingModelTest.Mocks
         }
 
         /// <summary>
-        /// Un-executes this instance.
+        /// Reverses the execution.
         /// </summary>
-        public void UnExecute()
+        public void ReverseExecution()
         {
-            IsCalledUnExecute = true;
+            IsCalledReverseExecution = true;
         }
     }
 }

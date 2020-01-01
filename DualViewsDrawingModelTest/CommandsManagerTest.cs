@@ -87,7 +87,7 @@ namespace DualViewsDrawingModel.Test
             _commandsManager.Undo();
             Assert.AreEqual(_undoStack.Count, 0);
             Assert.AreSame(_redoStack.Pop(), undoCommand);
-            Assert.IsTrue(undoCommand.IsCalledUnExecute);
+            Assert.IsTrue(undoCommand.IsCalledReverseExecution);
         }
 
         /// <summary>

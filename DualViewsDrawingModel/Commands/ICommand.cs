@@ -8,8 +8,8 @@
         void Execute();
 
         /// <summary>
-        /// Un-executes this instance.
+        /// Reverses the execution.
         /// </summary>
-        void UnExecute();
+        void ReverseExecution();
     }
 }

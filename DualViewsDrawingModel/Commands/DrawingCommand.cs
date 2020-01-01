@@ -28,9 +28,9 @@ namespace DualViewsDrawingModel.Commands
         }
 
         /// <summary>
-        /// Un-executes this instance.
+        /// Reverses the execution.
         /// </summary>
-        public void UnExecute()
+        public void ReverseExecution()
         {
             _agent.RemoveShapeFromCanvas(_shapeDrawer);
         }

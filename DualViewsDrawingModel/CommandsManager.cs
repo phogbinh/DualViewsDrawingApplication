@@ -49,7 +49,7 @@ namespace DualViewsDrawingModel
         {
             ICommand undoCommand = _undoStack.Pop();
             _redoStack.Push(undoCommand);
-            undoCommand.UnExecute();
+            undoCommand.ReverseExecution();
         }
 
         /// <summary>

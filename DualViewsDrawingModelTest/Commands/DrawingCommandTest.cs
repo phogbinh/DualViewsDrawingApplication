@@ -60,12 +60,12 @@ namespace DualViewsDrawingModel.Commands.Test
         }
 
         /// <summary>
-        /// Tests the un execute.
+        /// Tests the reverse execution.
         /// </summary>
         [TestMethod()]
-        public void TestUnExecute()
+        public void TestReverseExecution()
         {
-            _drawingCommand.UnExecute();
+            _drawingCommand.ReverseExecution();
             Assert.IsTrue(_agent.IsCalledRemoveShapeFromCanvas);
         }
     }
