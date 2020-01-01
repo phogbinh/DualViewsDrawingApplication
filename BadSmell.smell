@@ -572,17 +572,17 @@
               <AnalysisFile>
                 <RelativePath>Mocks\CanvasShapeDrawersHelperMock.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
-                <AnalysisFileType>Model</AnalysisFileType>
+                <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Mocks\CommandMock.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
-                <AnalysisFileType>Model</AnalysisFileType>
+                <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Mocks\DrawingCommandAgentMock.cs</RelativePath>
                 <ProjectName>DualViewsDrawingModelTest</ProjectName>
-                <AnalysisFileType>Model</AnalysisFileType>
+                <AnalysisFileType>Test</AnalysisFileType>
               </AnalysisFile>
               <AnalysisFile>
                 <RelativePath>Mocks\GraphicsMock.cs</RelativePath>
@@ -661,8 +661,8 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>2231</ProductionLoc>
-          <TestLoc>3499</TestLoc>
+          <ProductionLoc>2089</ProductionLoc>
+          <TestLoc>3641</TestLoc>
         </CodeReview>
       </Data>
     </div>
