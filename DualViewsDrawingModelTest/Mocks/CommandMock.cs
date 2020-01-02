@@ -13,7 +13,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public CommandMock()
+        public CommandMock() : base()
         {
             IsCalledExecute = false;
             IsCalledReverseExecution = false;

@@ -25,7 +25,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public ButtonEnabledStatesManagerMock()
+        public ButtonEnabledStatesManagerMock() : base()
         {
             IsCalledInitialize = false;
             IsCalledHandleDrawingEnded = false;

@@ -14,7 +14,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public DrawingCommandAgentMock()
+        public DrawingCommandAgentMock() : base()
         {
             IsCalledDrawShape = false;
             IsCalledRemoveShape = false;
