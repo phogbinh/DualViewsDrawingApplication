@@ -51,7 +51,7 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
-        /// Tests the set property drawing ended.
+        /// Tests the set property current shape changed.
         /// </summary>
         [TestMethod()]
         public void TestSetPropertyCurrentShapeChanged()
