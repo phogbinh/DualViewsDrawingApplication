@@ -40,7 +40,7 @@ namespace DualViewsDrawingModel.ShapeDrawers
         /// <summary>
         /// Gets the rectangle.
         /// </summary>
-        public Rectangle GetRectangle()
+        public virtual Rectangle GetRectangle()
         {
             return new Rectangle(_drawingStartingPoint, _drawingEndingPoint);
         }

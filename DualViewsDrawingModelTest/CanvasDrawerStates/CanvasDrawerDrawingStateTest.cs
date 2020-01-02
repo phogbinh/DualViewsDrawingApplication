@@ -133,5 +133,14 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             _canvasDrawerDrawingState.Draw(graphics);
             Assert.IsTrue(graphics.IsCalledDrawLine);
         }
+
+        /// <summary>
+        /// Tests the get current shape rectangle.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeRectangle()
+        {
+            Assert.IsNull(_canvasDrawerDrawingState.GetCurrentShapeRectangle());
+        }
     }
 }

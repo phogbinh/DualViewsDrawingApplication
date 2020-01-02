@@ -99,5 +99,19 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             _canvasDrawerPointerState.Draw(new GraphicsMock());
             Assert.IsTrue(true);
         }
+
+        /// <summary>
+        /// Tests the get current shape rectangle.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeRectangle()
+        {
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER, null);
+            Assert.IsNull(_canvasDrawerPointerState.GetCurrentShapeRectangle());
+            var shapeDrawer = new ShapeDrawerMock(new Point(), new Point());
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER, shapeDrawer);
+            _canvasDrawerPointerState.GetCurrentShapeRectangle();
+            Assert.IsTrue(shapeDrawer.IsCalledGetRectangle);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DualViewsDrawingModel.ShapeDrawers;
+using DualViewsDrawingModel.Shapes;
 using System;
 
 namespace DualViewsDrawingModel.CanvasDrawerStates
@@ -68,6 +69,18 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         public void Draw(IGraphics graphics)
         {
             /* Body intentionally empty */
+        }
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        public Rectangle GetCurrentShapeRectangle()
+        {
+            if ( _currentSelectedShapeShapeDrawer == null )
+            {
+                return null;
+            }
+            return _currentSelectedShapeShapeDrawer.GetRectangle();
         }
     }
 }
