@@ -76,6 +76,7 @@
     <Compile Include="Mocks\GraphicsMock.cs" />
     <Compile Include="Mocks\CanvasShapeDrawersHelperMock.cs" />
     <Compile Include="Mocks\PointMock.cs" />
+    <Compile Include="Mocks\ShapeDrawerMock.cs" />
     <Compile Include="ModelTest.cs" />
     <Compile Include="PointTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

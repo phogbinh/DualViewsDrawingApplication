@@ -1,25 +1,11 @@
 ﻿using DualViewsDrawingModel.Shapes;
 using DualViewsDrawingModelTest;
+using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace DualViewsDrawingModel.ShapeDrawers.Test
 {
-    public class ShapeDrawerMock : ShapeDrawer
-    {
-        public ShapeDrawerMock(Point drawingStartingPointData, Point drawingEndingPointData) : base(drawingStartingPointData, drawingEndingPointData)
-        {
-            /* Body intentionally empty */
-        }
-
-        /// <summary>
-        /// Draws the specified graphics.
-        /// </summary>
-        public override void Draw(IGraphics graphics)
-        {
-            /* Body intentionally empty */
-        }
-    }
     [TestClass()]
     public class ShapeDrawerTest
     {
