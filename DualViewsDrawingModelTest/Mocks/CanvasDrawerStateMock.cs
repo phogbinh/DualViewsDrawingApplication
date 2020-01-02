@@ -26,7 +26,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public CanvasDrawerStateMock()
+        public CanvasDrawerStateMock() : base()
         {
             IsCalledClearCanvas = false;
             IsCalledHandleCanvasLeftMousePressed = false;

@@ -22,7 +22,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public CanvasShapeDrawersHelperMock()
+        public CanvasShapeDrawersHelperMock() : base()
         {
             IsCalledAddShapeDrawer = false;
             IsCalledRemoveShapeDrawer = false;

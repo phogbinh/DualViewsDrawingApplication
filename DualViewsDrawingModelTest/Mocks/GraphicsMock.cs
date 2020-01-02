@@ -18,7 +18,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public GraphicsMock()
+        public GraphicsMock() : base()
         {
             IsCalledClearAll = false;
             IsCalledDrawLine = false;

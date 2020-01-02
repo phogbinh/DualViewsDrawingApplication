@@ -19,6 +19,10 @@ namespace DualViewsDrawingModel
         /// </summary>
         public virtual void AddShapeDrawer(ShapeDrawer shapeDrawer)
         {
+            if ( shapeDrawer == null )
+            {
+                throw new ArgumentNullException(ERROR_SHAPE_DRAWER_IS_NULL);
+            }
             _shapeDrawers.Add(shapeDrawer);
         }
 

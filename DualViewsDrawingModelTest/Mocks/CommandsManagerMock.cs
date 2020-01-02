@@ -26,7 +26,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public CommandsManagerMock()
+        public CommandsManagerMock() : base()
         {
             IsCalledAddThenExecuteCommand = false;
             IsCalledUndo = false;
