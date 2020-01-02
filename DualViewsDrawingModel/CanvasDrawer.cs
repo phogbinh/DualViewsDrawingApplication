@@ -200,7 +200,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Notifies the current shape changed.
         /// </summary>
-        public void NotifyCurrentShapeChanged()
+        public virtual void NotifyCurrentShapeChanged()
         {
             if ( CurrentShapeChanged != null )
             {

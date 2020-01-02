@@ -66,6 +66,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledNotifyCurrentShapeChanged
+        {
+            get; set;
+        }
         public ICanvasDrawerState CurrentState
         {
             get; set;
@@ -88,6 +92,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledRemoveShape = false;
             IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = false;
             IsCalledGetSelectedShapeShapeDrawer = false;
+            IsCalledNotifyCurrentShapeChanged = false;
             CurrentState = null;
         }
 
@@ -212,6 +217,14 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             IsCalledGetSelectedShapeShapeDrawer = true;
             return null;
+        }
+
+        /// <summary>
+        /// Notifies the current shape changed.
+        /// </summary>
+        public override void NotifyCurrentShapeChanged()
+        {
+            IsCalledNotifyCurrentShapeChanged = true;
         }
     }
 }
