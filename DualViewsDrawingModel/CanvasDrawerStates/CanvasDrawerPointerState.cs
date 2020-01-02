@@ -37,7 +37,10 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
             {
                 return;
             }
-            _canvasDrawer.SetCurrentState(new CanvasDrawerDrawingState(_canvasDrawer, mousePosition));
+            else
+            {
+                _canvasDrawer.SetCurrentState(new CanvasDrawerDrawingState(_canvasDrawer, mousePosition));
+            }
         }
 
         /// <summary>
