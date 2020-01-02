@@ -62,6 +62,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledGetSelectedShapeShapeDrawer
+        {
+            get; set;
+        }
         public ICanvasDrawerState CurrentState
         {
             get; set;
@@ -83,6 +87,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledDrawShape = false;
             IsCalledRemoveShape = false;
             IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = false;
+            IsCalledGetSelectedShapeShapeDrawer = false;
             CurrentState = null;
         }
 
@@ -198,6 +203,15 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
         {
             IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = true;
+        }
+
+        /// <summary>
+        /// Gets the selected shape shape drawer.
+        /// </summary>
+        public override ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
+        {
+            IsCalledGetSelectedShapeShapeDrawer = true;
+            return null;
         }
     }
 }

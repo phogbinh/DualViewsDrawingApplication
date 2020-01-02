@@ -60,7 +60,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         {
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.None);
             _canvasDrawerPointerState.HandleCanvasLeftMousePressed(new Point());
-            Assert.IsTrue(true);
+            Assert.IsTrue(_canvasDrawer.IsCalledGetSelectedShapeShapeDrawer);
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Line);
             _canvasDrawerPointerState.HandleCanvasLeftMousePressed(new Point());
             Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentState);

@@ -35,7 +35,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         {
             if ( _canvasDrawer.CurrentShapeDrawerType == ShapeDrawerType.None )
             {
-                return;
+                _currentSelectedShapeShapeDrawer = _canvasDrawer.GetSelectedShapeShapeDrawer(mousePosition);
             }
             else
             {

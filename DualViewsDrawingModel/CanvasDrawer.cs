@@ -187,7 +187,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Gets the selected shape shape drawer.
         /// </summary>
-        public ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
+        public virtual ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
         {
             return _canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIncludesPoint(leftMousePressedPosition);
         }
