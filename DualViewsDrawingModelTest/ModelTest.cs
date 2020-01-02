@@ -60,6 +60,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the set property current shape changed.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetPropertyCurrentShapeChanged()
+        {
+            _model.CurrentShapeChanged += () => { };
+            Assert.IsNotNull(_model.CurrentShapeChanged);
+        }
+
+        /// <summary>
         /// Tests the width of the get property canvas.
         /// </summary>
         [TestMethod()]

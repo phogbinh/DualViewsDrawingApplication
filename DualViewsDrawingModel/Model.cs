@@ -35,6 +35,17 @@
                 _canvasManager.DrawingEnded = value;
             }
         }
+        public CanvasDrawer.CurrentShapeChangedEventHandler CurrentShapeChanged
+        {
+            get
+            {
+                return _canvasManager.CurrentShapeChanged;
+            }
+            set
+            {
+                _canvasManager.CurrentShapeChanged = value;
+            }
+        }
         public double CanvasWidth
         {
             get
