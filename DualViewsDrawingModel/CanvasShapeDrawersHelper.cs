@@ -56,5 +56,20 @@ namespace DualViewsDrawingModel
                 shapeDrawer.Draw(graphics);
             }
         }
+
+        /// <summary>
+        /// Gets the most recent drawn shape drawer.
+        /// </summary>
+        public ShapeDrawer GetMostRecentDrawnShapeDrawerThatIncludesPoint(Point point)
+        {
+            for ( int index = _shapeDrawers.Count - 1; index >= 0; index-- )
+            {
+                if ( _shapeDrawers[ index ].IsIncludingPoint(point) )
+                {
+                    return _shapeDrawers[ index ];
+                }
+            }
+            return null;
+        }
     }
 }

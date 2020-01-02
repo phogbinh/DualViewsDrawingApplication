@@ -93,5 +93,19 @@ namespace DualViewsDrawingModel.Test
             Assert.IsTrue(graphics.IsCalledDrawLine);
             Assert.IsTrue(graphics.IsCalledDrawRectangle);
         }
+
+        /// <summary>
+        /// Tests the get most recent drawn shape drawer that includes point.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetMostRecentDrawnShapeDrawerThatIncludesPoint()
+        {
+            var rectangleDrawer = new RectangleDrawer(new Point(0.0, 0.0), new Point(5.0, 5.0));
+            var lineDrawer = new LineDrawer(new Point(0.0, 0.0), new Point(5.0, 5.0));
+            _shapeDrawers.Add(rectangleDrawer);
+            _shapeDrawers.Add(lineDrawer);
+            Assert.AreSame(_canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIncludesPoint(new Point(2.5, 2.5)), lineDrawer);
+            Assert.IsNull(_canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIncludesPoint(new Point(-0.1, 0.0)));
+        }
     }
 }
