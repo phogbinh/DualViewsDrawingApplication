@@ -1,10 +1,12 @@
-﻿using System;
+﻿using DualViewsDrawingModel.ShapeDrawers;
+using System;
 
 namespace DualViewsDrawingModel.CanvasDrawerStates
 {
     public class CanvasDrawerPointerState : ICanvasDrawerState
     {
         private CanvasDrawer _canvasDrawer;
+        private ShapeDrawer _currentSelectedShapeShapeDrawer;
 
         public CanvasDrawerPointerState(CanvasDrawer canvasDrawerData)
         {
@@ -13,6 +15,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
                 throw new ArgumentNullException(Definitions.ERROR_CANVAS_DRAWER_IS_NULL);
             }
             _canvasDrawer = canvasDrawerData;
+            _currentSelectedShapeShapeDrawer = null;
         }
 
         /// <summary>

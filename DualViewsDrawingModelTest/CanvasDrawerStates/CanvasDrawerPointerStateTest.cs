@@ -9,6 +9,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
     public class CanvasDrawerPointerStateTest
     {
         private const string MEMBER_VARIABLE_NAME_CANVAS_DRAWER = "_canvasDrawer";
+        private const string MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER = "_currentSelectedShapeShapeDrawer";
         private CanvasDrawerPointerState _canvasDrawerPointerState;
         private CanvasDrawerMock _canvasDrawer;
 
@@ -34,6 +35,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             var canvasDrawerPointerState = new CanvasDrawerPointerState(canvasDrawer);
             var target = new PrivateObject(canvasDrawerPointerState);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_DRAWER), canvasDrawer);
+            Assert.IsNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER));
         }
 
         /// <summary>
