@@ -9,11 +9,16 @@ namespace DualViewsDrawingModel
     {
         public delegate void CanvasRefreshDrawRequestedEventHandler();
         public delegate void DrawingEndedEventHandler();
+        public delegate void CurrentShapeChangedEventHandler();
         public CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
         {
             get; set;
         }
         public DrawingEndedEventHandler DrawingEnded
+        {
+            get; set;
+        }
+        public CurrentShapeChangedEventHandler CurrentShapeChanged
         {
             get; set;
         }
@@ -190,6 +195,17 @@ namespace DualViewsDrawingModel
         public virtual ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
         {
             return _canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIncludesPoint(leftMousePressedPosition);
+        }
+
+        /// <summary>
+        /// Notifies the current shape changed.
+        /// </summary>
+        public void NotifyCurrentShapeChanged()
+        {
+            if ( CurrentShapeChanged != null )
+            {
+                CurrentShapeChanged();
+            }
         }
     }
 }

@@ -239,5 +239,19 @@ namespace DualViewsDrawingModel.Test
             _canvasDrawer.GetSelectedShapeShapeDrawer(new Point());
             Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledGetMostRecentDrawnShapeDrawerThatIncludesPoint);
         }
+
+        /// <summary>
+        /// Tests the notify current shape changed.
+        /// </summary>
+        [TestMethod()]
+        public void TestNotifyCurrentShapeChanged()
+        {
+            int count = 0;
+            _canvasDrawer.CurrentShapeChanged += () => count++;
+            _canvasDrawer.NotifyCurrentShapeChanged();
+            Assert.AreEqual(count, 1);
+            _canvasDrawer.NotifyCurrentShapeChanged();
+            Assert.AreEqual(count, 2);
+        }
     }
 }
