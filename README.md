@@ -10,9 +10,6 @@ The application is implemented applying the following design patterns:
 * Adapter Pattern
 * Simple Factory Pattern
 * State Pattern
-
-## Incoming Design Patterns
-The design patterns listed below will be applied for the application in the near future:
 * Command Pattern
 
 ## Unit Testing
