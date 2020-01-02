@@ -48,8 +48,11 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
             _rectangleButton.Click += HandleRectangleButtonClicked;
             _lineButton.Click += HandleLineButtonClicked;
             _clearButton.Click += HandleClearButtonClicked;
+            _undoButton.Click += (sender, eventArguments) => _model.Undo();
+            _redoButton.Click += (sender, eventArguments) => _model.Redo();
             // Initial UI States
             _drawingPresentationModel.Initialize();
+            UpdateUndoRedoButtonEnabledStates();
             _canvas.Loaded += (sender, eventArguments) => _model.Initialize(_canvas.ActualWidth, _canvas.ActualHeight, ShapeDrawerType.None); // The actual width and height of the canvas can only be determined after it is completely loaded.
         }
 
@@ -59,6 +62,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         private void SubscribeEvents()
         {
             _drawingPresentationModel.ButtonEnabledStatesChanged += UpdateButtonEnabledStates;
+            _model.UndoRedoStacksChanged += UpdateUndoRedoButtonEnabledStates;
             _model.CanvasRefreshDrawRequested += HandleCanvasRefreshDrawRequested;
             _model.DrawingEnded += HandleDrawingEnded;
         }
@@ -77,6 +81,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
         private void RemoveEvents()
         {
             _drawingPresentationModel.ButtonEnabledStatesChanged -= UpdateButtonEnabledStates;
+            _model.UndoRedoStacksChanged -= UpdateUndoRedoButtonEnabledStates;
             _model.CanvasRefreshDrawRequested -= HandleCanvasRefreshDrawRequested;
             _model.DrawingEnded -= HandleDrawingEnded;
         }
@@ -187,6 +192,15 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
             _rectangleButton.IsEnabled = _drawingPresentationModel.RectangleButtonEnabled;
             _lineButton.IsEnabled = _drawingPresentationModel.LineButtonEnabled;
             _clearButton.IsEnabled = _drawingPresentationModel.ClearButtonEnabled;
+        }
+
+        /// <summary>
+        /// Updates the undo redo button enabled states.
+        /// </summary>
+        private void UpdateUndoRedoButtonEnabledStates()
+        {
+            _undoButton.IsEnabled = !_model.IsEmptyCommandsUndoStack();
+            _redoButton.IsEnabled = !_model.IsEmptyCommandsRedoStack();
         }
     }
 }
