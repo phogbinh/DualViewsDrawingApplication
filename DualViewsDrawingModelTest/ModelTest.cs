@@ -188,5 +188,25 @@ namespace DualViewsDrawingModel.Test
             _model.Redo();
             Assert.IsTrue(_commandsManager.IsCalledRedo);
         }
+
+        /// <summary>
+        /// Tests the is empty commands undo stack.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsEmptyCommandsUndoStack()
+        {
+            _model.IsEmptyCommandsUndoStack();
+            Assert.IsTrue(_commandsManager.IsCalledIsEmptyUndoStack);
+        }
+
+        /// <summary>
+        /// Tests the is empty commands redo stack.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsEmptyCommandsRedoStack()
+        {
+            _model.IsEmptyCommandsRedoStack();
+            Assert.IsTrue(_commandsManager.IsCalledIsEmptyRedoStack);
+        }
     }
 }

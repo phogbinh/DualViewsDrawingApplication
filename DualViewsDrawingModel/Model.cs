@@ -138,5 +138,21 @@
         {
             _commandsManager.Redo();
         }
+
+        /// <summary>
+        /// Determines whether [is empty commands undo stack].
+        /// </summary>
+        public bool IsEmptyCommandsUndoStack()
+        {
+            return _commandsManager.IsEmptyUndoStack();
+        }
+
+        /// <summary>
+        /// Determines whether [is empty commands redo stack].
+        /// </summary>
+        public bool IsEmptyCommandsRedoStack()
+        {
+            return _commandsManager.IsEmptyRedoStack();
+        }
     }
 }

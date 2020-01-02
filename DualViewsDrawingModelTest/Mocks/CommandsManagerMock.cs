@@ -17,12 +17,22 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledIsEmptyUndoStack
+        {
+            get; set;
+        }
+        public bool IsCalledIsEmptyRedoStack
+        {
+            get; set;
+        }
 
         public CommandsManagerMock()
         {
             IsCalledAddThenExecuteCommand = false;
             IsCalledUndo = false;
             IsCalledRedo = false;
+            IsCalledIsEmptyUndoStack = false;
+            IsCalledIsEmptyRedoStack = false;
         }
 
         /// <summary>
@@ -47,6 +57,24 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void Redo()
         {
             IsCalledRedo = true;
+        }
+
+        /// <summary>
+        /// Determines whether [is empty commands undo stack].
+        /// </summary>
+        public override bool IsEmptyUndoStack()
+        {
+            IsCalledIsEmptyUndoStack = true;
+            return TestDefinitions.DUMP_BOOLEAN;
+        }
+
+        /// <summary>
+        /// Determines whether [is empty redo stack].
+        /// </summary>
+        public override bool IsEmptyRedoStack()
+        {
+            IsCalledIsEmptyRedoStack = true;
+            return TestDefinitions.DUMP_BOOLEAN;
         }
     }
 }

@@ -80,5 +80,21 @@ namespace DualViewsDrawingModel
                 UndoRedoStacksChanged();
             }
         }
+
+        /// <summary>
+        /// Determines whether [is empty commands undo stack].
+        /// </summary>
+        public virtual bool IsEmptyUndoStack()
+        {
+            return _undoStack.Count == 0;
+        }
+
+        /// <summary>
+        /// Determines whether [is empty redo stack].
+        /// </summary>
+        public virtual bool IsEmptyRedoStack()
+        {
+            return _redoStack.Count == 0;
+        }
     }
 }

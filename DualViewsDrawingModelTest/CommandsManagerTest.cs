@@ -127,5 +127,27 @@ namespace DualViewsDrawingModel.Test
             _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_UNDO_REDO_STACKS_CHANGED);
             Assert.AreEqual(count, 2);
         }
+
+        /// <summary>
+        /// Tests the is empty undo stack.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsEmptyUndoStack()
+        {
+            Assert.IsTrue(_commandsManager.IsEmptyUndoStack());
+            _undoStack.Push(new CommandMock());
+            Assert.IsFalse(_commandsManager.IsEmptyUndoStack());
+        }
+
+        /// <summary>
+        /// Tests the is empty redo stack.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsEmptyRedoStack()
+        {
+            Assert.IsTrue(_commandsManager.IsEmptyRedoStack());
+            _redoStack.Push(new CommandMock());
+            Assert.IsFalse(_commandsManager.IsEmptyRedoStack());
+        }
     }
 }
