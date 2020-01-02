@@ -27,8 +27,11 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             _rectangleButton.Click += HandleRectangleButtonClicked;
             _lineButton.Click += HandleLineButtonClicked;
             _clearButton.Click += HandleClearButtonClicked;
+            _undoButton.Click += (sender, eventArguments) => _model.Undo();
+            _redoButton.Click += (sender, eventArguments) => _model.Redo();
             // Initial UI States
             _drawingPresentationModel.Initialize();
+            UpdateUndoRedoButtonEnabledStates();
             _model.Initialize(_canvas.Size.Width, _canvas.Size.Height, ShapeDrawerType.None);
         }
 
@@ -38,6 +41,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         private void SubscribeEvents()
         {
             _drawingPresentationModel.ButtonEnabledStatesChanged += UpdateButtonEnabledStates;
+            _model.UndoRedoStacksChanged += UpdateUndoRedoButtonEnabledStates;
             _model.CanvasRefreshDrawRequested += HandleCanvasRefreshDrawRequested;
             _model.DrawingEnded += HandleDrawingEnded;
         }
@@ -48,6 +52,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         private void RemoveEvents(object sender, EventArgs eventArguments)
         {
             _drawingPresentationModel.ButtonEnabledStatesChanged -= UpdateButtonEnabledStates;
+            _model.UndoRedoStacksChanged -= UpdateUndoRedoButtonEnabledStates;
             _model.CanvasRefreshDrawRequested -= HandleCanvasRefreshDrawRequested;
             _model.DrawingEnded -= HandleDrawingEnded;
         }
@@ -141,6 +146,15 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             _rectangleButton.Enabled = _drawingPresentationModel.RectangleButtonEnabled;
             _lineButton.Enabled = _drawingPresentationModel.LineButtonEnabled;
             _clearButton.Enabled = _drawingPresentationModel.ClearButtonEnabled;
+        }
+
+        /// <summary>
+        /// Updates the undo redo button enabled states.
+        /// </summary>
+        private void UpdateUndoRedoButtonEnabledStates()
+        {
+            _undoButton.Enabled = !_model.IsEmptyCommandsUndoStack();
+            _redoButton.Enabled = !_model.IsEmptyCommandsRedoStack();
         }
     }
 }
