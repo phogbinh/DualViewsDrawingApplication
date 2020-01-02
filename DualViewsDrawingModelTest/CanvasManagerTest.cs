@@ -51,6 +51,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the set property drawing ended.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetPropertyCurrentShapeChanged()
+        {
+            _canvasManager.CurrentShapeChanged += () => { };
+            Assert.IsNotNull(_canvasManager.CurrentShapeChanged);
+        }
+
+        /// <summary>
         /// Tests the canvas manager.
         /// </summary>
         [TestMethod()]

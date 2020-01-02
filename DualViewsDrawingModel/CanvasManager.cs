@@ -26,6 +26,17 @@ namespace DualViewsDrawingModel
                 _canvasDrawer.DrawingEnded = value;
             }
         }
+        public CanvasDrawer.CurrentShapeChangedEventHandler CurrentShapeChanged
+        {
+            get
+            {
+                return _canvasDrawer.CurrentShapeChanged;
+            }
+            set
+            {
+                _canvasDrawer.CurrentShapeChanged = value;
+            }
+        }
         public double CanvasWidth
         {
             get
