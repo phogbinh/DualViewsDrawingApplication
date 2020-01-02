@@ -6,6 +6,11 @@ namespace DualViewsDrawingModel
 {
     public class CommandsManager
     {
+        public delegate void UndoRedoStacksChangedEventHandler();
+        public UndoRedoStacksChangedEventHandler UndoRedoStacksChanged
+        {
+            get; set;
+        }
         private const string ERROR_COMMAND_IS_NULL = "The given command is null.";
         private Stack<ICommand> _undoStack;
         private Stack<ICommand> _redoStack;
@@ -40,6 +45,7 @@ namespace DualViewsDrawingModel
             }
             _undoStack.Push(command);
             _redoStack.Clear();
+            NotifyUndoRedoStacksChanged();
         }
 
         /// <summary>
@@ -50,6 +56,7 @@ namespace DualViewsDrawingModel
             ICommand undoCommand = _undoStack.Pop();
             _redoStack.Push(undoCommand);
             undoCommand.ReverseExecution();
+            NotifyUndoRedoStacksChanged();
         }
 
         /// <summary>
@@ -60,6 +67,18 @@ namespace DualViewsDrawingModel
             ICommand redoCommand = _redoStack.Pop();
             _undoStack.Push(redoCommand);
             redoCommand.Execute();
+            NotifyUndoRedoStacksChanged();
+        }
+
+        /// <summary>
+        /// Notifies the undo redo stacks changed.
+        /// </summary>
+        private void NotifyUndoRedoStacksChanged()
+        {
+            if ( UndoRedoStacksChanged != null )
+            {
+                UndoRedoStacksChanged();
+            }
         }
     }
 }
