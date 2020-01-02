@@ -16,6 +16,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
             }
             _canvasDrawer = canvasDrawerData;
             _currentSelectedShapeShapeDrawer = null;
+            _canvasDrawer.NotifyCurrentShapeChanged();
         }
 
         /// <summary>
@@ -24,6 +25,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         public void ClearCanvas()
         {
             _currentSelectedShapeShapeDrawer = null;
+            _canvasDrawer.NotifyCurrentShapeChanged();
             _canvasDrawer.ClearShapeDrawersManager();
             _canvasDrawer.NotifyCanvasRefreshDrawRequested();
         }
@@ -36,6 +38,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
             if ( _canvasDrawer.CurrentShapeDrawerType == ShapeDrawerType.None )
             {
                 _currentSelectedShapeShapeDrawer = _canvasDrawer.GetSelectedShapeShapeDrawer(mousePosition);
+                _canvasDrawer.NotifyCurrentShapeChanged();
             }
             else
             {

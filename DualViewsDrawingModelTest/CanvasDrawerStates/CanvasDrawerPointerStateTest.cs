@@ -38,6 +38,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             var target = new PrivateObject(canvasDrawerPointerState);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_DRAWER), canvasDrawer);
             Assert.IsNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER));
+            Assert.IsTrue(canvasDrawer.IsCalledNotifyCurrentShapeChanged);
         }
 
         /// <summary>
@@ -48,6 +49,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         {
             _canvasDrawerPointerState.ClearCanvas();
             Assert.IsNull(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER));
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
             Assert.IsTrue(_canvasDrawer.IsCalledClearShapeDrawersManager);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyCanvasRefreshDrawRequested);
         }
@@ -61,6 +63,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.None);
             _canvasDrawerPointerState.HandleCanvasLeftMousePressed(new Point());
             Assert.IsTrue(_canvasDrawer.IsCalledGetSelectedShapeShapeDrawer);
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Line);
             _canvasDrawerPointerState.HandleCanvasLeftMousePressed(new Point());
             Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentState);
