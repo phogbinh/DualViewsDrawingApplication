@@ -11,6 +11,7 @@ namespace DualViewsDrawingModel.Test
         private const string MEMBER_VARIABLE_NAME_CANVAS_MANAGER = "_canvasManager";
         private Model _model;
         private PrivateObject _target;
+        private CommandsManagerMock _commandsManager;
         private CanvasManagerMock _canvasManager;
 
         /// <summary>
@@ -22,8 +23,20 @@ namespace DualViewsDrawingModel.Test
         {
             _model = new Model();
             _target = new PrivateObject(_model);
-            _canvasManager = new CanvasManagerMock(( CommandsManager )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_COMMANDS_MANAGER));
+            _commandsManager = new CommandsManagerMock();
+            _canvasManager = new CanvasManagerMock(_commandsManager);
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_COMMANDS_MANAGER, _commandsManager);
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_MANAGER, _canvasManager);
+        }
+
+        /// <summary>
+        /// Tests the set property undo redo stacks changed.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetPropertyUndoRedoStacksChanged()
+        {
+            _model.UndoRedoStacksChanged += () => { };
+            Assert.IsNotNull(_model.UndoRedoStacksChanged);
         }
 
         /// <summary>
@@ -154,6 +167,46 @@ namespace DualViewsDrawingModel.Test
         {
             _model.RefreshDrawCanvas(new GraphicsMock());
             Assert.IsTrue(_canvasManager.IsCalledRefreshDrawCanvas);
+        }
+
+        /// <summary>
+        /// Tests the undo.
+        /// </summary>
+        [TestMethod()]
+        public void TestUndo()
+        {
+            _model.Undo();
+            Assert.IsTrue(_commandsManager.IsCalledUndo);
+        }
+
+        /// <summary>
+        /// Tests the redo.
+        /// </summary>
+        [TestMethod()]
+        public void TestRedo()
+        {
+            _model.Redo();
+            Assert.IsTrue(_commandsManager.IsCalledRedo);
+        }
+
+        /// <summary>
+        /// Tests the is empty commands undo stack.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsEmptyCommandsUndoStack()
+        {
+            _model.IsEmptyCommandsUndoStack();
+            Assert.IsTrue(_commandsManager.IsCalledIsEmptyUndoStack);
+        }
+
+        /// <summary>
+        /// Tests the is empty commands redo stack.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsEmptyCommandsRedoStack()
+        {
+            _model.IsEmptyCommandsRedoStack();
+            Assert.IsTrue(_commandsManager.IsCalledIsEmptyRedoStack);
         }
     }
 }

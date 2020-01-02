@@ -2,6 +2,17 @@
 {
     public class Model
     {
+        public CommandsManager.UndoRedoStacksChangedEventHandler UndoRedoStacksChanged
+        {
+            get
+            {
+                return _commandsManager.UndoRedoStacksChanged;
+            }
+            set
+            {
+                _commandsManager.UndoRedoStacksChanged = value;
+            }
+        }
         public CanvasDrawer.CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
         {
             get
@@ -110,6 +121,38 @@
         public void RefreshDrawCanvas(IGraphics graphics)
         {
             _canvasManager.RefreshDrawCanvas(graphics);
+        }
+
+        /// <summary>
+        /// Undoes this instance.
+        /// </summary>
+        public void Undo()
+        {
+            _commandsManager.Undo();
+        }
+
+        /// <summary>
+        /// Redoes this instance.
+        /// </summary>
+        public void Redo()
+        {
+            _commandsManager.Redo();
+        }
+
+        /// <summary>
+        /// Determines whether [is empty commands undo stack].
+        /// </summary>
+        public bool IsEmptyCommandsUndoStack()
+        {
+            return _commandsManager.IsEmptyUndoStack();
+        }
+
+        /// <summary>
+        /// Determines whether [is empty commands redo stack].
+        /// </summary>
+        public bool IsEmptyCommandsRedoStack()
+        {
+            return _commandsManager.IsEmptyRedoStack();
         }
     }
 }

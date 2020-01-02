@@ -69,11 +69,14 @@ namespace DualViewsDrawingModel.Test
             Assert.IsInstanceOfType(expectedException.InnerException, typeof(ArgumentNullException));
             _redoStack.Push(new CommandMock());
             _redoStack.Push(new CommandMock());
+            int count = 0;
+            _commandsManager.UndoRedoStacksChanged += () => count++;
             var command = new CommandMock();
             arguments = new object[] { command };
             _target.Invoke(MEMBER_FUNCTION_NAME_ADD_COMMAND, arguments);
             Assert.AreSame(command, _undoStack.Pop());
             Assert.AreEqual(_redoStack.Count, 0);
+            Assert.AreEqual(count, 1);
         }
 
         /// <summary>
@@ -84,10 +87,13 @@ namespace DualViewsDrawingModel.Test
         {
             var undoCommand = new CommandMock();
             _undoStack.Push(undoCommand);
+            int count = 0;
+            _commandsManager.UndoRedoStacksChanged += () => count++;
             _commandsManager.Undo();
             Assert.AreEqual(_undoStack.Count, 0);
             Assert.AreSame(_redoStack.Pop(), undoCommand);
             Assert.IsTrue(undoCommand.IsCalledReverseExecution);
+            Assert.AreEqual(count, 1);
         }
 
         /// <summary>
@@ -98,10 +104,50 @@ namespace DualViewsDrawingModel.Test
         {
             var redoCommand = new CommandMock();
             _redoStack.Push(redoCommand);
+            int count = 0;
+            _commandsManager.UndoRedoStacksChanged += () => count++;
             _commandsManager.Redo();
             Assert.AreEqual(_redoStack.Count, 0);
             Assert.AreSame(_undoStack.Pop(), redoCommand);
             Assert.IsTrue(redoCommand.IsCalledExecute);
+            Assert.AreEqual(count, 1);
+        }
+
+        /// <summary>
+        /// Tests the notify undo redo stacks changed.
+        /// </summary>
+        [TestMethod()]
+        public void TestNotifyUndoRedoStacksChanged()
+        {
+            const string MEMBER_FUNCTION_NAME_NOTIFY_UNDO_REDO_STACKS_CHANGED = "NotifyUndoRedoStacksChanged";
+            int count = 0;
+            _commandsManager.UndoRedoStacksChanged += () => count++;
+            _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_UNDO_REDO_STACKS_CHANGED);
+            Assert.AreEqual(count, 1);
+            _target.Invoke(MEMBER_FUNCTION_NAME_NOTIFY_UNDO_REDO_STACKS_CHANGED);
+            Assert.AreEqual(count, 2);
+        }
+
+        /// <summary>
+        /// Tests the is empty undo stack.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsEmptyUndoStack()
+        {
+            Assert.IsTrue(_commandsManager.IsEmptyUndoStack());
+            _undoStack.Push(new CommandMock());
+            Assert.IsFalse(_commandsManager.IsEmptyUndoStack());
+        }
+
+        /// <summary>
+        /// Tests the is empty redo stack.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsEmptyRedoStack()
+        {
+            Assert.IsTrue(_commandsManager.IsEmptyRedoStack());
+            _redoStack.Push(new CommandMock());
+            Assert.IsFalse(_commandsManager.IsEmptyRedoStack());
         }
     }
 }
