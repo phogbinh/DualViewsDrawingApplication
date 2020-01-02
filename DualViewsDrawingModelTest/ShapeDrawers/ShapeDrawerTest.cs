@@ -56,6 +56,21 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
+        /// Tests the is including point.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsIncludingPoint()
+        {
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT, new Point(1.0, 5.0));
+            _shapeDrawer.DrawingEndingPoint = new Point(-1.0, 2.0);
+            Assert.IsTrue(_shapeDrawer.IsIncludingPoint(new Point(0.5, 3.0)));
+            Assert.IsFalse(_shapeDrawer.IsIncludingPoint(new Point(-1.1, 2.0)));
+            Assert.IsFalse(_shapeDrawer.IsIncludingPoint(new Point(1.1, 2.0)));
+            Assert.IsFalse(_shapeDrawer.IsIncludingPoint(new Point(-1.0, 1.9)));
+            Assert.IsFalse(_shapeDrawer.IsIncludingPoint(new Point(-1.0, 5.1)));
+        }
+
+        /// <summary>
         /// Tests the get rectangle.
         /// </summary>
         [TestMethod()]

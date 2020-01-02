@@ -30,6 +30,14 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
 
         /// <summary>
+        /// Determines whether [is including point].
+        /// </summary>
+        public bool IsIncludingPoint(Point point)
+        {
+            return GetRectangle().IsIncludingPoint(point);
+        }
+
+        /// <summary>
         /// Gets the rectangle.
         /// </summary>
         public Rectangle GetRectangle()
