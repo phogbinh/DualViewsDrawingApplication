@@ -2,6 +2,17 @@
 {
     public class Model
     {
+        public CommandsManager.UndoRedoStacksChangedEventHandler UndoRedoStacksChanged
+        {
+            get
+            {
+                return _commandsManager.UndoRedoStacksChanged;
+            }
+            set
+            {
+                _commandsManager.UndoRedoStacksChanged = value;
+            }
+        }
         public CanvasDrawer.CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
         {
             get

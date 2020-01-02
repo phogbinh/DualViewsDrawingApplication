@@ -30,6 +30,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the set property undo redo stacks changed.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetPropertyUndoRedoStacksChanged()
+        {
+            _model.UndoRedoStacksChanged += () => { };
+            Assert.IsNotNull(_model.UndoRedoStacksChanged);
+        }
+
+        /// <summary>
         /// Tests the set property canvas refresh draw requested.
         /// </summary>
         [TestMethod()]
