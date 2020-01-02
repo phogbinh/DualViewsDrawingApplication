@@ -30,7 +30,7 @@ namespace DualViewsDrawingModelTest.Mocks
         public override Rectangle GetRectangle()
         {
             IsCalledGetRectangle = true;
-            return null;
+            return base.GetRectangle();
         }
     }
 }
