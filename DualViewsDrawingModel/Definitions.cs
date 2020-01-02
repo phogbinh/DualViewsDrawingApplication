@@ -11,6 +11,7 @@ namespace DualViewsDrawingModel
         public const string ERROR_SHAPE_DRAWER_TYPE_IS_NONE = "The given shape drawer type is none.";
         public const string ERROR_CANVAS_DRAWER_IS_NULL = "The given canvas drawer is null.";
         public const string ERROR_COMMANDS_MANAGER_IS_NULL = "The given commands manager is null.";
+        public const string ERROR_POINT_IS_NULL = "The given point is null.";
         private const string ERROR_INTERVAL_LOWER_BOUNDARY_IS_BIGGER_THAN_UPPER_BOUNDARY = "The given interval lower boundary is bigger than the interval bigger boundary";
 
         /// <summary>
