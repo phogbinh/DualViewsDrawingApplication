@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DualViewsDrawingModel.Shapes;
+using System;
 
 namespace DualViewsDrawingModel
 {
@@ -160,6 +161,14 @@ namespace DualViewsDrawingModel
         public virtual void RefreshDrawCanvas(IGraphics graphics)
         {
             _canvasDrawer.RefreshDrawCanvas(graphics);
+        }
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        public Rectangle GetCurrentShapeRectangle()
+        {
+            return _canvasDrawer.GetCurrentShapeRectangle();
         }
     }
 }

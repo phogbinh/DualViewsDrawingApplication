@@ -212,7 +212,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Gets the current shape rectangle.
         /// </summary>
-        public Rectangle GetCurrentShapeRectangle()
+        public virtual Rectangle GetCurrentShapeRectangle()
         {
             return _currentState.GetCurrentShapeRectangle();
         }

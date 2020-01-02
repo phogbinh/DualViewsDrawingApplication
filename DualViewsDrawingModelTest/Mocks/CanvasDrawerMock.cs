@@ -1,6 +1,7 @@
 ﻿using DualViewsDrawingModel;
 using DualViewsDrawingModel.CanvasDrawerStates;
 using DualViewsDrawingModel.ShapeDrawers;
+using DualViewsDrawingModel.Shapes;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
@@ -70,6 +71,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledGetCurrentShapeRectangle
+        {
+            get; set;
+        }
         public ICanvasDrawerState CurrentState
         {
             get; set;
@@ -93,6 +98,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = false;
             IsCalledGetSelectedShapeShapeDrawer = false;
             IsCalledNotifyCurrentShapeChanged = false;
+            IsCalledGetCurrentShapeRectangle = false;
             CurrentState = null;
         }
 
@@ -225,6 +231,15 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void NotifyCurrentShapeChanged()
         {
             IsCalledNotifyCurrentShapeChanged = true;
+        }
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        public override Rectangle GetCurrentShapeRectangle()
+        {
+            IsCalledGetCurrentShapeRectangle = true;
+            return null;
         }
     }
 }

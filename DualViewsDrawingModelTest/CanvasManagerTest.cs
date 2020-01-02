@@ -199,5 +199,15 @@ namespace DualViewsDrawingModel.Test
             _canvasManager.RefreshDrawCanvas(new GraphicsMock());
             Assert.IsTrue(_canvasDrawer.IsCalledRefreshDrawCanvas);
         }
+
+        /// <summary>
+        /// Tests the get current shape rectangle.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeRectangle()
+        {
+            _canvasManager.GetCurrentShapeRectangle();
+            Assert.IsTrue(_canvasDrawer.IsCalledGetCurrentShapeRectangle);
+        }
     }
 }
