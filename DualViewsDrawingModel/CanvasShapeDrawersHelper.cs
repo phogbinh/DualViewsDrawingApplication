@@ -1,13 +1,15 @@
 ﻿using DualViewsDrawingModel.ShapeDrawers;
+using System;
 using System.Collections.Generic;
 
 namespace DualViewsDrawingModel
 {
-    public class ShapeDrawersManager
+    public class CanvasShapeDrawersHelper
     {
+        private const string ERROR_SHAPE_DRAWER_IS_NULL = "The given shape drawer is null.";
         private List<ShapeDrawer> _shapeDrawers;
 
-        public ShapeDrawersManager()
+        public CanvasShapeDrawersHelper()
         {
             _shapeDrawers = new List<ShapeDrawer>();
         }
@@ -15,9 +17,25 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Adds the shape drawer.
         /// </summary>
-        public virtual void AddShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint, ShapeDrawerType shapeDrawerType)
+        public virtual void AddShapeDrawer(ShapeDrawer shapeDrawer)
         {
-            _shapeDrawers.Add(ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, shapeDrawerType));
+            if ( shapeDrawer == null )
+            {
+                throw new ArgumentNullException(ERROR_SHAPE_DRAWER_IS_NULL);
+            }
+            _shapeDrawers.Add(shapeDrawer);
+        }
+
+        /// <summary>
+        /// Removes the shape drawer.
+        /// </summary>
+        public virtual void RemoveShapeDrawer(ShapeDrawer shapeDrawer)
+        {
+            if ( shapeDrawer == null )
+            {
+                throw new ArgumentNullException(ERROR_SHAPE_DRAWER_IS_NULL);
+            }
+            _shapeDrawers.Remove(shapeDrawer);
         }
 
         /// <summary>

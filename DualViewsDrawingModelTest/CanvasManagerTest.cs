@@ -23,9 +23,10 @@ namespace DualViewsDrawingModel.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            _canvasManager = new CanvasManager();
+            var commandsManager = new CommandsManager();
+            _canvasManager = new CanvasManager(commandsManager);
             _target = new PrivateObject(_canvasManager);
-            _canvasDrawer = new CanvasDrawerMock();
+            _canvasDrawer = new CanvasDrawerMock(commandsManager);
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_DRAWER, _canvasDrawer);
         }
 
@@ -55,7 +56,7 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestCanvasManager()
         {
-            var canvasManager = new CanvasManager();
+            var canvasManager = new CanvasManager(new CommandsManager());
             var target = new PrivateObject(canvasManager);
             Assert.IsNotNull(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_DRAWER));
         }

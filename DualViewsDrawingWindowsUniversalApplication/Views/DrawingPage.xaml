@@ -10,11 +10,19 @@
 
     <Grid Margin="20, 20, 20, 20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
+            <CommandBar>
+                <AppBarButton Name="_undoButton" Icon="Undo" Label="Undo"/>
+                <AppBarButton Name="_redoButton" Icon="Redo" Label="Redo"/>
+            </CommandBar>
+        </Grid>
+
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -26,7 +34,7 @@
             <Button Grid.Column="2" Name="_clearButton" Content="Clear" HorizontalAlignment="Stretch" Height="80" Background="#33000000"/>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="0, 20, 0, 0">
+        <Grid Grid.Row="2" Margin="0, 20, 0, 0">
             <Canvas Name="_canvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFFFED7B"/>
         </Grid>
     </Grid>

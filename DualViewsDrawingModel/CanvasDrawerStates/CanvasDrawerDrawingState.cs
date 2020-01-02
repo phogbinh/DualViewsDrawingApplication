@@ -79,9 +79,8 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// </summary>
         private void EndDrawing(Point mousePosition)
         {
-            _canvasDrawer.AddCurrentShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition);
+            _canvasDrawer.CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition);
             _canvasDrawer.NotifyDrawingEnded();
-            _canvasDrawer.NotifyCanvasRefreshDrawRequested();
         }
 
         /// <summary>

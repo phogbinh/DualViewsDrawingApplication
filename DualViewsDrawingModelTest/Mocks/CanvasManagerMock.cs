@@ -37,7 +37,7 @@ namespace DualViewsDrawingModelTest.Mocks
             get; set;
         }
 
-        public CanvasManagerMock() : base()
+        public CanvasManagerMock(CommandsManager commandsManagerData) : base(commandsManagerData)
         {
             IsCalledClearCanvas = false;
             IsCalledSetCanvasSize = false;

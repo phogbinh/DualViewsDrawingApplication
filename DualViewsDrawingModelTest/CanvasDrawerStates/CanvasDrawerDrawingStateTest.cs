@@ -24,7 +24,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            _canvasDrawer = new CanvasDrawerMock();
+            _canvasDrawer = new CanvasDrawerMock(new CommandsManager());
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Line);
             _canvasDrawerDrawingState = new CanvasDrawerDrawingState(_canvasDrawer, new Point());
             _target = new PrivateObject(_canvasDrawerDrawingState);
@@ -37,8 +37,8 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         public void TestCanvasDrawerDrawingState()
         {
             Assert.ThrowsException<ArgumentNullException>(() => new CanvasDrawerDrawingState(null, new Point()));
-            Assert.ThrowsException<ArgumentNullException>(() => new CanvasDrawerDrawingState(new CanvasDrawerMock(), null));
-            var canvasDrawer = new CanvasDrawerMock();
+            Assert.ThrowsException<ArgumentNullException>(() => new CanvasDrawerDrawingState(new CanvasDrawerMock(new CommandsManager()), null));
+            var canvasDrawer = new CanvasDrawerMock(new CommandsManager());
             canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Rectangle);
             var currentDrawingShapeDrawingStartingPoint = new Point();
             var canvasDrawerDrawingState = new CanvasDrawerDrawingState(canvasDrawer, currentDrawingShapeDrawingStartingPoint);
@@ -103,8 +103,8 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         public void TestHandleCanvasLeftMouseReleased()
         {
             _canvasDrawerDrawingState.HandleCanvasLeftMouseReleased(new Point());
-            Assert.IsTrue(_canvasDrawer.IsCalledAddCurrentShapeDrawer);
-            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCanvasRefreshDrawRequested);
+            Assert.IsTrue(_canvasDrawer.IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer);
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyDrawingEnded);
             Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerPointerState));
         }
 
@@ -117,9 +117,8 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             const string MEMBER_FUNCTION_NAME_END_DRAWING = "EndDrawing";
             var arguments = new object[] { new Point() };
             _target.Invoke(MEMBER_FUNCTION_NAME_END_DRAWING, arguments);
-            Assert.IsTrue(_canvasDrawer.IsCalledAddCurrentShapeDrawer);
+            Assert.IsTrue(_canvasDrawer.IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyDrawingEnded);
-            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCanvasRefreshDrawRequested);
         }
 
         /// <summary>

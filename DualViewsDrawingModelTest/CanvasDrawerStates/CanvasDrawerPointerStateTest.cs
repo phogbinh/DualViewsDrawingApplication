@@ -19,7 +19,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            _canvasDrawer = new CanvasDrawerMock();
+            _canvasDrawer = new CanvasDrawerMock(new CommandsManager());
             _canvasDrawerPointerState = new CanvasDrawerPointerState(_canvasDrawer);
         }
 
@@ -30,7 +30,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         public void TestCanvasDrawerPointerState()
         {
             Assert.ThrowsException<ArgumentNullException>(() => new CanvasDrawerPointerState(null));
-            var canvasDrawer = new CanvasDrawerMock();
+            var canvasDrawer = new CanvasDrawerMock(new CommandsManager());
             var canvasDrawerPointerState = new CanvasDrawerPointerState(canvasDrawer);
             var target = new PrivateObject(canvasDrawerPointerState);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_DRAWER), canvasDrawer);
