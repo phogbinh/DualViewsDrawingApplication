@@ -44,6 +44,7 @@ namespace DualViewsDrawingModel.Test
         [TestMethod()]
         public void TestAddShapeDrawer()
         {
+            Assert.ThrowsException<ArgumentNullException>(() => _canvasShapeDrawersHelper.AddShapeDrawer(null));
             var lineDrawer = new LineDrawer(new Point(), new Point());
             _canvasShapeDrawersHelper.AddShapeDrawer(lineDrawer);
             Assert.AreEqual(_shapeDrawers.Count, 1);
