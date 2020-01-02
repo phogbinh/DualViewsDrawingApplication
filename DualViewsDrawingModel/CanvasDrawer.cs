@@ -1,6 +1,7 @@
 ﻿using DualViewsDrawingModel.CanvasDrawerStates;
 using DualViewsDrawingModel.Commands;
 using DualViewsDrawingModel.ShapeDrawers;
+using DualViewsDrawingModel.Shapes;
 using System;
 
 namespace DualViewsDrawingModel
@@ -206,6 +207,14 @@ namespace DualViewsDrawingModel
             {
                 CurrentShapeChanged();
             }
+        }
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        public Rectangle GetCurrentShapeRectangle()
+        {
+            return _currentState.GetCurrentShapeRectangle();
         }
     }
 }
