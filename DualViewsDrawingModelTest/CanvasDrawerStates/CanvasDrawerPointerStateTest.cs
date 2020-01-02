@@ -10,8 +10,9 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
     {
         private const string MEMBER_VARIABLE_NAME_CANVAS_DRAWER = "_canvasDrawer";
         private const string MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER = "_currentSelectedShapeShapeDrawer";
-        private CanvasDrawerPointerState _canvasDrawerPointerState;
         private CanvasDrawerMock _canvasDrawer;
+        private CanvasDrawerPointerState _canvasDrawerPointerState;
+        private PrivateObject _target;
 
         /// <summary>
         /// Initializes this instance.
@@ -22,6 +23,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         {
             _canvasDrawer = new CanvasDrawerMock(new CommandsManager());
             _canvasDrawerPointerState = new CanvasDrawerPointerState(_canvasDrawer);
+            _target = new PrivateObject(_canvasDrawerPointerState);
         }
 
         /// <summary>
@@ -45,6 +47,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         public void TestClearCanvas()
         {
             _canvasDrawerPointerState.ClearCanvas();
+            Assert.IsNull(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER));
             Assert.IsTrue(_canvasDrawer.IsCalledClearShapeDrawersManager);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyCanvasRefreshDrawRequested);
         }

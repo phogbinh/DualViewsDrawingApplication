@@ -23,6 +23,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// </summary>
         public void ClearCanvas()
         {
+            _currentSelectedShapeShapeDrawer = null;
             _canvasDrawer.ClearShapeDrawersManager();
             _canvasDrawer.NotifyCanvasRefreshDrawRequested();
         }
