@@ -229,5 +229,15 @@ namespace DualViewsDrawingModel.Test
             _canvasDrawer.CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(new Point(), new Point());
             Assert.IsTrue(_commandsManager.IsCalledAddThenExecuteCommand);
         }
+
+        /// <summary>
+        /// Tests the get selected shape shape drawer.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetSelectedShapeShapeDrawer()
+        {
+            _canvasDrawer.GetSelectedShapeShapeDrawer(new Point());
+            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledGetMostRecentDrawnShapeDrawerThatIncludesPoint);
+        }
     }
 }

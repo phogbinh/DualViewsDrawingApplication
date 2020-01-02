@@ -183,5 +183,13 @@ namespace DualViewsDrawingModel
         {
             _commandsManager.AddThenExecuteCommand(new DrawingCommand(this, drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType));
         }
+
+        /// <summary>
+        /// Gets the selected shape shape drawer.
+        /// </summary>
+        public ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
+        {
+            return _canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIncludesPoint(leftMousePressedPosition);
+        }
     }
 }
