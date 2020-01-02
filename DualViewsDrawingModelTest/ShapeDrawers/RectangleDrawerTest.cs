@@ -50,21 +50,5 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
             _rectangleDrawer.Draw(graphics);
             Assert.IsTrue(graphics.IsCalledDrawRectangle);
         }
-
-        /// <summary>
-        /// Tests the get rectangle.
-        /// </summary>
-        [TestMethod()]
-        public void TestGetRectangle()
-        {
-            const string MEMBER_FUNCTION_NAME_GET_RECTANGLE = "GetRectangle";
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT, new Point(1.0, 5.0));
-            _rectangleDrawer.DrawingEndingPoint = new Point(-1.0, 2.0);
-            Rectangle expectedRectangle = ( Rectangle )_target.Invoke(MEMBER_FUNCTION_NAME_GET_RECTANGLE);
-            Assert.AreEqual(expectedRectangle.X, -1.0);
-            Assert.AreEqual(expectedRectangle.Y, 2.0);
-            Assert.AreEqual(expectedRectangle.Width, 2.0);
-            Assert.AreEqual(expectedRectangle.Height, 3.0);
-        }
     }
 }

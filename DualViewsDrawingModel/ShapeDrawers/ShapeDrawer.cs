@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DualViewsDrawingModel.Shapes;
+using System;
 
 namespace DualViewsDrawingModel.ShapeDrawers
 {
@@ -26,6 +27,14 @@ namespace DualViewsDrawingModel.ShapeDrawers
             }
             _drawingStartingPoint = drawingStartingPointData;
             _drawingEndingPoint = drawingEndingPointData;
+        }
+
+        /// <summary>
+        /// Gets the rectangle.
+        /// </summary>
+        public Rectangle GetRectangle()
+        {
+            return new Rectangle(_drawingStartingPoint, _drawingEndingPoint);
         }
 
         /// <summary>

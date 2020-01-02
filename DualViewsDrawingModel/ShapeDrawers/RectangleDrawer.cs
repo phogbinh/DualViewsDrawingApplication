@@ -21,13 +21,5 @@ namespace DualViewsDrawingModel.ShapeDrawers
             }
             graphics.Draw(GetRectangle());
         }
-
-        /// <summary>
-        /// Gets the rectangle.
-        /// </summary>
-        private Rectangle GetRectangle()
-        {
-            return new Rectangle(_drawingStartingPoint, _drawingEndingPoint);
-        }
     }
 }

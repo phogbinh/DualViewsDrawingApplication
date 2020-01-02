@@ -1,4 +1,5 @@
-﻿using DualViewsDrawingModelTest;
+﻿using DualViewsDrawingModel.Shapes;
+using DualViewsDrawingModelTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -24,6 +25,8 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
     {
         private const string MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT = "_drawingStartingPoint";
         private const string MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT = "_drawingEndingPoint";
+        private ShapeDrawerMock _shapeDrawer;
+        private PrivateObject _target;
 
         /// <summary>
         /// Initializes this instance.
@@ -32,7 +35,8 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            /* Body intentionally empty */
+            _shapeDrawer = new ShapeDrawerMock(new Point(), new Point());
+            _target = new PrivateObject(_shapeDrawer);
         }
 
         /// <summary>
@@ -49,6 +53,21 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
             var target = new PrivateObject(shapeDrawer);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT), drawingStartingPoint);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT), drawingEndingPoint);
+        }
+
+        /// <summary>
+        /// Tests the get rectangle.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetRectangle()
+        {
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT, new Point(1.0, 5.0));
+            _shapeDrawer.DrawingEndingPoint = new Point(-1.0, 2.0);
+            Rectangle expectedRectangle = _shapeDrawer.GetRectangle();
+            Assert.AreEqual(expectedRectangle.X, -1.0);
+            Assert.AreEqual(expectedRectangle.Y, 2.0);
+            Assert.AreEqual(expectedRectangle.Width, 2.0);
+            Assert.AreEqual(expectedRectangle.Height, 3.0);
         }
     }
 }
