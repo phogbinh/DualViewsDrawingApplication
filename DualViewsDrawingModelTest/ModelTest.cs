@@ -218,5 +218,15 @@ namespace DualViewsDrawingModel.Test
             _model.IsEmptyCommandsRedoStack();
             Assert.IsTrue(_commandsManager.IsCalledIsEmptyRedoStack);
         }
+
+        /// <summary>
+        /// Tests the get canvas current shape rectangle.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCanvasCurrentShapeRectangle()
+        {
+            _model.GetCanvasCurrentShapeRectangle();
+            Assert.IsTrue(_canvasManager.IsCalledGetCurrentShapeRectangle);
+        }
     }
 }

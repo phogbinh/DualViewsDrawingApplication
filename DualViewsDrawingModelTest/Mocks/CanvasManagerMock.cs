@@ -1,4 +1,5 @@
 ﻿using DualViewsDrawingModel;
+using DualViewsDrawingModel.Shapes;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
@@ -36,6 +37,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledGetCurrentShapeRectangle
+        {
+            get; set;
+        }
 
         public CanvasManagerMock(CommandsManager commandsManagerData) : base(commandsManagerData)
         {
@@ -47,6 +52,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledHandleCanvasLeftMouseMoved = false;
             IsCalledHandleCanvasLeftMouseReleased = false;
             IsCalledRefreshDrawCanvas = false;
+            IsCalledGetCurrentShapeRectangle = false;
         }
 
         /// <summary>
@@ -111,6 +117,15 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void RefreshDrawCanvas(IGraphics graphics)
         {
             IsCalledRefreshDrawCanvas = true;
+        }
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        public override Rectangle GetCurrentShapeRectangle()
+        {
+            IsCalledGetCurrentShapeRectangle = true;
+            return null;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DualViewsDrawingModel
+﻿using DualViewsDrawingModel.Shapes;
+
+namespace DualViewsDrawingModel
 {
     public class Model
     {
@@ -164,6 +166,14 @@
         public bool IsEmptyCommandsRedoStack()
         {
             return _commandsManager.IsEmptyRedoStack();
+        }
+
+        /// <summary>
+        /// Gets the canvas current shape rectangle.
+        /// </summary>
+        public Rectangle GetCanvasCurrentShapeRectangle()
+        {
+            return _canvasManager.GetCurrentShapeRectangle();
         }
     }
 }
