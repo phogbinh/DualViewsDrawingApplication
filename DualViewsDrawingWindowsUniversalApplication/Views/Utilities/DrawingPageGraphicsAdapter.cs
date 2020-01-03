@@ -92,7 +92,10 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views.Utilities
         /// </summary>
         private DoubleCollection GetStrokeDashArray()
         {
-            return new DoubleCollection() { Definitions.SELECTION_BORDER_DASH_PATTERN_FIRST_VALUE, Definitions.SELECTION_BORDER_DASH_PATTERN_SECOND_VALUE };
+            DoubleCollection strokeDashArray = new DoubleCollection();
+            strokeDashArray.Add(Definitions.SELECTION_BORDER_DASH_PATTERN_FIRST_VALUE);
+            strokeDashArray.Add(Definitions.SELECTION_BORDER_DASH_PATTERN_SECOND_VALUE);
+            return strokeDashArray;
         }
 
         /// <summary>
@@ -101,8 +104,8 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views.Utilities
         public void DrawSelectionCorner(DualViewsDrawingModel.Point point)
         {
             Windows.UI.Xaml.Shapes.Ellipse drawingPageCanvasEllipse = new Windows.UI.Xaml.Shapes.Ellipse();
-            drawingPageCanvasEllipse.Width = 2.0 * Definitions.SELECTION_CORNER_RADIUS;
-            drawingPageCanvasEllipse.Height = 2.0 * Definitions.SELECTION_CORNER_RADIUS;
+            drawingPageCanvasEllipse.Width = Definitions.SELECTION_CORNER_DOUBLE_RADIUS;
+            drawingPageCanvasEllipse.Height = Definitions.SELECTION_CORNER_DOUBLE_RADIUS;
             drawingPageCanvasEllipse.Stroke = new SolidColorBrush(Colors.Red);
             drawingPageCanvasEllipse.Fill = new SolidColorBrush(Colors.White);
             _canvas.Children.Add(drawingPageCanvasEllipse);

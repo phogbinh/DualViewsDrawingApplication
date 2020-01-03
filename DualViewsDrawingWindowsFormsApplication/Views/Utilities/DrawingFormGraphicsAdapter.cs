@@ -73,7 +73,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views.Utilities
         /// </summary>
         public void DrawSelectionCorner(DualViewsDrawingModel.Point point)
         {
-            RectangleF rectangle = new RectangleF(( float )point.X - ( float )Definitions.SELECTION_CORNER_RADIUS, ( float )point.Y - ( float )Definitions.SELECTION_CORNER_RADIUS, 2f * ( float )Definitions.SELECTION_CORNER_RADIUS, 2f * ( float )Definitions.SELECTION_CORNER_RADIUS);
+            RectangleF rectangle = new RectangleF(( float )point.X - ( float )Definitions.SELECTION_CORNER_RADIUS, ( float )point.Y - ( float )Definitions.SELECTION_CORNER_RADIUS, ( float )Definitions.SELECTION_CORNER_DOUBLE_RADIUS, ( float )Definitions.SELECTION_CORNER_DOUBLE_RADIUS);
             _graphics.DrawEllipse(Pens.Red, rectangle);
             _graphics.FillEllipse(Brushes.White, rectangle);
         }
