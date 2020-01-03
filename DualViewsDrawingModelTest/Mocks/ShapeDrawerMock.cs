@@ -25,6 +25,14 @@ namespace DualViewsDrawingModelTest.Mocks
         }
 
         /// <summary>
+        /// Gets the close point detector.
+        /// </summary>
+        public override IClosePointDetector GetClosePointDetector()
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Gets the rectangle.
         /// </summary>
         public override Rectangle GetRectangle()

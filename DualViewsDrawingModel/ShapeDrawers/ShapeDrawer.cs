@@ -49,5 +49,10 @@ namespace DualViewsDrawingModel.ShapeDrawers
         /// Draws the specified graphics.
         /// </summary>
         public abstract void Draw(IGraphics graphics);
+
+        /// <summary>
+        /// Gets the close point detector.
+        /// </summary>
+        public abstract IClosePointDetector GetClosePointDetector();
     }
 }

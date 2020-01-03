@@ -52,6 +52,15 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
+        /// Tests the get close point detector.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetClosePointDetector()
+        {
+            Assert.IsInstanceOfType(_lineDrawer.GetClosePointDetector(), typeof(Line));
+        }
+
+        /// <summary>
         /// Tests the get line.
         /// </summary>
         [TestMethod()]
