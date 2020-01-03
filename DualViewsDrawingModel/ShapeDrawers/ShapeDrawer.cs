@@ -12,6 +12,7 @@ namespace DualViewsDrawingModel.ShapeDrawers
                 _drawingEndingPoint = value;
             }
         }
+        protected ShapeDrawerType _type;
         protected Point _drawingStartingPoint;
         protected Point _drawingEndingPoint;
 
@@ -25,6 +26,7 @@ namespace DualViewsDrawingModel.ShapeDrawers
             {
                 throw new ArgumentNullException(Definitions.ERROR_DRAWING_ENDING_POINT_IS_NULL);
             }
+            _type = ShapeDrawerType.None;
             _drawingStartingPoint = drawingStartingPointData;
             _drawingEndingPoint = drawingEndingPointData;
         }
