@@ -33,5 +33,10 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// Gets the current shape rectangle.
         /// </summary>
         Rectangle GetCurrentShapeRectangle();
+
+        /// <summary>
+        /// Gets the type of the current shape.
+        /// </summary>
+        ShapeDrawerType GetCurrentShapeType();
     }
 }

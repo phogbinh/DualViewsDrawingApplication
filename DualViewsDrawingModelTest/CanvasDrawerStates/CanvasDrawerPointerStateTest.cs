@@ -1,4 +1,5 @@
-﻿using DualViewsDrawingModelTest;
+﻿using DualViewsDrawingModel.ShapeDrawers;
+using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -112,6 +113,22 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER, shapeDrawer);
             _canvasDrawerPointerState.GetCurrentShapeRectangle();
             Assert.IsTrue(shapeDrawer.IsCalledGetRectangle);
+        }
+
+        /// <summary>
+        /// Tests the type of the get current shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeType()
+        {
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER, null);
+            Assert.AreEqual(_canvasDrawerPointerState.GetCurrentShapeType(), ShapeDrawerType.None);
+            var lineDrawer = new LineDrawer(new Point(), new Point());
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER, lineDrawer);
+            Assert.AreEqual(_canvasDrawerPointerState.GetCurrentShapeType(), ShapeDrawerType.Line);
+            var rectangleDrawer = new RectangleDrawer(new Point(), new Point());
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER, rectangleDrawer);
+            Assert.AreEqual(_canvasDrawerPointerState.GetCurrentShapeType(), ShapeDrawerType.Rectangle);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
     [TestClass()]
     public class LineDrawerTest
     {
+        private const string MEMBER_VARIABLE_NAME_TYPE = "_type";
         private const string MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT = "_drawingStartingPoint";
         private const string MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT = "_drawingEndingPoint";
         private LineDrawer _lineDrawer;
@@ -35,6 +36,7 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
             var drawingEndingPoint = new Point();
             var lineDrawer = new LineDrawer(drawingStartingPoint, drawingEndingPoint);
             var target = new PrivateObject(lineDrawer);
+            Assert.AreEqual(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_TYPE), ShapeDrawerType.Line);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT), drawingStartingPoint);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT), drawingEndingPoint);
         }
