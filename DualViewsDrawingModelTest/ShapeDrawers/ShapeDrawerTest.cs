@@ -42,18 +42,24 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
-        /// Tests the is including point.
+        /// Tests the is close to point.
         /// </summary>
         [TestMethod()]
-        public void TestIsIncludingPoint()
+        public void TestIsCloseToPoint()
         {
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT, new Point(1.0, 5.0));
-            _shapeDrawer.DrawingEndingPoint = new Point(-1.0, 2.0);
-            Assert.IsTrue(_shapeDrawer.IsCloseToPoint(new Point(0.5, 3.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
-            Assert.IsFalse(_shapeDrawer.IsCloseToPoint(new Point(-1.1, 2.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
-            Assert.IsFalse(_shapeDrawer.IsCloseToPoint(new Point(1.1, 2.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
-            Assert.IsFalse(_shapeDrawer.IsCloseToPoint(new Point(-1.0, 1.9), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
-            Assert.IsFalse(_shapeDrawer.IsCloseToPoint(new Point(-1.0, 5.1), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            var rectangleDrawer = new RectangleDrawer(new Point(1.0, 5.0), new Point(-1.0, 2.0));
+            Assert.IsTrue(rectangleDrawer.IsCloseToPoint(new Point(0.5, 3.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(rectangleDrawer.IsCloseToPoint(new Point(-1.1, 2.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(rectangleDrawer.IsCloseToPoint(new Point(1.1, 2.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(rectangleDrawer.IsCloseToPoint(new Point(-1.0, 1.9), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(rectangleDrawer.IsCloseToPoint(new Point(-1.0, 5.1), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            var lineDrawer = new LineDrawer(new Point(1.0, 5.0), new Point(-1.0, 2.0));
+            Assert.IsTrue(lineDrawer.IsCloseToPoint(new Point(0.0, 3.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsTrue(lineDrawer.IsCloseToPoint(new Point(0.5, 3.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(lineDrawer.IsCloseToPoint(new Point(-2.0, 2.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsTrue(lineDrawer.IsCloseToPoint(new Point(0.0, 2.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(lineDrawer.IsCloseToPoint(new Point(1.0, 6.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsTrue(lineDrawer.IsCloseToPoint(new Point(1.0, 4.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
         }
 
         /// <summary>

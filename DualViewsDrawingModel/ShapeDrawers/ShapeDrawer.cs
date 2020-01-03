@@ -34,7 +34,7 @@ namespace DualViewsDrawingModel.ShapeDrawers
         /// </summary>
         public bool IsCloseToPoint(Point point, double pointToShapeDrawerMaximumDistanceSquared)
         {
-            return GetRectangle().IsIncludingPoint(point);
+            return GetClosePointDetector().IsCloseToPoint(point, pointToShapeDrawerMaximumDistanceSquared);
         }
 
         /// <summary>
