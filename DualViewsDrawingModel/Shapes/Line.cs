@@ -92,11 +92,11 @@ namespace DualViewsDrawingModel.Shapes
         /// <summary>
         /// Determines whether [is aligned with point] [the specified point].
         /// </summary>
-        public bool IsAlignedWithPoint(Point point, double epsilon)
+        public bool IsAlignedWithPoint(Point point, double difference)
         {
             Vector pointToLineHead = new Vector(_x1, _y1) - new Vector(point.X, point.Y);
             Vector lineTailToHead = new Vector(_x1, _y1) - new Vector(_x2, _y2);
-            return Math.Abs(Vector.CrossProduct(pointToLineHead, lineTailToHead)) <= epsilon;
+            return Math.Abs(Vector.CrossProduct(pointToLineHead, lineTailToHead)) <= difference;
         }
     }
 }
