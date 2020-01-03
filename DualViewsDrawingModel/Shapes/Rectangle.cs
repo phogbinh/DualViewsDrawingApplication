@@ -80,7 +80,7 @@ namespace DualViewsDrawingModel.Shapes
         }
 
         /// <summary>
-        /// Determines whether [is including point].
+        /// Determines whether [is including point] [the specified point].
         /// </summary>
         public bool IsIncludingPoint(Point point)
         {
