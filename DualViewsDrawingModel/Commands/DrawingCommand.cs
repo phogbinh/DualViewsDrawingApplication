@@ -5,7 +5,6 @@ namespace DualViewsDrawingModel.Commands
 {
     public class DrawingCommand : ICommand
     {
-        private const string ERROR_AGENT_IS_NULL = "The given agent is null.";
         private IDrawingCommandAgent _agent;
         private ShapeDrawer _shapeDrawer;
 
@@ -13,7 +12,7 @@ namespace DualViewsDrawingModel.Commands
         {
             if ( agentData == null )
             {
-                throw new ArgumentNullException(ERROR_AGENT_IS_NULL);
+                throw new ArgumentNullException(Definitions.ERROR_AGENT_IS_NULL);
             }
             _agent = agentData;
             _shapeDrawer = ShapeDrawerFactory.CreateShapeDrawer(drawingStartingPoint, drawingEndingPoint, shapeDrawerType);
