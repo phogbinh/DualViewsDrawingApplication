@@ -51,6 +51,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the set property current shape changed.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetPropertyCurrentShapeChanged()
+        {
+            _canvasManager.CurrentShapeChanged += () => { };
+            Assert.IsNotNull(_canvasManager.CurrentShapeChanged);
+        }
+
+        /// <summary>
         /// Tests the canvas manager.
         /// </summary>
         [TestMethod()]
@@ -188,6 +198,26 @@ namespace DualViewsDrawingModel.Test
         {
             _canvasManager.RefreshDrawCanvas(new GraphicsMock());
             Assert.IsTrue(_canvasDrawer.IsCalledRefreshDrawCanvas);
+        }
+
+        /// <summary>
+        /// Tests the get current shape rectangle.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeRectangle()
+        {
+            _canvasManager.GetCurrentShapeRectangle();
+            Assert.IsTrue(_canvasDrawer.IsCalledGetCurrentShapeRectangle);
+        }
+
+        /// <summary>
+        /// Tests the type of the get current shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeType()
+        {
+            _canvasManager.GetCurrentShapeType();
+            Assert.IsTrue(_canvasDrawer.IsCalledGetCurrentShapeType);
         }
     }
 }

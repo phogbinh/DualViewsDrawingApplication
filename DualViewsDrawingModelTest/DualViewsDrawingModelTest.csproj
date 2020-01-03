@@ -75,6 +75,8 @@
     <Compile Include="Mocks\DrawingCommandAgentMock.cs" />
     <Compile Include="Mocks\GraphicsMock.cs" />
     <Compile Include="Mocks\CanvasShapeDrawersHelperMock.cs" />
+    <Compile Include="Mocks\PointMock.cs" />
+    <Compile Include="Mocks\ShapeDrawerMock.cs" />
     <Compile Include="ModelTest.cs" />
     <Compile Include="PointTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="Shapes\LineTest.cs" />
     <Compile Include="Shapes\RectangleTest.cs" />
     <Compile Include="TestDefinitions.cs" />
+    <Compile Include="VectorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

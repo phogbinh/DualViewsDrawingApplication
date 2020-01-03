@@ -36,7 +36,7 @@
         /// <summary>
         /// Determines whether the point is inclusively inside the given region.
         /// </summary>
-        public bool IsInclusiveInRegion(double regionLowerBoundaryX, double regionUpperBoundaryX, double regionLowerBoundaryY, double regionUpperBoundaryY)
+        public virtual bool IsInclusiveInRegion(double regionLowerBoundaryX, double regionUpperBoundaryX, double regionLowerBoundaryY, double regionUpperBoundaryY)
         {
             return Definitions.IsInclusiveInInterval(_x, regionLowerBoundaryX, regionUpperBoundaryX) && Definitions.IsInclusiveInInterval(_y, regionLowerBoundaryY, regionUpperBoundaryY);
         }

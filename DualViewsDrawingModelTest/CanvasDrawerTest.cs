@@ -57,9 +57,12 @@ namespace DualViewsDrawingModel.Test
         public void TestInitialize()
         {
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, ShapeDrawerType.Line);
+            int count = 0;
+            _canvasDrawer.CurrentShapeChanged += () => count++;
             _canvasDrawer.Initialize(ShapeDrawerType.Rectangle);
             Assert.AreEqual(_canvasDrawer.CurrentShapeDrawerType, ShapeDrawerType.Rectangle);
             Assert.IsInstanceOfType(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_STATE), typeof(CanvasDrawerPointerState));
+            Assert.AreEqual(count, 1);
             Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledClear);
         }
 
@@ -228,6 +231,50 @@ namespace DualViewsDrawingModel.Test
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, ShapeDrawerType.Line);
             _canvasDrawer.CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(new Point(), new Point());
             Assert.IsTrue(_commandsManager.IsCalledAddThenExecuteCommand);
+        }
+
+        /// <summary>
+        /// Tests the get selected shape shape drawer.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetSelectedShapeShapeDrawer()
+        {
+            _canvasDrawer.GetSelectedShapeShapeDrawer(new Point());
+            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledGetMostRecentDrawnShapeDrawerThatIsCloseToPoint);
+        }
+
+        /// <summary>
+        /// Tests the notify current shape changed.
+        /// </summary>
+        [TestMethod()]
+        public void TestNotifyCurrentShapeChanged()
+        {
+            int count = 0;
+            _canvasDrawer.CurrentShapeChanged += () => count++;
+            _canvasDrawer.NotifyCurrentShapeChanged();
+            Assert.AreEqual(count, 1);
+            _canvasDrawer.NotifyCurrentShapeChanged();
+            Assert.AreEqual(count, 2);
+        }
+
+        /// <summary>
+        /// Tests the get current shape rectangle.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeRectangle()
+        {
+            _canvasDrawer.GetCurrentShapeRectangle();
+            Assert.IsTrue(_currentState.IsCalledGetCurrentShapeRectangle);
+        }
+
+        /// <summary>
+        /// Tests the type of the get current shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeType()
+        {
+            _canvasDrawer.GetCurrentShapeType();
+            Assert.IsTrue(_currentState.IsCalledGetCurrentShapeType);
         }
     }
 }

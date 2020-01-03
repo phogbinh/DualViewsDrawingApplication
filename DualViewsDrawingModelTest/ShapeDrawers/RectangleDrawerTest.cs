@@ -9,6 +9,7 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
     [TestClass()]
     public class RectangleDrawerTest
     {
+        private const string MEMBER_VARIABLE_NAME_TYPE = "_type";
         private const string MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT = "_drawingStartingPoint";
         private const string MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT = "_drawingEndingPoint";
         private RectangleDrawer _rectangleDrawer;
@@ -35,6 +36,7 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
             var drawingEndingPoint = new Point();
             var rectangleDrawer = new RectangleDrawer(drawingStartingPoint, drawingEndingPoint);
             var target = new PrivateObject(rectangleDrawer);
+            Assert.AreEqual(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_TYPE), ShapeDrawerType.Rectangle);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT), drawingStartingPoint);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT), drawingEndingPoint);
         }
@@ -52,19 +54,12 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
-        /// Tests the get rectangle.
+        /// Tests the get close point detector.
         /// </summary>
         [TestMethod()]
-        public void TestGetRectangle()
+        public void TestGetClosePointDetector()
         {
-            const string MEMBER_FUNCTION_NAME_GET_RECTANGLE = "GetRectangle";
-            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT, new Point(1.0, 5.0));
-            _rectangleDrawer.DrawingEndingPoint = new Point(-1.0, 2.0);
-            Rectangle expectedRectangle = ( Rectangle )_target.Invoke(MEMBER_FUNCTION_NAME_GET_RECTANGLE);
-            Assert.AreEqual(expectedRectangle.X, -1.0);
-            Assert.AreEqual(expectedRectangle.Y, 2.0);
-            Assert.AreEqual(expectedRectangle.Width, 2.0);
-            Assert.AreEqual(expectedRectangle.Height, 3.0);
+            Assert.IsInstanceOfType(_rectangleDrawer.GetClosePointDetector(), typeof(Rectangle));
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace DualViewsDrawingModel.Shapes
 {
-    public class Line
+    public class Line : IClosePointDetector, IIncludingPointDetector
     {
         public double X1
         {
@@ -51,6 +51,52 @@ namespace DualViewsDrawingModel.Shapes
             _y1 = drawingStartingPoint.Y;
             _x2 = drawingEndingPoint.X;
             _y2 = drawingEndingPoint.Y;
+        }
+
+        /// <summary>
+        /// Determines whether [is close to point].
+        /// </summary>
+        public bool IsCloseToPoint(Point point, double pointToLineMaximumDistanceSquared)
+        {
+            Point closestPoint = GetClosestPoint(point);
+            Vector pointToClosestPoint = new Vector(closestPoint.X, closestPoint.Y) - new Vector(point.X, point.Y);
+            return IsIncludingPoint(closestPoint) && pointToClosestPoint.LengthSquared <= pointToLineMaximumDistanceSquared;
+        }
+
+        /// <summary>
+        /// Gets the closest point.
+        /// </summary>
+        public Point GetClosestPoint(Point point)
+        {
+            Vector lineHeadToPoint = new Vector(point.X, point.Y) - new Vector(_x1, _y1);
+            Vector lineHeadToTail = new Vector(_x2, _y2) - new Vector(_x1, _y1);
+            double normalizedDistanceFromLineHeadToClosetPoint = Vector.DotProduct(lineHeadToPoint, lineHeadToTail) / lineHeadToTail.LengthSquared;
+            return new Point(_x1 + lineHeadToTail.X * normalizedDistanceFromLineHeadToClosetPoint, _y1 + lineHeadToTail.Y * normalizedDistanceFromLineHeadToClosetPoint);
+        }
+
+        /// <summary>
+        /// Determines whether [is including point] [the specified point].
+        /// </summary>
+        public bool IsIncludingPoint(Point point)
+        {
+            if ( !IsAlignedWithPoint(point, Definitions.DOUBLE_EPSILON) )
+            {
+                return false;
+            }
+            Vector pointToLineHead = new Vector(_x1, _y1) - new Vector(point.X, point.Y);
+            Vector lineTailToHead = new Vector(_x1, _y1) - new Vector(_x2, _y2);
+            double vectorsDotProduct = Vector.DotProduct(pointToLineHead, lineTailToHead);
+            return Definitions.IsInclusiveInInterval(vectorsDotProduct, 0.0, lineTailToHead.LengthSquared);
+        }
+
+        /// <summary>
+        /// Determines whether [is aligned with point] [the specified point].
+        /// </summary>
+        public bool IsAlignedWithPoint(Point point, double epsilon)
+        {
+            Vector pointToLineHead = new Vector(_x1, _y1) - new Vector(point.X, point.Y);
+            Vector lineTailToHead = new Vector(_x1, _y1) - new Vector(_x2, _y2);
+            return Math.Abs(Vector.CrossProduct(pointToLineHead, lineTailToHead)) <= epsilon;
         }
     }
 }

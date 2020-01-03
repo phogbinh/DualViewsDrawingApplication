@@ -106,6 +106,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             Assert.IsTrue(_canvasDrawer.IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyDrawingEnded);
             Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerPointerState));
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
         }
 
         /// <summary>
@@ -131,6 +132,24 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             var graphics = new GraphicsMock();
             _canvasDrawerDrawingState.Draw(graphics);
             Assert.IsTrue(graphics.IsCalledDrawLine);
+        }
+
+        /// <summary>
+        /// Tests the get current shape rectangle.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeRectangle()
+        {
+            Assert.IsNull(_canvasDrawerDrawingState.GetCurrentShapeRectangle());
+        }
+
+        /// <summary>
+        /// Tests the type of the get current shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeType()
+        {
+            Assert.AreEqual(_canvasDrawerDrawingState.GetCurrentShapeType(), ShapeDrawerType.None);
         }
     }
 }

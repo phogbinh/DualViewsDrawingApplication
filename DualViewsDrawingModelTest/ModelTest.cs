@@ -60,6 +60,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the set property canvas current shape changed.
+        /// </summary>
+        [TestMethod()]
+        public void TestSetPropertyCanvasCurrentShapeChanged()
+        {
+            _model.CanvasCurrentShapeChanged += () => { };
+            Assert.IsNotNull(_model.CanvasCurrentShapeChanged);
+        }
+
+        /// <summary>
         /// Tests the width of the get property canvas.
         /// </summary>
         [TestMethod()]
@@ -207,6 +217,26 @@ namespace DualViewsDrawingModel.Test
         {
             _model.IsEmptyCommandsRedoStack();
             Assert.IsTrue(_commandsManager.IsCalledIsEmptyRedoStack);
+        }
+
+        /// <summary>
+        /// Tests the get canvas current shape rectangle.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCanvasCurrentShapeRectangle()
+        {
+            _model.GetCanvasCurrentShapeRectangle();
+            Assert.IsTrue(_canvasManager.IsCalledGetCurrentShapeRectangle);
+        }
+
+        /// <summary>
+        /// Tests the type of the get canvas current shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCanvasCurrentShapeType()
+        {
+            _model.GetCanvasCurrentShapeType();
+            Assert.IsTrue(_canvasManager.IsCalledGetCurrentShapeType);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DualViewsDrawingModel
+﻿using DualViewsDrawingModel.Shapes;
+
+namespace DualViewsDrawingModel
 {
     public class Model
     {
@@ -33,6 +35,17 @@
             set
             {
                 _canvasManager.DrawingEnded = value;
+            }
+        }
+        public CanvasDrawer.CurrentShapeChangedEventHandler CanvasCurrentShapeChanged
+        {
+            get
+            {
+                return _canvasManager.CurrentShapeChanged;
+            }
+            set
+            {
+                _canvasManager.CurrentShapeChanged = value;
             }
         }
         public double CanvasWidth
@@ -153,6 +166,22 @@
         public bool IsEmptyCommandsRedoStack()
         {
             return _commandsManager.IsEmptyRedoStack();
+        }
+
+        /// <summary>
+        /// Gets the canvas current shape rectangle.
+        /// </summary>
+        public Rectangle GetCanvasCurrentShapeRectangle()
+        {
+            return _canvasManager.GetCurrentShapeRectangle();
+        }
+
+        /// <summary>
+        /// Gets the type of the canvas current shape.
+        /// </summary>
+        public ShapeDrawerType GetCanvasCurrentShapeType()
+        {
+            return _canvasManager.GetCurrentShapeType();
         }
     }
 }

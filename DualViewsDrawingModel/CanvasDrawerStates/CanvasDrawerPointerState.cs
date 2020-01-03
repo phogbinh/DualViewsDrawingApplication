@@ -1,10 +1,13 @@
-﻿using System;
+﻿using DualViewsDrawingModel.ShapeDrawers;
+using DualViewsDrawingModel.Shapes;
+using System;
 
 namespace DualViewsDrawingModel.CanvasDrawerStates
 {
     public class CanvasDrawerPointerState : ICanvasDrawerState
     {
         private CanvasDrawer _canvasDrawer;
+        private ShapeDrawer _currentSelectedShapeShapeDrawer;
 
         public CanvasDrawerPointerState(CanvasDrawer canvasDrawerData)
         {
@@ -13,6 +16,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
                 throw new ArgumentNullException(Definitions.ERROR_CANVAS_DRAWER_IS_NULL);
             }
             _canvasDrawer = canvasDrawerData;
+            _currentSelectedShapeShapeDrawer = null;
         }
 
         /// <summary>
@@ -20,6 +24,8 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// </summary>
         public void ClearCanvas()
         {
+            _currentSelectedShapeShapeDrawer = null;
+            _canvasDrawer.NotifyCurrentShapeChanged();
             _canvasDrawer.ClearShapeDrawersManager();
             _canvasDrawer.NotifyCanvasRefreshDrawRequested();
         }
@@ -31,9 +37,14 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         {
             if ( _canvasDrawer.CurrentShapeDrawerType == ShapeDrawerType.None )
             {
-                return;
+                _currentSelectedShapeShapeDrawer = _canvasDrawer.GetSelectedShapeShapeDrawer(mousePosition);
+                _canvasDrawer.NotifyCurrentShapeChanged();
             }
-            _canvasDrawer.SetCurrentState(new CanvasDrawerDrawingState(_canvasDrawer, mousePosition));
+            else
+            {
+                _canvasDrawer.SetCurrentState(new CanvasDrawerDrawingState(_canvasDrawer, mousePosition));
+                _canvasDrawer.NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerDrawingState` is completely created.
+            }
         }
 
         /// <summary>
@@ -58,6 +69,30 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         public void Draw(IGraphics graphics)
         {
             /* Body intentionally empty */
+        }
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        public Rectangle GetCurrentShapeRectangle()
+        {
+            if ( _currentSelectedShapeShapeDrawer == null )
+            {
+                return null;
+            }
+            return _currentSelectedShapeShapeDrawer.GetRectangle();
+        }
+
+        /// <summary>
+        /// Gets the type of the current shape.
+        /// </summary>
+        public ShapeDrawerType GetCurrentShapeType()
+        {
+            if ( _currentSelectedShapeShapeDrawer == null )
+            {
+                return ShapeDrawerType.None;
+            }
+            return _currentSelectedShapeShapeDrawer.Type;
         }
     }
 }
