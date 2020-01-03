@@ -70,5 +70,20 @@ namespace DualViewsDrawingModel
             }
             return null;
         }
+
+        /// <summary>
+        /// Gets the most recent drawn shape drawer whose drawing ending point is close to point.
+        /// </summary>
+        public ShapeDrawer GetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(Point point, double pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared)
+        {
+            for ( int index = _shapeDrawers.Count - 1; index >= 0; index-- )
+            {
+                if ( _shapeDrawers[ index ].IsDrawingEndingPointCloseToPoint(point, pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared) )
+                {
+                    return _shapeDrawers[ index ];
+                }
+            }
+            return null;
+        }
     }
 }
