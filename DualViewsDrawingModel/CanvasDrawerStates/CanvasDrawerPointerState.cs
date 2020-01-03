@@ -37,11 +37,26 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         {
             if ( _canvasDrawer.CurrentShapeDrawerType == ShapeDrawerType.None )
             {
-                SelectShape(mousePosition);
+                GoToResizingStateOrSelectShape(_canvasDrawer.GetSelectedResizingShapeDrawer(mousePosition), mousePosition);
             }
             else
             {
                 GoToDrawingState(mousePosition);
+            }
+        }
+
+        /// <summary>
+        /// Goes to resizing state or select shape.
+        /// </summary>
+        private void GoToResizingStateOrSelectShape(ShapeDrawer selectedResizingShapeDrawer, Point mousePosition)
+        {
+            if ( selectedResizingShapeDrawer != null )
+            {
+                GoToResizingState(selectedResizingShapeDrawer);
+            }
+            else
+            {
+                SelectShape(mousePosition);
             }
         }
 
