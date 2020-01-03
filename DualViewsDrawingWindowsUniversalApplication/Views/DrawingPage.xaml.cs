@@ -42,15 +42,7 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
             // Observers
             SubscribeEvents();
             // UI
-            _canvas.SizeChanged += (sender, eventArguments) => _model.SetCanvasSize(_canvas.ActualWidth, _canvas.ActualHeight);
-            _canvas.PointerPressed += HandleCanvasMousePressed;
-            _canvas.PointerMoved += HandleCanvasMouseMoved;
-            _canvas.PointerReleased += HandleCanvasMouseReleased;
-            _rectangleButton.Click += HandleRectangleButtonClicked;
-            _lineButton.Click += HandleLineButtonClicked;
-            _clearButton.Click += HandleClearButtonClicked;
-            _undoButton.Click += (sender, eventArguments) => _model.Undo();
-            _redoButton.Click += (sender, eventArguments) => _model.Redo();
+            SubscribeViewEvents();
             // Initial UI States
             _drawingPresentationModel.Initialize();
             UpdateUndoRedoButtonEnabledStates();
@@ -67,6 +59,22 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views
             _model.CanvasRefreshDrawRequested += HandleCanvasRefreshDrawRequested;
             _model.DrawingEnded += HandleDrawingEnded;
             _model.CanvasCurrentShapeChanged += HandleCanvasCurrentShapeChanged;
+        }
+
+        /// <summary>
+        /// Subscribes the view events.
+        /// </summary>
+        private void SubscribeViewEvents()
+        {
+            _canvas.SizeChanged += (sender, eventArguments) => _model.SetCanvasSize(_canvas.ActualWidth, _canvas.ActualHeight);
+            _canvas.PointerPressed += HandleCanvasMousePressed;
+            _canvas.PointerMoved += HandleCanvasMouseMoved;
+            _canvas.PointerReleased += HandleCanvasMouseReleased;
+            _rectangleButton.Click += HandleRectangleButtonClicked;
+            _lineButton.Click += HandleLineButtonClicked;
+            _clearButton.Click += HandleClearButtonClicked;
+            _undoButton.Click += (sender, eventArguments) => _model.Undo();
+            _redoButton.Click += (sender, eventArguments) => _model.Redo();
         }
 
         /// <summary>
