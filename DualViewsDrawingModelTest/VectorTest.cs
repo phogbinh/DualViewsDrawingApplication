@@ -67,5 +67,16 @@ namespace DualViewsDrawingModel.Test
             Assert.AreEqual(expectedVector.X, 3.1);
             Assert.AreEqual(expectedVector.Y, -3.3);
         }
+
+        /// <summary>
+        /// Tests the dot product.
+        /// </summary>
+        [TestMethod()]
+        public void TestDotProduct()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => Vector.DotProduct(null, new Vector(TestDefinitions.DUMP_DOUBLE, TestDefinitions.DUMP_DOUBLE)));
+            Assert.ThrowsException<ArgumentNullException>(() => Vector.DotProduct(new Vector(TestDefinitions.DUMP_DOUBLE, TestDefinitions.DUMP_DOUBLE), null));
+            Assert.AreEqual(Vector.DotProduct(new Vector(0.0, 1.1), new Vector(10.0, 1.0)), 1.1);
+        }
     }
 }

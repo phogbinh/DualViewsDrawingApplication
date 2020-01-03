@@ -61,5 +61,21 @@ namespace DualViewsDrawingModel
         {
             return leftVector + ( -rightVector );
         }
+
+        /// <summary>
+        /// Dots the product.
+        /// </summary>
+        public static double DotProduct(Vector leftVector, Vector rightVector)
+        {
+            if ( leftVector == null )
+            {
+                throw new ArgumentNullException(ERROR_VECTOR_IS_NULL);
+            }
+            if ( rightVector == null )
+            {
+                throw new ArgumentNullException(ERROR_VECTOR_IS_NULL);
+            }
+            return leftVector.X * rightVector.X + leftVector.Y * rightVector.Y;
+        }
     }
 }
