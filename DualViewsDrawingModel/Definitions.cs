@@ -4,6 +4,9 @@ namespace DualViewsDrawingModel
 {
     public static class Definitions
     {
+        public const double SELECTION_BORDER_DASH_PATTERN_FIRST_VALUE = 5.0;
+        public const double SELECTION_BORDER_DASH_PATTERN_SECOND_VALUE = 5.0;
+        public const double SELECTION_CORNER_RADIUS = 5.0;
         public const string ERROR_DRAWING_STARTING_POINT_IS_NULL = "The given drawing starting point is null.";
         public const string ERROR_DRAWING_ENDING_POINT_IS_NULL = "The given drawing ending point is null.";
         public const string ERROR_GRAPHICS_IS_NULL = "The given graphics is null.";

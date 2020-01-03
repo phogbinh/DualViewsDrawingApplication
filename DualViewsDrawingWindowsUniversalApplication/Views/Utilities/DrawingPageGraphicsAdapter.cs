@@ -56,5 +56,58 @@ namespace DualViewsDrawingWindowsUniversalApplication.Views.Utilities
             Canvas.SetLeft(drawingPageCanvasRectangle, rectangle.X);
             Canvas.SetTop(drawingPageCanvasRectangle, rectangle.Y);
         }
+
+        /// <summary>
+        /// Draws the selection border.
+        /// </summary>
+        public void DrawSelectionBorder(DualViewsDrawingModel.Shapes.Line line)
+        {
+            Windows.UI.Xaml.Shapes.Line drawingPageCanvasLine = new Windows.UI.Xaml.Shapes.Line();
+            drawingPageCanvasLine.X1 = line.X1;
+            drawingPageCanvasLine.Y1 = line.Y1;
+            drawingPageCanvasLine.X2 = line.X2;
+            drawingPageCanvasLine.Y2 = line.Y2;
+            drawingPageCanvasLine.Stroke = new SolidColorBrush(Colors.Red);
+            drawingPageCanvasLine.StrokeDashArray = GetStrokeDashArray();
+            _canvas.Children.Add(drawingPageCanvasLine);
+        }
+
+        /// <summary>
+        /// Draws the selection border.
+        /// </summary>
+        public void DrawSelectionBorder(DualViewsDrawingModel.Shapes.Rectangle rectangle)
+        {
+            Windows.UI.Xaml.Shapes.Rectangle drawingPageCanvasRectangle = new Windows.UI.Xaml.Shapes.Rectangle();
+            drawingPageCanvasRectangle.Width = rectangle.Width;
+            drawingPageCanvasRectangle.Height = rectangle.Height;
+            drawingPageCanvasRectangle.Stroke = new SolidColorBrush(Colors.Red);
+            drawingPageCanvasRectangle.StrokeDashArray = GetStrokeDashArray();
+            _canvas.Children.Add(drawingPageCanvasRectangle);
+            Canvas.SetLeft(drawingPageCanvasRectangle, rectangle.X);
+            Canvas.SetTop(drawingPageCanvasRectangle, rectangle.Y);
+        }
+
+        /// <summary>
+        /// Gets the stroke dash array.
+        /// </summary>
+        private DoubleCollection GetStrokeDashArray()
+        {
+            return new DoubleCollection() { Definitions.SELECTION_BORDER_DASH_PATTERN_FIRST_VALUE, Definitions.SELECTION_BORDER_DASH_PATTERN_SECOND_VALUE };
+        }
+
+        /// <summary>
+        /// Draws the selection corner.
+        /// </summary>
+        public void DrawSelectionCorner(DualViewsDrawingModel.Point point)
+        {
+            Windows.UI.Xaml.Shapes.Ellipse drawingPageCanvasEllipse = new Windows.UI.Xaml.Shapes.Ellipse();
+            drawingPageCanvasEllipse.Width = 2.0 * Definitions.SELECTION_CORNER_RADIUS;
+            drawingPageCanvasEllipse.Height = 2.0 * Definitions.SELECTION_CORNER_RADIUS;
+            drawingPageCanvasEllipse.Stroke = new SolidColorBrush(Colors.Red);
+            drawingPageCanvasEllipse.Fill = new SolidColorBrush(Colors.White);
+            _canvas.Children.Add(drawingPageCanvasEllipse);
+            Canvas.SetLeft(drawingPageCanvasEllipse, point.X - Definitions.SELECTION_CORNER_RADIUS);
+            Canvas.SetTop(drawingPageCanvasEllipse, point.Y - Definitions.SELECTION_CORNER_RADIUS);
+        }
     }
 }
