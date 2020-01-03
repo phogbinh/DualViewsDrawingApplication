@@ -77,5 +77,18 @@ namespace DualViewsDrawingModel.Test
             Assert.AreEqual(_point.X, 2.0);
             Assert.AreEqual(_point.Y, 3.0);
         }
+
+        /// <summary>
+        /// Tests the is close to point.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsCloseToPoint()
+        {
+            _point = new Point(1.0, 2.0);
+            Assert.IsFalse(_point.IsCloseToPoint(new Point(1.0, 2.0), -1.0));
+            Assert.IsTrue(_point.IsCloseToPoint(new Point(1.0, 2.0), 0.0));
+            Assert.IsTrue(_point.IsCloseToPoint(new Point(1.0, 3.0), 1.0));
+            Assert.IsFalse(_point.IsCloseToPoint(new Point(1.0, 3.0), 0.5));
+        }
     }
 }

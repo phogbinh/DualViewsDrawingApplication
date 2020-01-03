@@ -1,6 +1,6 @@
 ﻿namespace DualViewsDrawingModel
 {
-    public class Point
+    public class Point : IClosePointDetector
     {
         public double X
         {
@@ -48,6 +48,15 @@
         {
             Definitions.ResizeToBeInBoundInterval(ref _x, regionLowerBoundaryX, regionUpperBoundaryX);
             Definitions.ResizeToBeInBoundInterval(ref _y, regionLowerBoundaryY, regionUpperBoundaryY);
+        }
+
+        /// <summary>
+        /// Determines whether [is close to point] [the specified point].
+        /// </summary>
+        public bool IsCloseToPoint(Point point, double pointToPointMaximumDistanceSquared)
+        {
+            Vector vector = new Vector(point._x, point._y) - new Vector(_x, _y);
+            return vector.LengthSquared <= pointToPointMaximumDistanceSquared;
         }
     }
 }
