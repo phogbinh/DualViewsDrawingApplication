@@ -9,7 +9,6 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         private const string ERROR_CURRENT_DRAWING_SHAPE_DRAWING_STARTING_POINT_IS_NULL = "The given current drawing shape's drawing starting pointer is null.";
         private const string ERROR_CLEAR_CANVAS_IS_CALLED_IN_CANVAS_DRAWER_DRAWING_STATE = "The function ClearCanvas() is called in Canvas Drawer's Drawing State.";
         private const string ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED = "Cannot begin a new draw when the previous draw has not ended.";
-        private const string ERROR_MOUSE_POSITION_IS_NULL = "The given mouse position is null.";
         private CanvasDrawer _canvasDrawer;
         private Point _currentDrawingShapeDrawingStartingPoint;
         private ShapeDrawer _currentDrawingShapeHintShapeDrawer;
@@ -60,7 +59,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         {
             if ( mousePosition == null )
             {
-                throw new ArgumentNullException(ERROR_MOUSE_POSITION_IS_NULL);
+                throw new ArgumentNullException(Definitions.ERROR_MOUSE_POSITION_IS_NULL);
             }
             _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
             _canvasDrawer.NotifyCanvasRefreshDrawRequested();
