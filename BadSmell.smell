@@ -188,54 +188,6 @@
           <Reviews>
             <Smell>
               <Id>1</Id>
-              <SmellType>Literal constants(字面常數)-0.0</SmellType>
-              <HashCode>LiteralConstants.IsIncludingPoint.0.0</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>DualViewsDrawingModel</Project>
-              <File>Line.cs</File>
-              <Line>89</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment />
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>2</Id>
-              <SmellType>Unsuitable naming(名不符實)-normalizedDistanceFromLineHeadToClosetPoint(normalized)</SmellType>
-              <HashCode>UnsuitableNaming.Line.GetNearByPoint.normalizedDistanceFromLineHeadToClosetPoint</HashCode>
-              <Severity>Red</Severity>
-              <Weight>1</Weight>
-              <Project>DualViewsDrawingModel</Project>
-              <File>Line.cs</File>
-              <Line>73</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment />
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>3</Id>
-              <SmellType>Long method(過長函式)</SmellType>
-              <HashCode>LongMethod.DrawingPage.Initialize.22DrawingPresentationModel drawingPresentationModelData;Model modelData;</HashCode>
-              <Severity>Warning</Severity>
-              <Weight>22</Weight>
-              <Project>DualViewsDrawingWindowsUniversalApplication</Project>
-              <File>DrawingPage.xaml.cs</File>
-              <Line>37</Line>
-              <StartLine>0</StartLine>
-              <StartCol>0</StartCol>
-              <EndLine>0</EndLine>
-              <EndCol>0</EndCol>
-              <Comment />
-              <Auto>false</Auto>
-            </Smell>
-            <Smell>
-              <Id>4</Id>
               <SmellType>Lack of comments(缺乏註解)</SmellType>
               <HashCode>20 DualViewsDrawingWindowsUniversalApplication.Program.Main(string[])</HashCode>
               <Severity>Red</Severity>
@@ -251,7 +203,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>5</Id>
+              <Id>2</Id>
               <SmellType>Lack of comments(缺乏註解)</SmellType>
               <HashCode>50 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage.UnloadObject(Windows.UI.Xaml.DependencyObject)</HashCode>
               <Severity>Red</Severity>
@@ -267,7 +219,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>6</Id>
+              <Id>3</Id>
               <SmellType>Lack of comments(缺乏註解)</SmellType>
               <HashCode>129 DualViewsDrawingWindowsUniversalApplication.DualViewsDrawingWindowsUniversalApplication_XamlTypeInfo.XamlTypeInfoProvider.GetXamlTypeByType(System.Type)</HashCode>
               <Severity>Red</Severity>
@@ -283,7 +235,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>7</Id>
+              <Id>4</Id>
               <SmellType>Lack of comments(缺乏註解)</SmellType>
               <HashCode>134 DualViewsDrawingWindowsUniversalApplication.DualViewsDrawingWindowsUniversalApplication_XamlTypeInfo.XamlTypeInfoProvider.GetXamlTypeByName(string)</HashCode>
               <Severity>Red</Severity>
@@ -299,7 +251,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>8</Id>
+              <Id>5</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
               <HashCode>72 目前物件 DualViewsDrawingModel.Shapes.Line，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Vector，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Vector.DotProduct(DualViewsDrawingModel.Vector, DualViewsDrawingModel.Vector) 以及 DualViewsDrawingModel.Vector.LengthSquared</HashCode>
               <Severity>Warning</Severity>
@@ -310,12 +262,12 @@
               <StartLine>72</StartLine>
               <StartCol>19</StartCol>
               <EndLine>72</EndLine>
-              <EndCol>146</EndCol>
+              <EndCol>142</EndCol>
               <Comment>目前物件 DualViewsDrawingModel.Shapes.Line，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Vector，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Vector.DotProduct(DualViewsDrawingModel.Vector, DualViewsDrawingModel.Vector) 以及 DualViewsDrawingModel.Vector.LengthSquared</Comment>
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>9</Id>
+              <Id>6</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
               <HashCode>74 目前物件 DualViewsDrawingModel.Shapes.Line，使用物件的方法或屬性次數：2次，Envy到對象物件 DualViewsDrawingModel.Vector，使用物件方法或屬性次數：6次，使用到的方法或屬性為以下：DualViewsDrawingModel.Vector.DotProduct(DualViewsDrawingModel.Vector, DualViewsDrawingModel.Vector) 以及 DualViewsDrawingModel.Vector.LengthSquared 以及 DualViewsDrawingModel.Vector.DotProduct(DualViewsDrawingModel.Vector, DualViewsDrawingModel.Vector) 以及 DualViewsDrawingModel.Vector.LengthSquared 以及 DualViewsDrawingModel.Vector.X 以及 DualViewsDrawingModel.Vector.Y</HashCode>
               <Severity>Red</Severity>
@@ -331,7 +283,7 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>10</Id>
+              <Id>7</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
               <HashCode>41 目前物件 DualViewsDrawingModel.Point，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Definitions，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Definitions.IsInclusiveInInterval(double, double, double) 以及 DualViewsDrawingModel.Definitions.IsInclusiveInInterval(double, double, double)</HashCode>
               <Severity>Warning</Severity>
@@ -347,113 +299,113 @@
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>11</Id>
+              <Id>8</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>86 目前物件 DualViewsDrawingWindowsFormsApplication.Views.DrawingForm，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</HashCode>
+              <HashCode>94 目前物件 DualViewsDrawingWindowsFormsApplication.Views.DrawingForm，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</HashCode>
               <Severity>Warning</Severity>
               <Weight>1</Weight>
               <Project>DualViewsDrawingWindowsFormsApplication</Project>
               <File>D:\Git\phogbinh\DualViewsDrawingApplication\DualViewsDrawingWindowsFormsApplication\Views\DrawingForm.cs</File>
-              <Line>86</Line>
-              <StartLine>86</StartLine>
+              <Line>94</Line>
+              <StartLine>94</StartLine>
               <StartCol>17</StartCol>
-              <EndLine>86</EndLine>
+              <EndLine>94</EndLine>
               <EndCol>91</EndCol>
               <Comment>目前物件 DualViewsDrawingWindowsFormsApplication.Views.DrawingForm，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</Comment>
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>12</Id>
+              <Id>9</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>93 目前物件 DualViewsDrawingWindowsFormsApplication.Views.DrawingForm，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</HashCode>
+              <HashCode>101 目前物件 DualViewsDrawingWindowsFormsApplication.Views.DrawingForm，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</HashCode>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>DualViewsDrawingWindowsFormsApplication</Project>
               <File>D:\Git\phogbinh\DualViewsDrawingApplication\DualViewsDrawingWindowsFormsApplication\Views\DrawingForm.cs</File>
-              <Line>93</Line>
-              <StartLine>92</StartLine>
+              <Line>101</Line>
+              <StartLine>100</StartLine>
               <StartCol>0</StartCol>
-              <EndLine>93</EndLine>
+              <EndLine>101</EndLine>
               <EndCol>0</EndCol>
               <Comment>目前物件 DualViewsDrawingWindowsFormsApplication.Views.DrawingForm，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</Comment>
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>13</Id>
+              <Id>10</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>93 目前物件 DualViewsDrawingWindowsFormsApplication.Views.DrawingForm，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Shapes.Rectangle，使用物件方法或屬性次數：5次，使用到的方法或屬性為以下：DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.Y 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightX() 以及 DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightY()</HashCode>
+              <HashCode>101 目前物件 DualViewsDrawingWindowsFormsApplication.Views.DrawingForm，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Shapes.Rectangle，使用物件方法或屬性次數：5次，使用到的方法或屬性為以下：DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.Y 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightX() 以及 DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightY()</HashCode>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>DualViewsDrawingWindowsFormsApplication</Project>
               <File>D:\Git\phogbinh\DualViewsDrawingApplication\DualViewsDrawingWindowsFormsApplication\Views\DrawingForm.cs</File>
-              <Line>93</Line>
-              <StartLine>92</StartLine>
+              <Line>101</Line>
+              <StartLine>100</StartLine>
               <StartCol>0</StartCol>
-              <EndLine>93</EndLine>
+              <EndLine>101</EndLine>
               <EndCol>0</EndCol>
               <Comment>目前物件 DualViewsDrawingWindowsFormsApplication.Views.DrawingForm，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Shapes.Rectangle，使用物件方法或屬性次數：5次，使用到的方法或屬性為以下：DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.Y 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightX() 以及 DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightY()</Comment>
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>14</Id>
+              <Id>11</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>115 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</HashCode>
+              <HashCode>123 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</HashCode>
               <Severity>Warning</Severity>
               <Weight>1</Weight>
               <Project>DualViewsDrawingWindowsUniversalApplication</Project>
               <File>D:\Git\phogbinh\DualViewsDrawingApplication\DualViewsDrawingWindowsUniversalApplication\Views\DrawingPage.xaml.cs</File>
-              <Line>115</Line>
-              <StartLine>115</StartLine>
+              <Line>123</Line>
+              <StartLine>123</StartLine>
               <StartCol>17</StartCol>
-              <EndLine>115</EndLine>
+              <EndLine>123</EndLine>
               <EndCol>91</EndCol>
               <Comment>目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</Comment>
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>15</Id>
+              <Id>12</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>122 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</HashCode>
+              <HashCode>130 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</HashCode>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>DualViewsDrawingWindowsUniversalApplication</Project>
               <File>D:\Git\phogbinh\DualViewsDrawingApplication\DualViewsDrawingWindowsUniversalApplication\Views\DrawingPage.xaml.cs</File>
-              <Line>122</Line>
-              <StartLine>121</StartLine>
+              <Line>130</Line>
+              <StartLine>129</StartLine>
               <StartCol>0</StartCol>
-              <EndLine>122</EndLine>
+              <EndLine>130</EndLine>
               <EndCol>0</EndCol>
               <Comment>目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeType() 以及 DualViewsDrawingModel.Model.GetCanvasCurrentShapeRectangle()</Comment>
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>16</Id>
+              <Id>13</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>122 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Shapes.Rectangle，使用物件方法或屬性次數：5次，使用到的方法或屬性為以下：DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.Y 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightX() 以及 DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightY()</HashCode>
+              <HashCode>130 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Shapes.Rectangle，使用物件方法或屬性次數：5次，使用到的方法或屬性為以下：DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.Y 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightX() 以及 DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightY()</HashCode>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>DualViewsDrawingWindowsUniversalApplication</Project>
               <File>D:\Git\phogbinh\DualViewsDrawingApplication\DualViewsDrawingWindowsUniversalApplication\Views\DrawingPage.xaml.cs</File>
-              <Line>122</Line>
-              <StartLine>121</StartLine>
+              <Line>130</Line>
+              <StartLine>129</StartLine>
               <StartCol>0</StartCol>
-              <EndLine>122</EndLine>
+              <EndLine>130</EndLine>
               <EndCol>0</EndCol>
               <Comment>目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Shapes.Rectangle，使用物件方法或屬性次數：5次，使用到的方法或屬性為以下：DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.Y 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightX() 以及 DualViewsDrawingModel.Shapes.Rectangle.X 以及 DualViewsDrawingModel.Shapes.Rectangle.GetLowerRightY()</Comment>
               <Auto>false</Auto>
             </Smell>
             <Smell>
-              <Id>17</Id>
+              <Id>14</Id>
               <SmellType>Feature Envy(依戀情節)</SmellType>
-              <HashCode>165 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.HandleCanvasLeftMouseReleased(DualViewsDrawingModel.Point) 以及 DualViewsDrawingModel.Model.CanvasWidth 以及 DualViewsDrawingModel.Model.CanvasHeight</HashCode>
+              <HashCode>173 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.HandleCanvasLeftMouseReleased(DualViewsDrawingModel.Point) 以及 DualViewsDrawingModel.Model.CanvasWidth 以及 DualViewsDrawingModel.Model.CanvasHeight</HashCode>
               <Severity>Red</Severity>
               <Weight>1</Weight>
               <Project>DualViewsDrawingWindowsUniversalApplication</Project>
               <File>D:\Git\phogbinh\DualViewsDrawingApplication\DualViewsDrawingWindowsUniversalApplication\Views\DrawingPage.xaml.cs</File>
-              <Line>165</Line>
-              <StartLine>164</StartLine>
+              <Line>173</Line>
+              <StartLine>172</StartLine>
               <StartCol>0</StartCol>
-              <EndLine>165</EndLine>
+              <EndLine>173</EndLine>
               <EndCol>0</EndCol>
               <Comment>目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.HandleCanvasLeftMouseReleased(DualViewsDrawingModel.Point) 以及 DualViewsDrawingModel.Model.CanvasWidth 以及 DualViewsDrawingModel.Model.CanvasHeight</Comment>
               <Auto>false</Auto>
@@ -461,7 +413,10 @@
           </Reviews>
           <HashCodeIgnoreList />
           <HashCodeRequestIgnoreList>
+            <string>173 目前物件 DualViewsDrawingWindowsUniversalApplication.Views.DrawingPage，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Model，使用物件方法或屬性次數：3次，使用到的方法或屬性為以下：DualViewsDrawingModel.Model.HandleCanvasLeftMouseReleased(DualViewsDrawingModel.Point) 以及 DualViewsDrawingModel.Model.CanvasWidth 以及 DualViewsDrawingModel.Model.CanvasHeight</string>
             <string>41 目前物件 DualViewsDrawingModel.Point，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Definitions，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Definitions.IsInclusiveInInterval(double, double, double) 以及 DualViewsDrawingModel.Definitions.IsInclusiveInInterval(double, double, double)</string>
+            <string>74 目前物件 DualViewsDrawingModel.Shapes.Line，使用物件的方法或屬性次數：2次，Envy到對象物件 DualViewsDrawingModel.Vector，使用物件方法或屬性次數：6次，使用到的方法或屬性為以下：DualViewsDrawingModel.Vector.DotProduct(DualViewsDrawingModel.Vector, DualViewsDrawingModel.Vector) 以及 DualViewsDrawingModel.Vector.LengthSquared 以及 DualViewsDrawingModel.Vector.DotProduct(DualViewsDrawingModel.Vector, DualViewsDrawingModel.Vector) 以及 DualViewsDrawingModel.Vector.LengthSquared 以及 DualViewsDrawingModel.Vector.X 以及 DualViewsDrawingModel.Vector.Y</string>
+            <string>72 目前物件 DualViewsDrawingModel.Shapes.Line，使用物件的方法或屬性次數：0次，Envy到對象物件 DualViewsDrawingModel.Vector，使用物件方法或屬性次數：2次，使用到的方法或屬性為以下：DualViewsDrawingModel.Vector.DotProduct(DualViewsDrawingModel.Vector, DualViewsDrawingModel.Vector) 以及 DualViewsDrawingModel.Vector.LengthSquared</string>
           </HashCodeRequestIgnoreList>
           <AnalysisFileManager>
             <AnalysisFiles>
@@ -902,7 +857,7 @@
               </AnalysisFile>
             </AnalysisFiles>
           </AnalysisFileManager>
-          <ProductionLoc>3111</ProductionLoc>
+          <ProductionLoc>3127</ProductionLoc>
           <TestLoc>4753</TestLoc>
         </CodeReview>
       </Data>
