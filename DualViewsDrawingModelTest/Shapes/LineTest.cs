@@ -66,6 +66,24 @@ namespace DualViewsDrawingModel.Shapes.Test
         }
 
         /// <summary>
+        /// Tests the is including point.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsIncludingPoint()
+        {
+            _line = new Line(new Point(0.0, 1.0), new Point(5.0, 1.0)); // y = 1
+            Assert.IsTrue(_line.IsIncludingPoint(new Point(0.0, 1.0)));
+            Assert.IsTrue(_line.IsIncludingPoint(new Point(5.0, 1.0)));
+            Assert.IsFalse(_line.IsIncludingPoint(new Point(-0.1, 1.0)));
+            Assert.IsFalse(_line.IsIncludingPoint(new Point(5.1, 1.0)));
+            Assert.IsFalse(_line.IsIncludingPoint(new Point(0.0, 0.9)));
+            Assert.IsFalse(_line.IsIncludingPoint(new Point(0.0, 1.1)));
+            _line = new Line(new Point(0, 3), new Point(2, -1)); // 2 * x + y = 3
+            Assert.IsTrue(_line.IsIncludingPoint(new Point(1.0, 1.0)));
+            Assert.IsFalse(_line.IsIncludingPoint(new Point(1.1, 1.0)));
+        }
+
+        /// <summary>
         /// Tests the is aligned with point.
         /// </summary>
         [TestMethod()]

@@ -65,6 +65,21 @@ namespace DualViewsDrawingModel.Shapes
         }
 
         /// <summary>
+        /// Determines whether [is including point] [the specified point].
+        /// </summary>
+        public bool IsIncludingPoint(Point point)
+        {
+            if ( !IsAlignedWithPoint(point, Definitions.DOUBLE_EPSILON) )
+            {
+                return false;
+            }
+            Vector pointToLineHead = new Vector(_x1, _y1) - new Vector(point.X, point.Y);
+            Vector lineTailToHead = new Vector(_x1, _y1) - new Vector(_x2, _y2);
+            double vectorsDotProduct = Vector.DotProduct(pointToLineHead, lineTailToHead);
+            return Definitions.IsInclusiveInInterval(vectorsDotProduct, 0.0, lineTailToHead.LengthSquared);
+        }
+
+        /// <summary>
         /// Determines whether [is aligned with point] [the specified point].
         /// </summary>
         public bool IsAlignedWithPoint(Point point, double epsilon)
