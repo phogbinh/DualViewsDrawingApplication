@@ -68,6 +68,15 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
 
         /// <summary>
+        /// Draws the selection hint.
+        /// </summary>
+        public void DrawSelectionHint(IGraphics graphics)
+        {
+            DrawSelectionCorners(graphics);
+            this.DrawSelectionBorder(graphics);
+        }
+
+        /// <summary>
         /// Draws the selection corners.
         /// </summary>
         protected void DrawSelectionCorners(IGraphics graphics)

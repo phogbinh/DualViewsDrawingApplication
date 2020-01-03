@@ -92,6 +92,24 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
+        /// Tests the draw selection hint.
+        /// </summary>
+        [TestMethod()]
+        public void TestDrawSelectionHint()
+        {
+            var lineDrawer = new LineDrawer(new Point(), new Point());
+            var graphics = new GraphicsMock();
+            lineDrawer.DrawSelectionHint(graphics);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionCorner);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionBorderLine);
+            var rectangleDrawer = new RectangleDrawer(new Point(), new Point());
+            graphics = new GraphicsMock();
+            rectangleDrawer.DrawSelectionHint(graphics);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionCorner);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionBorderRectangle);
+        }
+
+        /// <summary>
         /// Tests the draw selection corners.
         /// </summary>
         [TestMethod()]
