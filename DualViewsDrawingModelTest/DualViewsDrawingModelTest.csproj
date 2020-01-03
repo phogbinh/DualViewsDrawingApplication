@@ -60,10 +60,12 @@
     <Compile Include="ButtonEnabledStateTest.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerDrawingStateTest.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerPointerStateTest.cs" />
+    <Compile Include="CanvasDrawerStates\CanvasDrawerResizingStateTest.cs" />
     <Compile Include="CanvasDrawerTest.cs" />
     <Compile Include="CanvasManagerTest.cs" />
     <Compile Include="CommandsManagerTest.cs" />
     <Compile Include="Commands\DrawingCommandTest.cs" />
+    <Compile Include="Commands\ResizingCommandTest.cs" />
     <Compile Include="DefinitionsTest.cs" />
     <Compile Include="DrawingPresentationModelTest.cs" />
     <Compile Include="Mocks\ButtonEnabledStatesManagerMock.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Mocks\GraphicsMock.cs" />
     <Compile Include="Mocks\CanvasShapeDrawersHelperMock.cs" />
     <Compile Include="Mocks\PointMock.cs" />
+    <Compile Include="Mocks\ResizingCommandAgentMock.cs" />
     <Compile Include="Mocks\ShapeDrawerMock.cs" />
     <Compile Include="ModelTest.cs" />
     <Compile Include="PointTest.cs" />

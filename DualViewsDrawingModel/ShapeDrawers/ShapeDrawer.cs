@@ -14,6 +14,10 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
         public Point DrawingEndingPoint
         {
+            get
+            {
+                return _drawingEndingPoint;
+            }
             set
             {
                 _drawingEndingPoint = value;
@@ -44,6 +48,14 @@ namespace DualViewsDrawingModel.ShapeDrawers
         public bool IsCloseToPoint(Point point, double pointToShapeDrawerMaximumDistanceSquared)
         {
             return GetClosePointDetector().IsCloseToPoint(point, pointToShapeDrawerMaximumDistanceSquared);
+        }
+
+        /// <summary>
+        /// Determines whether [is drawing ending point close to point].
+        /// </summary>
+        public bool IsDrawingEndingPointCloseToPoint(Point point, double pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared)
+        {
+            return _drawingEndingPoint.IsCloseToPoint(point, pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared);
         }
 
         /// <summary>

@@ -56,29 +56,29 @@ namespace DualViewsDrawingModel.Shapes.Test
         /// Tests the get closest point.
         /// </summary>
         [TestMethod()]
-        public void TestGetClosestPoint()
+        public void TestGetNearByPoint()
         {
             _line = new Line(new Point(0.0, 0.0), new Point(5.0, 0.0)); // y = 0
-            Point expectedClosetPoint = _line.GetClosestPoint(new Point(0.0, 0.0));
+            Point expectedClosetPoint = _line.GetNearByPoint(new Point(0.0, 0.0));
             Assert.AreEqual(expectedClosetPoint.X, 0.0);
             Assert.AreEqual(expectedClosetPoint.Y, 0.0);
-            expectedClosetPoint = _line.GetClosestPoint(new Point(5.0, 0.0));
+            expectedClosetPoint = _line.GetNearByPoint(new Point(5.0, 0.0));
             Assert.AreEqual(expectedClosetPoint.X, 5.0);
             Assert.AreEqual(expectedClosetPoint.Y, 0.0);
-            expectedClosetPoint = _line.GetClosestPoint(new Point(-0.1, 0.0));
+            expectedClosetPoint = _line.GetNearByPoint(new Point(-0.1, 0.0));
             Assert.AreEqual(expectedClosetPoint.X, -0.1);
             Assert.AreEqual(expectedClosetPoint.Y, 0.0);
-            expectedClosetPoint = _line.GetClosestPoint(new Point(5.1, 0.0));
+            expectedClosetPoint = _line.GetNearByPoint(new Point(5.1, 0.0));
             Assert.AreEqual(expectedClosetPoint.X, 5.1);
             Assert.AreEqual(expectedClosetPoint.Y, 0.0);
-            expectedClosetPoint = _line.GetClosestPoint(new Point(0.0, 0.1));
+            expectedClosetPoint = _line.GetNearByPoint(new Point(0.0, 0.1));
             Assert.AreEqual(expectedClosetPoint.X, 0.0);
             Assert.AreEqual(expectedClosetPoint.Y, 0.0);
-            expectedClosetPoint = _line.GetClosestPoint(new Point(5.0, -0.1));
+            expectedClosetPoint = _line.GetNearByPoint(new Point(5.0, -0.1));
             Assert.AreEqual(expectedClosetPoint.X, 5.0);
             Assert.AreEqual(expectedClosetPoint.Y, 0.0);
             _line = new Line(new Point(0, 3), new Point(2, -1)); // 2 * x + y = 3
-            expectedClosetPoint = _line.GetClosestPoint(new Point(3, 2));
+            expectedClosetPoint = _line.GetNearByPoint(new Point(3, 2));
             Assert.AreEqual(expectedClosetPoint.X, 1);
             Assert.AreEqual(expectedClosetPoint.Y, 1);
         }
@@ -108,14 +108,14 @@ namespace DualViewsDrawingModel.Shapes.Test
         public void TestIsAlignedWithPoint()
         {
             _line = new Line(new Point(0.0, 1.0), new Point(5.0, 1.0)); // y = 1
-            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(0.0, 1.0), Definitions.DOUBLE_EPSILON));
-            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.0, 1.0), Definitions.DOUBLE_EPSILON));
-            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(-0.1, 1.0), Definitions.DOUBLE_EPSILON));
-            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.1, 1.0), Definitions.DOUBLE_EPSILON));
-            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 1.1), Definitions.DOUBLE_EPSILON));
-            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 0.9), Definitions.DOUBLE_EPSILON));
-            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(-0.1, 0.9), Definitions.DOUBLE_EPSILON));
-            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.1, 0.9), Definitions.DOUBLE_EPSILON));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(0.0, 1.0), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.0, 1.0), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(-0.1, 1.0), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.1, 1.0), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 1.1), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 0.9), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(-0.1, 0.9), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.1, 0.9), Definitions.DOUBLE_DIFFERENCE));
         }
     }
 }

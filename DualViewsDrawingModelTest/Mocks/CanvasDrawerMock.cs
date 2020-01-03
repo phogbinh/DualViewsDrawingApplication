@@ -51,19 +51,19 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
-        public bool IsCalledDrawShape
-        {
-            get; set;
-        }
-        public bool IsCalledRemoveShape
-        {
-            get; set;
-        }
         public bool IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer
         {
             get; set;
         }
+        public bool IsCalledCreateThenExecuteResizingCommand
+        {
+            get; set;
+        }
         public bool IsCalledGetSelectedShapeShapeDrawer
+        {
+            get; set;
+        }
+        public bool IsCalledGetSelectedResizingShapeDrawer
         {
             get; set;
         }
@@ -97,10 +97,10 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledSetCurrentState = false;
             IsCalledNotifyCanvasRefreshDrawRequested = false;
             IsCalledNotifyDrawingEnded = false;
-            IsCalledDrawShape = false;
-            IsCalledRemoveShape = false;
             IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = false;
+            IsCalledCreateThenExecuteResizingCommand = false;
             IsCalledGetSelectedShapeShapeDrawer = false;
+            IsCalledGetSelectedResizingShapeDrawer = false;
             IsCalledNotifyCurrentShapeChanged = false;
             IsCalledGetCurrentShapeRectangle = false;
             IsCalledGetCurrentShapeType = false;
@@ -198,22 +198,6 @@ namespace DualViewsDrawingModelTest.Mocks
         }
 
         /// <summary>
-        /// Draws the shape.
-        /// </summary>
-        public override void DrawShape(ShapeDrawer shapeDrawer)
-        {
-            IsCalledDrawShape = true;
-        }
-
-        /// <summary>
-        /// Removes the shape.
-        /// </summary>
-        public override void RemoveShape(ShapeDrawer shapeDrawer)
-        {
-            IsCalledRemoveShape = true;
-        }
-
-        /// <summary>
         /// Creates then executes the drawing command to draw shape using current shape drawer.
         /// </summary>
         public override void CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
@@ -222,11 +206,28 @@ namespace DualViewsDrawingModelTest.Mocks
         }
 
         /// <summary>
+        /// Creates the then execute resizing command.
+        /// </summary>
+        public override void CreateThenExecuteResizingCommand(ShapeDrawer shapeDrawer, Point oldDrawingEndingPoint, Point newDrawingEndingPoint)
+        {
+            IsCalledCreateThenExecuteResizingCommand = true;
+        }
+
+        /// <summary>
         /// Gets the selected shape shape drawer.
         /// </summary>
         public override ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
         {
             IsCalledGetSelectedShapeShapeDrawer = true;
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the selected resizing shape drawer.
+        /// </summary>
+        public override ShapeDrawer GetSelectedResizingShapeDrawer(Point leftMousePressedPosition)
+        {
+            IsCalledGetSelectedResizingShapeDrawer = true;
             return null;
         }
 

@@ -37,14 +37,54 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         {
             if ( _canvasDrawer.CurrentShapeDrawerType == ShapeDrawerType.None )
             {
-                _currentSelectedShapeShapeDrawer = _canvasDrawer.GetSelectedShapeShapeDrawer(mousePosition);
-                _canvasDrawer.NotifyCurrentShapeChanged();
+                GoToResizingStateOrSelectShape(_canvasDrawer.GetSelectedResizingShapeDrawer(mousePosition), mousePosition);
             }
             else
             {
-                _canvasDrawer.SetCurrentState(new CanvasDrawerDrawingState(_canvasDrawer, mousePosition));
-                _canvasDrawer.NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerDrawingState` is completely created.
+                GoToDrawingState(mousePosition);
             }
+        }
+
+        /// <summary>
+        /// Goes to resizing state or select shape.
+        /// </summary>
+        private void GoToResizingStateOrSelectShape(ShapeDrawer selectedResizingShapeDrawer, Point mousePosition)
+        {
+            if ( selectedResizingShapeDrawer != null )
+            {
+                GoToResizingState(selectedResizingShapeDrawer);
+            }
+            else
+            {
+                SelectShape(mousePosition);
+            }
+        }
+
+        /// <summary>
+        /// Goes the state of to resizing.
+        /// </summary>
+        private void GoToResizingState(ShapeDrawer selectedResizingShapeDrawer)
+        {
+            _canvasDrawer.SetCurrentState(new CanvasDrawerResizingState(_canvasDrawer, selectedResizingShapeDrawer));
+            _canvasDrawer.NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerResizingState` is completely created.
+        }
+
+        /// <summary>
+        /// Selects the shape.
+        /// </summary>
+        private void SelectShape(Point mousePosition)
+        {
+            _currentSelectedShapeShapeDrawer = _canvasDrawer.GetSelectedShapeShapeDrawer(mousePosition);
+            _canvasDrawer.NotifyCurrentShapeChanged();
+        }
+
+        /// <summary>
+        /// Goes the state of to drawing.
+        /// </summary>
+        private void GoToDrawingState(Point mousePosition)
+        {
+            _canvasDrawer.SetCurrentState(new CanvasDrawerDrawingState(_canvasDrawer, mousePosition));
+            _canvasDrawer.NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerDrawingState` is completely created.
         }
 
         /// <summary>

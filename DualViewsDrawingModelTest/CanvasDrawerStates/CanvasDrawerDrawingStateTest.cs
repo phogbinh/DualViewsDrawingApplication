@@ -83,7 +83,6 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         public void TestUpdateCurrentDrawingShapeHint()
         {
             const string MEMBER_FUNCTION_NAME_UPDATE_CURRENT_DRAWING_SHAPE_HINT = "UpdateCurrentDrawingShapeHint";
-            const string SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT = "_drawingEndingPoint";
             var arguments = new object[] { null };
             TargetInvocationException expectedException = Assert.ThrowsException<TargetInvocationException>(() => _target.Invoke(MEMBER_FUNCTION_NAME_UPDATE_CURRENT_DRAWING_SHAPE_HINT, arguments));
             Assert.IsInstanceOfType(expectedException.InnerException, typeof(ArgumentNullException));
@@ -91,8 +90,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             arguments = new object[] { mousePosition };
             _target.Invoke(MEMBER_FUNCTION_NAME_UPDATE_CURRENT_DRAWING_SHAPE_HINT, arguments);
             ShapeDrawer expectedCurrentDrawingShapeHintShapeDrawer = ( ShapeDrawer )_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_HINT_SHAPE_DRAWER);
-            var target = new PrivateObject(expectedCurrentDrawingShapeHintShapeDrawer);
-            Assert.AreSame(target.GetFieldOrProperty(SHAPE_DRAWER_MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT), mousePosition);
+            Assert.AreSame(expectedCurrentDrawingShapeHintShapeDrawer.DrawingEndingPoint, mousePosition);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyCanvasRefreshDrawRequested);
         }
 
@@ -105,6 +103,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             _canvasDrawerDrawingState.HandleCanvasLeftMouseReleased(new Point());
             Assert.IsTrue(_canvasDrawer.IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyDrawingEnded);
+            Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentState);
             Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerPointerState));
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
         }

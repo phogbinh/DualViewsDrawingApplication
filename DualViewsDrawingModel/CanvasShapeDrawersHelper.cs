@@ -6,7 +6,6 @@ namespace DualViewsDrawingModel
 {
     public class CanvasShapeDrawersHelper
     {
-        private const string ERROR_SHAPE_DRAWER_IS_NULL = "The given shape drawer is null.";
         private List<ShapeDrawer> _shapeDrawers;
 
         public CanvasShapeDrawersHelper()
@@ -21,7 +20,7 @@ namespace DualViewsDrawingModel
         {
             if ( shapeDrawer == null )
             {
-                throw new ArgumentNullException(ERROR_SHAPE_DRAWER_IS_NULL);
+                throw new ArgumentNullException(Definitions.ERROR_SHAPE_DRAWER_IS_NULL);
             }
             _shapeDrawers.Add(shapeDrawer);
         }
@@ -33,7 +32,7 @@ namespace DualViewsDrawingModel
         {
             if ( shapeDrawer == null )
             {
-                throw new ArgumentNullException(ERROR_SHAPE_DRAWER_IS_NULL);
+                throw new ArgumentNullException(Definitions.ERROR_SHAPE_DRAWER_IS_NULL);
             }
             _shapeDrawers.Remove(shapeDrawer);
         }
@@ -60,11 +59,26 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Gets the most recent drawn shape drawer that is close to point.
         /// </summary>
-        public virtual ShapeDrawer GetMostRecentDrawnShapeDrawerThatIsCloseToPoint(Point point, double pointToShapeDrawerMaximumDistanceSquared)
+        public virtual ShapeDrawer GetMostRecentDrawShapeDrawerThatIsCloseToPoint(Point point, double pointToShapeDrawerMaximumDistanceSquared)
         {
             for ( int index = _shapeDrawers.Count - 1; index >= 0; index-- )
             {
                 if ( _shapeDrawers[ index ].IsCloseToPoint(point, pointToShapeDrawerMaximumDistanceSquared) )
+                {
+                    return _shapeDrawers[ index ];
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the most recent drawn shape drawer whose drawing ending point is close to point.
+        /// </summary>
+        public virtual ShapeDrawer GetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(Point point, double pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared)
+        {
+            for ( int index = _shapeDrawers.Count - 1; index >= 0; index-- )
+            {
+                if ( _shapeDrawers[ index ].IsDrawingEndingPointCloseToPoint(point, pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared) )
                 {
                     return _shapeDrawers[ index ];
                 }

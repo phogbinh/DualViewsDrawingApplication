@@ -4,28 +4,28 @@ using System;
 
 namespace DualViewsDrawingModel.CanvasDrawerStates
 {
-    public class CanvasDrawerDrawingState : ICanvasDrawerState
+    public class CanvasDrawerResizingState : ICanvasDrawerState
     {
-        private const string ERROR_CURRENT_DRAWING_SHAPE_DRAWING_STARTING_POINT_IS_NULL = "The given current drawing shape's drawing starting pointer is null.";
-        private const string ERROR_CLEAR_CANVAS_IS_CALLED_IN_CANVAS_DRAWER_DRAWING_STATE = "The function ClearCanvas() is called in Canvas Drawer's Drawing State.";
-        private const string ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED = "Cannot begin a new draw when the previous draw has not ended.";
+        private const string ERROR_CURRENT_RESIZING_SHAPE_SHAPE_DRAWER_IS_NULL = "The given current resizing shape's shape drawer is null.";
+        private const string ERROR_CLEAR_CANVAS_IS_CALLED_IN_CANVAS_DRAWER_RESIZING_STATE = "The function ClearCanvas() is called in Canvas Drawer's Resizing State.";
+        private const string ERROR_PREVIOUS_RESIZE_HAS_NOT_ENDED = "Cannot begin a new resize when the previous resize has not ended.";
         private CanvasDrawer _canvasDrawer;
-        private Point _currentDrawingShapeDrawingStartingPoint;
-        private ShapeDrawer _currentDrawingShapeHintShapeDrawer;
+        private ShapeDrawer _currentResizingShapeShapeDrawer;
+        private Point _currentResizingShapeOldDrawingEndingPoint;
 
-        public CanvasDrawerDrawingState(CanvasDrawer canvasDrawerData, Point currentDrawingShapeDrawingStartingPointData)
+        public CanvasDrawerResizingState(CanvasDrawer canvasDrawerData, ShapeDrawer currentResizingShapeShapeDrawerData)
         {
             if ( canvasDrawerData == null )
             {
                 throw new ArgumentNullException(Definitions.ERROR_CANVAS_DRAWER_IS_NULL);
             }
-            if ( currentDrawingShapeDrawingStartingPointData == null )
+            if ( currentResizingShapeShapeDrawerData == null )
             {
-                throw new ArgumentNullException(ERROR_CURRENT_DRAWING_SHAPE_DRAWING_STARTING_POINT_IS_NULL);
+                throw new ArgumentNullException(ERROR_CURRENT_RESIZING_SHAPE_SHAPE_DRAWER_IS_NULL);
             }
             _canvasDrawer = canvasDrawerData;
-            _currentDrawingShapeDrawingStartingPoint = currentDrawingShapeDrawingStartingPointData;
-            _currentDrawingShapeHintShapeDrawer = ShapeDrawerFactory.CreateShapeDrawer(_currentDrawingShapeDrawingStartingPoint, _currentDrawingShapeDrawingStartingPoint, _canvasDrawer.CurrentShapeDrawerType);
+            _currentResizingShapeShapeDrawer = currentResizingShapeShapeDrawerData;
+            _currentResizingShapeOldDrawingEndingPoint = _currentResizingShapeShapeDrawer.DrawingEndingPoint;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// </summary>
         public void ClearCanvas()
         {
-            throw new InvalidOperationException(ERROR_CLEAR_CANVAS_IS_CALLED_IN_CANVAS_DRAWER_DRAWING_STATE);
+            throw new InvalidOperationException(ERROR_CLEAR_CANVAS_IS_CALLED_IN_CANVAS_DRAWER_RESIZING_STATE);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// </summary>
         public void HandleCanvasLeftMousePressed(Point mousePosition)
         {
-            throw new InvalidOperationException(ERROR_PREVIOUS_DRAW_HAS_NOT_ENDED);
+            throw new InvalidOperationException(ERROR_PREVIOUS_RESIZE_HAS_NOT_ENDED);
         }
 
         /// <summary>
@@ -49,19 +49,19 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// </summary>
         public void HandleCanvasLeftMouseMoved(Point mousePosition)
         {
-            UpdateCurrentDrawingShapeHint(mousePosition);
+            UpdateCurrentResizingShape(mousePosition);
         }
 
         /// <summary>
-        /// Updates the current drawing shape hint.
+        /// Updates the current resizing shape.
         /// </summary>
-        private void UpdateCurrentDrawingShapeHint(Point mousePosition)
+        private void UpdateCurrentResizingShape(Point mousePosition)
         {
             if ( mousePosition == null )
             {
                 throw new ArgumentNullException(Definitions.ERROR_MOUSE_POSITION_IS_NULL);
             }
-            _currentDrawingShapeHintShapeDrawer.DrawingEndingPoint = mousePosition;
+            _currentResizingShapeShapeDrawer.DrawingEndingPoint = mousePosition;
             _canvasDrawer.NotifyCanvasRefreshDrawRequested();
         }
 
@@ -70,18 +70,9 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// </summary>
         public void HandleCanvasLeftMouseReleased(Point mousePosition)
         {
-            EndDrawing(mousePosition);
+            _canvasDrawer.CreateThenExecuteResizingCommand(_currentResizingShapeShapeDrawer, _currentResizingShapeOldDrawingEndingPoint, _currentResizingShapeShapeDrawer.DrawingEndingPoint);
             _canvasDrawer.SetCurrentState(new CanvasDrawerPointerState(_canvasDrawer));
             _canvasDrawer.NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerPointerState` is completely created.
-        }
-
-        /// <summary>
-        /// Ends the drawing.
-        /// </summary>
-        private void EndDrawing(Point mousePosition)
-        {
-            _canvasDrawer.CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(_currentDrawingShapeDrawingStartingPoint, mousePosition);
-            _canvasDrawer.NotifyDrawingEnded();
         }
 
         /// <summary>
@@ -89,7 +80,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// </summary>
         public void Draw(IGraphics graphics)
         {
-            _currentDrawingShapeHintShapeDrawer.Draw(graphics);
+            _currentResizingShapeShapeDrawer.Draw(graphics);
         }
 
         /// <summary>

@@ -62,10 +62,72 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         {
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.None);
             _canvasDrawerPointerState.HandleCanvasLeftMousePressed(new Point());
+            Assert.IsTrue(_canvasDrawer.IsCalledGetSelectedResizingShapeDrawer);
             Assert.IsTrue(_canvasDrawer.IsCalledGetSelectedShapeShapeDrawer);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Line);
             _canvasDrawerPointerState.HandleCanvasLeftMousePressed(new Point());
+            Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentState);
+            Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerDrawingState));
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
+        }
+
+        /// <summary>
+        /// Tests the go to resizing state or select shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestGoToResizingStateOrSelectShape()
+        {
+            const string MEMBER_FUNCTION_NAME_GO_TO_RESIZING_STATE_OR_SELECT_SHAPE = "GoToResizingStateOrSelectShape";
+            var arguments = new object[] { new ShapeDrawerMock(new Point(), new Point()), null };
+            _target.Invoke(MEMBER_FUNCTION_NAME_GO_TO_RESIZING_STATE_OR_SELECT_SHAPE, arguments);
+            Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentState);
+            Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerResizingState));
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
+            arguments = new object[] { null, new Point() };
+            _target.Invoke(MEMBER_FUNCTION_NAME_GO_TO_RESIZING_STATE_OR_SELECT_SHAPE, arguments);
+            Assert.IsTrue(_canvasDrawer.IsCalledGetSelectedShapeShapeDrawer);
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
+        }
+
+        /// <summary>
+        /// Tests the state of the go to resizing.
+        /// </summary>
+        [TestMethod()]
+        public void TestGoToResizingState()
+        {
+            const string MEMBER_FUNCTION_NAME_GO_TO_RESIZING_STATE = "GoToResizingState";
+            var arguments = new object[] { new ShapeDrawerMock(new Point(), new Point()) };
+            _target.Invoke(MEMBER_FUNCTION_NAME_GO_TO_RESIZING_STATE, arguments);
+            Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentState);
+            Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerResizingState));
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
+        }
+
+        /// <summary>
+        /// Tests the select shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestSelectShape()
+        {
+            const string MEMBER_FUNCTION_NAME_SELECT_SHAPE = "SelectShape";
+            _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.None);
+            var arguments = new object[] { new Point() };
+            _target.Invoke(MEMBER_FUNCTION_NAME_SELECT_SHAPE, arguments);
+            Assert.IsTrue(_canvasDrawer.IsCalledGetSelectedShapeShapeDrawer);
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
+        }
+
+        /// <summary>
+        /// Tests the state of the go to drawing.
+        /// </summary>
+        [TestMethod()]
+        public void TestGoToDrawingState()
+        {
+            const string MEMBER_FUNCTION_NAME_GO_TO_DRAWING_STATE = "GoToDrawingState";
+            _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Rectangle);
+            var arguments = new object[] { new Point() };
+            _target.Invoke(MEMBER_FUNCTION_NAME_GO_TO_DRAWING_STATE, arguments);
             Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentState);
             Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerDrawingState));
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);

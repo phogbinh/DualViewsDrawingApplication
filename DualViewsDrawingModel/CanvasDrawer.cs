@@ -6,7 +6,7 @@ using System;
 
 namespace DualViewsDrawingModel
 {
-    public class CanvasDrawer : IDrawingCommandAgent
+    public class CanvasDrawer : IDrawingCommandAgent, IResizingCommandAgent
     {
         public delegate void CanvasRefreshDrawRequestedEventHandler();
         public delegate void DrawingEndedEventHandler();
@@ -168,7 +168,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Draws the shape.
         /// </summary>
-        public virtual void DrawShape(ShapeDrawer shapeDrawer)
+        public void DrawShape(ShapeDrawer shapeDrawer)
         {
             _canvasShapeDrawersHelper.AddShapeDrawer(shapeDrawer);
             NotifyCanvasRefreshDrawRequested();
@@ -177,9 +177,18 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Removes the shape.
         /// </summary>
-        public virtual void RemoveShape(ShapeDrawer shapeDrawer)
+        public void RemoveShape(ShapeDrawer shapeDrawer)
         {
             _canvasShapeDrawersHelper.RemoveShapeDrawer(shapeDrawer);
+            NotifyCanvasRefreshDrawRequested();
+        }
+
+        /// <summary>
+        /// Resizes the shape.
+        /// </summary>
+        public void ResizeShape(ShapeDrawer shapeDrawer, Point drawingEndingPoint)
+        {
+            shapeDrawer.DrawingEndingPoint = drawingEndingPoint;
             NotifyCanvasRefreshDrawRequested();
         }
 
@@ -192,11 +201,27 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
+        /// Creates the then execute resizing command.
+        /// </summary>
+        public virtual void CreateThenExecuteResizingCommand(ShapeDrawer shapeDrawer, Point oldDrawingEndingPoint, Point newDrawingEndingPoint)
+        {
+            _commandsManager.AddThenExecuteCommand(new ResizingCommand(this, shapeDrawer, oldDrawingEndingPoint, newDrawingEndingPoint));
+        }
+
+        /// <summary>
         /// Gets the selected shape shape drawer.
         /// </summary>
         public virtual ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
         {
-            return _canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIsCloseToPoint(leftMousePressedPosition, Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED);
+            return _canvasShapeDrawersHelper.GetMostRecentDrawShapeDrawerThatIsCloseToPoint(leftMousePressedPosition, Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED);
+        }
+
+        /// <summary>
+        /// Gets the selected resizing shape drawer.
+        /// </summary>
+        public virtual ShapeDrawer GetSelectedResizingShapeDrawer(Point leftMousePressedPosition)
+        {
+            return _canvasShapeDrawersHelper.GetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(leftMousePressedPosition, Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED);
         }
 
         /// <summary>

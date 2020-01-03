@@ -6,6 +6,10 @@ namespace DualViewsDrawingModelTest.Mocks
 {
     public class ShapeDrawerMock : ShapeDrawer
     {
+        public bool IsCalledDraw
+        {
+            get; set;
+        }
         public bool IsCalledGetRectangle
         {
             get; set;
@@ -13,6 +17,7 @@ namespace DualViewsDrawingModelTest.Mocks
 
         public ShapeDrawerMock(Point drawingStartingPointData, Point drawingEndingPointData) : base(drawingStartingPointData, drawingEndingPointData)
         {
+            IsCalledDraw = false;
             IsCalledGetRectangle = false;
         }
 
@@ -21,7 +26,7 @@ namespace DualViewsDrawingModelTest.Mocks
         /// </summary>
         public override void Draw(IGraphics graphics)
         {
-            /* Body intentionally empty */
+            IsCalledDraw = true;
         }
 
         /// <summary>

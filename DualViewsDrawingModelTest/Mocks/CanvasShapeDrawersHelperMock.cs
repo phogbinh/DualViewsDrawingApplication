@@ -21,7 +21,11 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
-        public bool IsCalledGetMostRecentDrawnShapeDrawerThatIsCloseToPoint
+        public bool IsCalledGetMostRecentDrawShapeDrawerThatIsCloseToPoint
+        {
+            get; set;
+        }
+        public bool IsCalledGetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint
         {
             get; set;
         }
@@ -32,7 +36,8 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledRemoveShapeDrawer = false;
             IsCalledClear = false;
             IsCalledDraw = false;
-            IsCalledGetMostRecentDrawnShapeDrawerThatIsCloseToPoint = false;
+            IsCalledGetMostRecentDrawShapeDrawerThatIsCloseToPoint = false;
+            IsCalledGetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint = false;
         }
 
         /// <summary>
@@ -70,9 +75,18 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Gets the most recent drawn shape drawer that is close to point.
         /// </summary>
-        public override ShapeDrawer GetMostRecentDrawnShapeDrawerThatIsCloseToPoint(Point point, double pointToShapeDrawerMaximumDistanceSquared)
+        public override ShapeDrawer GetMostRecentDrawShapeDrawerThatIsCloseToPoint(Point point, double pointToShapeDrawerMaximumDistanceSquared)
         {
-            IsCalledGetMostRecentDrawnShapeDrawerThatIsCloseToPoint = true;
+            IsCalledGetMostRecentDrawShapeDrawerThatIsCloseToPoint = true;
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the most recent drawn shape drawer whose drawing ending point is close to point.
+        /// </summary>
+        public override ShapeDrawer GetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(Point point, double pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared)
+        {
+            IsCalledGetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint = true;
             return null;
         }
     }

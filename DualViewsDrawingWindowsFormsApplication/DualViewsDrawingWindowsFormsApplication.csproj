@@ -61,6 +61,9 @@
     <Compile Include="..\DualViewsDrawingModel\CanvasDrawerStates\CanvasDrawerPointerState.cs">
       <Link>Models\CanvasDrawerStates\CanvasDrawerPointerState.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\CanvasDrawerStates\CanvasDrawerResizingState.cs">
+      <Link>Models\CanvasDrawerStates\CanvasDrawerResizingState.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\CanvasDrawerStates\ICanvasDrawerState.cs">
       <Link>Models\CanvasDrawerStates\ICanvasDrawerState.cs</Link>
     </Compile>
@@ -79,6 +82,9 @@
     <Compile Include="..\DualViewsDrawingModel\Commands\ICommand.cs">
       <Link>Models\Commands\ICommand.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Commands\ResizingCommand.cs">
+      <Link>Models\ResizingCommand.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\Definitions.cs">
       <Link>Models\Definitions.cs</Link>
     </Compile>
@@ -96,6 +102,9 @@
     </Compile>
     <Compile Include="..\DualViewsDrawingModel\IIncludingPointDetector.cs">
       <Link>Models\IIncludingPointDetector.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\IResizingCommandAgent.cs">
+      <Link>Models\IResizingCommandAgent.cs</Link>
     </Compile>
     <Compile Include="..\DualViewsDrawingModel\Model.cs">
       <Link>Models\Model.cs</Link>

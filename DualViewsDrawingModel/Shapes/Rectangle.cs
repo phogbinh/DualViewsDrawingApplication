@@ -82,7 +82,7 @@ namespace DualViewsDrawingModel.Shapes
         /// <summary>
         /// Determines whether [is close to point].
         /// </summary>
-        public bool IsCloseToPoint(Point point, double pointToLineMaximumDistanceSquared)
+        public bool IsCloseToPoint(Point point, double pointToRectangleMaximumDistanceSquared)
         {
             return IsIncludingPoint(point);
         }

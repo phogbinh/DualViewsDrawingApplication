@@ -20,16 +20,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             // Observers
             SubscribeEvents();
             // UI
-            _canvas.Resize += (sender, eventArguments) => _model.SetCanvasSize(_canvas.Size.Width, _canvas.Size.Height);
-            _canvas.Paint += (sender, eventArguments) => _model.RefreshDrawCanvas(new DrawingFormGraphicsAdapter(eventArguments.Graphics));
-            _canvas.MouseDown += HandleCanvasMousePressed;
-            _canvas.MouseMove += HandleCanvasMouseMoved;
-            _canvas.MouseUp += HandleCanvasMouseReleased;
-            _rectangleButton.Click += HandleRectangleButtonClicked;
-            _lineButton.Click += HandleLineButtonClicked;
-            _clearButton.Click += HandleClearButtonClicked;
-            _undoButton.Click += (sender, eventArguments) => _model.Undo();
-            _redoButton.Click += (sender, eventArguments) => _model.Redo();
+            SubscribeViewEvents();
             // Initial UI States
             _drawingPresentationModel.Initialize();
             UpdateUndoRedoButtonEnabledStates();
@@ -46,6 +37,23 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             _model.CanvasRefreshDrawRequested += HandleCanvasRefreshDrawRequested;
             _model.DrawingEnded += HandleDrawingEnded;
             _model.CanvasCurrentShapeChanged += HandleCanvasCurrentShapeChanged;
+        }
+
+        /// <summary>
+        /// Subscribes the view events.
+        /// </summary>
+        private void SubscribeViewEvents()
+        {
+            _canvas.Resize += (sender, eventArguments) => _model.SetCanvasSize(_canvas.Size.Width, _canvas.Size.Height);
+            _canvas.Paint += (sender, eventArguments) => _model.RefreshDrawCanvas(new DrawingFormGraphicsAdapter(eventArguments.Graphics));
+            _canvas.MouseDown += HandleCanvasMousePressed;
+            _canvas.MouseMove += HandleCanvasMouseMoved;
+            _canvas.MouseUp += HandleCanvasMouseReleased;
+            _rectangleButton.Click += HandleRectangleButtonClicked;
+            _lineButton.Click += HandleLineButtonClicked;
+            _clearButton.Click += HandleClearButtonClicked;
+            _undoButton.Click += (sender, eventArguments) => _model.Undo();
+            _redoButton.Click += (sender, eventArguments) => _model.Redo();
         }
 
         /// <summary>

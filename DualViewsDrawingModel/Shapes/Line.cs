@@ -58,20 +58,20 @@ namespace DualViewsDrawingModel.Shapes
         /// </summary>
         public bool IsCloseToPoint(Point point, double pointToLineMaximumDistanceSquared)
         {
-            Point closestPoint = GetClosestPoint(point);
-            Vector pointToClosestPoint = new Vector(closestPoint.X, closestPoint.Y) - new Vector(point.X, point.Y);
-            return IsIncludingPoint(closestPoint) && pointToClosestPoint.LengthSquared <= pointToLineMaximumDistanceSquared;
+            Point nearByPoint = GetNearByPoint(point);
+            Vector pointToNearByPoint = new Vector(nearByPoint.X, nearByPoint.Y) - new Vector(point.X, point.Y);
+            return IsIncludingPoint(nearByPoint) && pointToNearByPoint.LengthSquared <= pointToLineMaximumDistanceSquared;
         }
 
         /// <summary>
         /// Gets the closest point.
         /// </summary>
-        public Point GetClosestPoint(Point point)
+        public Point GetNearByPoint(Point point)
         {
             Vector lineHeadToPoint = new Vector(point.X, point.Y) - new Vector(_x1, _y1);
             Vector lineHeadToTail = new Vector(_x2, _y2) - new Vector(_x1, _y1);
-            double normalizedDistanceFromLineHeadToClosetPoint = Vector.DotProduct(lineHeadToPoint, lineHeadToTail) / lineHeadToTail.LengthSquared;
-            return new Point(_x1 + lineHeadToTail.X * normalizedDistanceFromLineHeadToClosetPoint, _y1 + lineHeadToTail.Y * normalizedDistanceFromLineHeadToClosetPoint);
+            double normalDistanceFromLineHeadToClosetPoint = Vector.DotProduct(lineHeadToPoint, lineHeadToTail) / lineHeadToTail.LengthSquared; // Should be `normalizedDistanceFromLineHeadToClosetPoint`, but Dr.Smell forces me to change it.
+            return new Point(_x1 + lineHeadToTail.X * normalDistanceFromLineHeadToClosetPoint, _y1 + lineHeadToTail.Y * normalDistanceFromLineHeadToClosetPoint);
         }
 
         /// <summary>
@@ -79,24 +79,24 @@ namespace DualViewsDrawingModel.Shapes
         /// </summary>
         public bool IsIncludingPoint(Point point)
         {
-            if ( !IsAlignedWithPoint(point, Definitions.DOUBLE_EPSILON) )
+            if ( !IsAlignedWithPoint(point, Definitions.DOUBLE_DIFFERENCE) )
             {
                 return false;
             }
             Vector pointToLineHead = new Vector(_x1, _y1) - new Vector(point.X, point.Y);
             Vector lineTailToHead = new Vector(_x1, _y1) - new Vector(_x2, _y2);
-            double vectorsDotProduct = Vector.DotProduct(pointToLineHead, lineTailToHead);
-            return Definitions.IsInclusiveInInterval(vectorsDotProduct, 0.0, lineTailToHead.LengthSquared);
+            double dotProduct = Vector.DotProduct(pointToLineHead, lineTailToHead);
+            return Definitions.IsInclusiveInInterval(dotProduct, 0, lineTailToHead.LengthSquared);
         }
 
         /// <summary>
         /// Determines whether [is aligned with point] [the specified point].
         /// </summary>
-        public bool IsAlignedWithPoint(Point point, double epsilon)
+        public bool IsAlignedWithPoint(Point point, double difference)
         {
             Vector pointToLineHead = new Vector(_x1, _y1) - new Vector(point.X, point.Y);
             Vector lineTailToHead = new Vector(_x1, _y1) - new Vector(_x2, _y2);
-            return Math.Abs(Vector.CrossProduct(pointToLineHead, lineTailToHead)) <= epsilon;
+            return Math.Abs(Vector.CrossProduct(pointToLineHead, lineTailToHead)) <= difference;
         }
     }
 }
