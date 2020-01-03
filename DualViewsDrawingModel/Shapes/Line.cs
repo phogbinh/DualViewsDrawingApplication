@@ -64,5 +64,15 @@ namespace DualViewsDrawingModel.Shapes
             double normalizedDistanceFromLineHeadToClosetPoint = vectorsDotProduct / lineHeadToTail.LengthSquared;
             return new Point(_x1 + lineHeadToTail.X * normalizedDistanceFromLineHeadToClosetPoint, _y1 + lineHeadToTail.Y * normalizedDistanceFromLineHeadToClosetPoint);
         }
+
+        /// <summary>
+        /// Determines whether [is aligned with point] [the specified point].
+        /// </summary>
+        public bool IsAlignedWithPoint(Point point, double epsilon)
+        {
+            Vector pointToLineHead = new Vector(_x1, _y1) - new Vector(point.X, point.Y);
+            Vector lineTailToHead = new Vector(_x1, _y1) - new Vector(_x2, _y2);
+            return Math.Abs(Vector.CrossProduct(pointToLineHead, lineTailToHead)) <= epsilon;
+        }
     }
 }

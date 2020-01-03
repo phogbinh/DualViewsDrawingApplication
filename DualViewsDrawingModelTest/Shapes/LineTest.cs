@@ -64,5 +64,22 @@ namespace DualViewsDrawingModel.Shapes.Test
             Assert.AreEqual(expectedClosetPoint.X, 1);
             Assert.AreEqual(expectedClosetPoint.Y, 1);
         }
+
+        /// <summary>
+        /// Tests the is aligned with point.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsAlignedWithPoint()
+        {
+            _line = new Line(new Point(0.0, 1.0), new Point(5.0, 1.0)); // y = 1
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(0.0, 1.0), Definitions.DOUBLE_EPSILON));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.0, 1.0), Definitions.DOUBLE_EPSILON));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(-0.1, 1.0), Definitions.DOUBLE_EPSILON));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.1, 1.0), Definitions.DOUBLE_EPSILON));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 1.1), Definitions.DOUBLE_EPSILON));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 0.9), Definitions.DOUBLE_EPSILON));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(-0.1, 0.9), Definitions.DOUBLE_EPSILON));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.1, 0.9), Definitions.DOUBLE_EPSILON));
+        }
     }
 }
