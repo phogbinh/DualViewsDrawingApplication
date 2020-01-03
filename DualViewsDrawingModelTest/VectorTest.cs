@@ -78,5 +78,16 @@ namespace DualViewsDrawingModel.Test
             Assert.ThrowsException<ArgumentNullException>(() => Vector.DotProduct(new Vector(TestDefinitions.DUMP_DOUBLE, TestDefinitions.DUMP_DOUBLE), null));
             Assert.AreEqual(Vector.DotProduct(new Vector(0.0, 1.1), new Vector(10.0, 1.0)), 1.1);
         }
+
+        /// <summary>
+        /// Tests the cross product.
+        /// </summary>
+        [TestMethod()]
+        public void TestCrossProduct()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => Vector.CrossProduct(null, new Vector(TestDefinitions.DUMP_DOUBLE, TestDefinitions.DUMP_DOUBLE)));
+            Assert.ThrowsException<ArgumentNullException>(() => Vector.CrossProduct(new Vector(TestDefinitions.DUMP_DOUBLE, TestDefinitions.DUMP_DOUBLE), null));
+            Assert.AreEqual(Vector.CrossProduct(new Vector(0.0, 1.1), new Vector(10.0, 1.0)), 11.0);
+        }
     }
 }

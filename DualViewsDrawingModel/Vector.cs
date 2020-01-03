@@ -77,5 +77,21 @@ namespace DualViewsDrawingModel
             }
             return leftVector.X * rightVector.X + leftVector.Y * rightVector.Y;
         }
+
+        /// <summary>
+        /// Crosses the product.
+        /// </summary>
+        public static double CrossProduct(Vector leftVector, Vector rightVector)
+        {
+            if ( leftVector == null )
+            {
+                throw new ArgumentNullException(ERROR_VECTOR_IS_NULL);
+            }
+            if ( rightVector == null )
+            {
+                throw new ArgumentNullException(ERROR_VECTOR_IS_NULL);
+            }
+            return leftVector.Y * rightVector.X - leftVector.X * rightVector.Y;
+        }
     }
 }
