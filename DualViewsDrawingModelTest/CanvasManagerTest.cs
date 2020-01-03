@@ -209,5 +209,15 @@ namespace DualViewsDrawingModel.Test
             _canvasManager.GetCurrentShapeRectangle();
             Assert.IsTrue(_canvasDrawer.IsCalledGetCurrentShapeRectangle);
         }
+
+        /// <summary>
+        /// Tests the type of the get current shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCurrentShapeType()
+        {
+            _canvasManager.GetCurrentShapeType();
+            Assert.IsTrue(_canvasDrawer.IsCalledGetCurrentShapeType);
+        }
     }
 }

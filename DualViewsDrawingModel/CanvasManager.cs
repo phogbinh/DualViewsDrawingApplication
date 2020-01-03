@@ -170,5 +170,13 @@ namespace DualViewsDrawingModel
         {
             return _canvasDrawer.GetCurrentShapeRectangle();
         }
+
+        /// <summary>
+        /// Gets the type of the current shape.
+        /// </summary>
+        public ShapeDrawerType GetCurrentShapeType()
+        {
+            return _canvasDrawer.GetCurrentShapeType();
+        }
     }
 }
