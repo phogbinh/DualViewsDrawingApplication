@@ -123,5 +123,53 @@ namespace DualViewsDrawingModel.Shapes.Test
             _rectangle.Y = -1;
             Assert.AreEqual(_rectangle.GetLowerRightY(), 99);
         }
+
+        /// <summary>
+        /// Gets the upper left point.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetUpperLeftPoint()
+        {
+            _rectangle = new Rectangle(new Point(0.0, 0.1), new Point(1.0, 1.1));
+            var expectedPoint = _rectangle.GetUpperLeftPoint();
+            Assert.AreEqual(expectedPoint.X, 0.0);
+            Assert.AreEqual(expectedPoint.Y, 0.1);
+        }
+
+        /// <summary>
+        /// Tests the get upper right point.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetUpperRightPoint()
+        {
+            _rectangle = new Rectangle(new Point(0.0, 0.1), new Point(1.0, 1.1));
+            var expectedPoint = _rectangle.GetUpperRightPoint();
+            Assert.AreEqual(expectedPoint.X, 1.0);
+            Assert.AreEqual(expectedPoint.Y, 0.1);
+        }
+
+        /// <summary>
+        /// Tests the get lower right point.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetLowerRightPoint()
+        {
+            _rectangle = new Rectangle(new Point(0.0, 0.1), new Point(1.0, 1.1));
+            var expectedPoint = _rectangle.GetLowerRightPoint();
+            Assert.AreEqual(expectedPoint.X, 1.0);
+            Assert.AreEqual(expectedPoint.Y, 1.1);
+        }
+
+        /// <summary>
+        /// Tests the get lower left point.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetLowerLeftPoint()
+        {
+            _rectangle = new Rectangle(new Point(0.0, 0.1), new Point(1.0, 1.1));
+            var expectedPoint = _rectangle.GetLowerLeftPoint();
+            Assert.AreEqual(expectedPoint.X, 0.0);
+            Assert.AreEqual(expectedPoint.Y, 1.1);
+        }
     }
 }
