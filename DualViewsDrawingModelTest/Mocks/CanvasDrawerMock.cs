@@ -51,14 +51,6 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
-        public bool IsCalledDrawShape
-        {
-            get; set;
-        }
-        public bool IsCalledRemoveShape
-        {
-            get; set;
-        }
         public bool IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer
         {
             get; set;
@@ -105,8 +97,6 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledSetCurrentState = false;
             IsCalledNotifyCanvasRefreshDrawRequested = false;
             IsCalledNotifyDrawingEnded = false;
-            IsCalledDrawShape = false;
-            IsCalledRemoveShape = false;
             IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = false;
             IsCalledCreateThenExecuteResizingCommand = false;
             IsCalledGetSelectedShapeShapeDrawer = false;
@@ -205,22 +195,6 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void NotifyDrawingEnded()
         {
             IsCalledNotifyDrawingEnded = true;
-        }
-
-        /// <summary>
-        /// Draws the shape.
-        /// </summary>
-        public override void DrawShape(ShapeDrawer shapeDrawer)
-        {
-            IsCalledDrawShape = true;
-        }
-
-        /// <summary>
-        /// Removes the shape.
-        /// </summary>
-        public override void RemoveShape(ShapeDrawer shapeDrawer)
-        {
-            IsCalledRemoveShape = true;
         }
 
         /// <summary>
