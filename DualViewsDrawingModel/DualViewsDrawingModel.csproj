@@ -66,6 +66,7 @@
     <Compile Include="Shapes\Line.cs" />
     <Compile Include="Shapes\Rectangle.cs" />
     <Compile Include="ShapeDrawerTypeHelper.cs" />
+    <Compile Include="Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -118,6 +118,9 @@
     <Compile Include="..\DualViewsDrawingModel\Shapes\Rectangle.cs">
       <Link>Models\Shapes\Rectangle.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Vector.cs">
+      <Link>Models\Vector.cs</Link>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\DrawingForm.cs">

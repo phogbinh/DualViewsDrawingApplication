@@ -188,6 +188,9 @@
     <Compile Include="..\DualViewsDrawingModel\Shapes\Rectangle.cs">
       <Link>Models\Shapes\Rectangle.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Vector.cs">
+      <Link>Models\Vector.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>

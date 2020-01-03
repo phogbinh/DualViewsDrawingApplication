@@ -89,6 +89,7 @@
     <Compile Include="Shapes\LineTest.cs" />
     <Compile Include="Shapes\RectangleTest.cs" />
     <Compile Include="TestDefinitions.cs" />
+    <Compile Include="VectorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
