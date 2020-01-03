@@ -64,7 +64,7 @@ namespace DualViewsDrawingModel
         {
             for ( int index = _shapeDrawers.Count - 1; index >= 0; index-- )
             {
-                if ( _shapeDrawers[ index ].IsIncludingPoint(point) )
+                if ( _shapeDrawers[ index ].IsCloseToPoint(point, pointToShapeDrawerMaximumDistanceSquared) )
                 {
                     return _shapeDrawers[ index ];
                 }

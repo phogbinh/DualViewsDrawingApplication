@@ -30,9 +30,9 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
 
         /// <summary>
-        /// Determines whether [is including point].
+        /// Determines whether [is close to point] [the specified point].
         /// </summary>
-        public bool IsIncludingPoint(Point point)
+        public bool IsCloseToPoint(Point point, double pointToShapeDrawerMaximumDistanceSquared)
         {
             return GetRectangle().IsIncludingPoint(point);
         }

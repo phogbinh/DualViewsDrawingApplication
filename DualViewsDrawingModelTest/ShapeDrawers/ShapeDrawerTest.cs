@@ -49,11 +49,11 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         {
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT, new Point(1.0, 5.0));
             _shapeDrawer.DrawingEndingPoint = new Point(-1.0, 2.0);
-            Assert.IsTrue(_shapeDrawer.IsIncludingPoint(new Point(0.5, 3.0)));
-            Assert.IsFalse(_shapeDrawer.IsIncludingPoint(new Point(-1.1, 2.0)));
-            Assert.IsFalse(_shapeDrawer.IsIncludingPoint(new Point(1.1, 2.0)));
-            Assert.IsFalse(_shapeDrawer.IsIncludingPoint(new Point(-1.0, 1.9)));
-            Assert.IsFalse(_shapeDrawer.IsIncludingPoint(new Point(-1.0, 5.1)));
+            Assert.IsTrue(_shapeDrawer.IsCloseToPoint(new Point(0.5, 3.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(_shapeDrawer.IsCloseToPoint(new Point(-1.1, 2.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(_shapeDrawer.IsCloseToPoint(new Point(1.1, 2.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(_shapeDrawer.IsCloseToPoint(new Point(-1.0, 1.9), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(_shapeDrawer.IsCloseToPoint(new Point(-1.0, 5.1), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
         }
 
         /// <summary>
