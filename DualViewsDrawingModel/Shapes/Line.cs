@@ -52,5 +52,17 @@ namespace DualViewsDrawingModel.Shapes
             _x2 = drawingEndingPoint.X;
             _y2 = drawingEndingPoint.Y;
         }
+
+        /// <summary>
+        /// Gets the closet point.
+        /// </summary>
+        public Point GetClosetPoint(Point point)
+        {
+            Vector lineHeadToPoint = new Vector(point.X, point.Y) - new Vector(_x1, _y1);
+            Vector lineHeadToTail = new Vector(_x2, _y2) - new Vector(_x1, _y1);
+            double vectorsDotProduct = lineHeadToPoint.X * lineHeadToTail.X + lineHeadToPoint.Y * lineHeadToTail.Y;
+            double normalizedDistanceFromLineHeadToClosetPoint = vectorsDotProduct / lineHeadToTail.LengthSquared;
+            return new Point(_x1 + lineHeadToTail.X * normalizedDistanceFromLineHeadToClosetPoint, _y1 + lineHeadToTail.Y * normalizedDistanceFromLineHeadToClosetPoint);
+        }
     }
 }

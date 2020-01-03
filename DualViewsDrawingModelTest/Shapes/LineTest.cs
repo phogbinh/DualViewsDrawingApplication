@@ -7,6 +7,8 @@ namespace DualViewsDrawingModel.Shapes.Test
     [TestClass()]
     public class LineTest
     {
+        private Line _line;
+
         /// <summary>
         /// Initializes this instance.
         /// </summary>
@@ -14,7 +16,7 @@ namespace DualViewsDrawingModel.Shapes.Test
         [DeploymentItem(TestDefinitions.OUTPUT_ITEM_FILE_PATH)]
         public void Initialize()
         {
-            /* Body intentionally empty */
+            _line = new Line(new Point(), new Point());
         }
 
         /// <summary>
@@ -30,6 +32,37 @@ namespace DualViewsDrawingModel.Shapes.Test
             Assert.AreEqual(line.Y1, 2.2);
             Assert.AreEqual(line.X2, 3.3);
             Assert.AreEqual(line.Y2, 4.4);
+        }
+
+        /// <summary>
+        /// Tests the get closet point.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetClosetPoint()
+        {
+            _line = new Line(new Point(0.0, 0.0), new Point(5.0, 0.0)); // y = 0
+            Point expectedClosetPoint = _line.GetClosetPoint(new Point(0.0, 0.0));
+            Assert.AreEqual(expectedClosetPoint.X, 0.0);
+            Assert.AreEqual(expectedClosetPoint.Y, 0.0);
+            expectedClosetPoint = _line.GetClosetPoint(new Point(5.0, 0.0));
+            Assert.AreEqual(expectedClosetPoint.X, 5.0);
+            Assert.AreEqual(expectedClosetPoint.Y, 0.0);
+            expectedClosetPoint = _line.GetClosetPoint(new Point(-0.1, 0.0));
+            Assert.AreEqual(expectedClosetPoint.X, -0.1);
+            Assert.AreEqual(expectedClosetPoint.Y, 0.0);
+            expectedClosetPoint = _line.GetClosetPoint(new Point(5.1, 0.0));
+            Assert.AreEqual(expectedClosetPoint.X, 5.1);
+            Assert.AreEqual(expectedClosetPoint.Y, 0.0);
+            expectedClosetPoint = _line.GetClosetPoint(new Point(0.0, 0.1));
+            Assert.AreEqual(expectedClosetPoint.X, 0.0);
+            Assert.AreEqual(expectedClosetPoint.Y, 0.0);
+            expectedClosetPoint = _line.GetClosetPoint(new Point(5.0, -0.1));
+            Assert.AreEqual(expectedClosetPoint.X, 5.0);
+            Assert.AreEqual(expectedClosetPoint.Y, 0.0);
+            _line = new Line(new Point(0, 3), new Point(2, -1)); // 2 * x + y = 3
+            expectedClosetPoint = _line.GetClosetPoint(new Point(3, 2));
+            Assert.AreEqual(expectedClosetPoint.X, 1);
+            Assert.AreEqual(expectedClosetPoint.Y, 1);
         }
     }
 }
