@@ -85,11 +85,17 @@
     <Compile Include="..\DualViewsDrawingModel\DrawingPresentationModel.cs">
       <Link>Models\DrawingPresentationModel.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\IClosePointDetector.cs">
+      <Link>Models\IClosePointDetector.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\IDrawingCommandAgent.cs">
       <Link>Models\IDrawingCommandAgent.cs</Link>
     </Compile>
     <Compile Include="..\DualViewsDrawingModel\IGraphics.cs">
       <Link>Models\IGraphics.cs</Link>
+    </Compile>
+    <Compile Include="..\DualViewsDrawingModel\IIncludingPointDetector.cs">
+      <Link>Models\IIncludingPointDetector.cs</Link>
     </Compile>
     <Compile Include="..\DualViewsDrawingModel\Model.cs">
       <Link>Models\Model.cs</Link>

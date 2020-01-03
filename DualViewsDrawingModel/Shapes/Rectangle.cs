@@ -2,7 +2,7 @@
 
 namespace DualViewsDrawingModel.Shapes
 {
-    public class Rectangle
+    public class Rectangle : IIncludingPointDetector
     {
         public double X
         {

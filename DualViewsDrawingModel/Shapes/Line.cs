@@ -2,7 +2,7 @@
 
 namespace DualViewsDrawingModel.Shapes
 {
-    public class Line
+    public class Line : IClosePointDetector, IIncludingPointDetector
     {
         public double X1
         {
@@ -59,7 +59,7 @@ namespace DualViewsDrawingModel.Shapes
         public bool IsCloseToPoint(Point point, double pointToLineMaximumDistanceSquared)
         {
             Point closestPoint = GetClosestPoint(point);
-            Vector pointToClosestPoint = new Vector(closestPoint.X, closestPoint.Y) - new Vector(point.X,point.Y);
+            Vector pointToClosestPoint = new Vector(closestPoint.X, closestPoint.Y) - new Vector(point.X, point.Y);
             return IsIncludingPoint(closestPoint) && pointToClosestPoint.LengthSquared <= pointToLineMaximumDistanceSquared;
         }
 
