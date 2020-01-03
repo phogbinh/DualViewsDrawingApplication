@@ -234,6 +234,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the create then execute resizing command.
+        /// </summary>
+        [TestMethod()]
+        public void TestCreateThenExecuteResizingCommand()
+        {
+            _canvasDrawer.CreateThenExecuteResizingCommand(new ShapeDrawerMock(new Point(), new Point()), new Point(), new Point());
+            Assert.IsTrue(_commandsManager.IsCalledAddThenExecuteCommand);
+        }
+
+        /// <summary>
         /// Tests the get selected shape shape drawer.
         /// </summary>
         [TestMethod()]

@@ -149,6 +149,9 @@
     <Compile Include="..\DualViewsDrawingModel\Commands\ICommand.cs">
       <Link>Models\Commands\ICommand.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\Commands\ResizingCommand.cs">
+      <Link>Models\ResizingCommand.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\Definitions.cs">
       <Link>Models\Definitions.cs</Link>
     </Compile>
