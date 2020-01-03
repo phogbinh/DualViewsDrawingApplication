@@ -5,6 +5,13 @@ namespace DualViewsDrawingModel.ShapeDrawers
 {
     public abstract class ShapeDrawer : IClosePointDetector
     {
+        public ShapeDrawerType Type
+        {
+            get
+            {
+                return _type;
+            }
+        }
         public Point DrawingEndingPoint
         {
             set

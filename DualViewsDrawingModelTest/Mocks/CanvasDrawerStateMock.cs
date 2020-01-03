@@ -30,6 +30,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledGetCurrentShapeType
+        {
+            get; set;
+        }
 
         public CanvasDrawerStateMock() : base()
         {
@@ -39,6 +43,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledHandleCanvasLeftMouseReleased = false;
             IsCalledDraw = false;
             IsCalledGetCurrentShapeRectangle = false;
+            IsCalledGetCurrentShapeType = false;
         }
 
         /// <summary>
@@ -88,6 +93,15 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             IsCalledGetCurrentShapeRectangle = true;
             return null;
+        }
+
+        /// <summary>
+        /// Gets the type of the current shape.
+        /// </summary>
+        public ShapeDrawerType GetCurrentShapeType()
+        {
+            IsCalledGetCurrentShapeType = true;
+            return ShapeDrawerType.None;
         }
     }
 }

@@ -100,5 +100,13 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         {
             return null;
         }
+
+        /// <summary>
+        /// Gets the type of the current shape.
+        /// </summary>
+        public ShapeDrawerType GetCurrentShapeType()
+        {
+            return ShapeDrawerType.None;
+        }
     }
 }
