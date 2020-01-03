@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DrawingForm));
             this._canvas = new WindowsFormsCustomComponents.DoubleBufferedPanel();
+            this._currentShapeInfo = new System.Windows.Forms.Label();
             this._formTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this._buttonsTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this._rectangleButton = new System.Windows.Forms.Button();
@@ -38,6 +39,7 @@
             this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._undoButton = new System.Windows.Forms.ToolStripButton();
             this._redoButton = new System.Windows.Forms.ToolStripButton();
+            this._canvas.SuspendLayout();
             this._formTableLayout.SuspendLayout();
             this._buttonsTableLayout.SuspendLayout();
             this._toolStrip.SuspendLayout();
@@ -47,11 +49,23 @@
             // 
             this._canvas.AccessibleName = "CanvasPanel";
             this._canvas.BackColor = System.Drawing.SystemColors.Info;
+            this._canvas.Controls.Add(this._currentShapeInfo);
             this._canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this._canvas.Location = new System.Drawing.Point(3, 81);
             this._canvas.Name = "_canvas";
             this._canvas.Size = new System.Drawing.Size(1042, 522);
             this._canvas.TabIndex = 0;
+            // 
+            // _currentShapeInfo
+            // 
+            this._currentShapeInfo.AutoSize = true;
+            this._currentShapeInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._currentShapeInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this._currentShapeInfo.Location = new System.Drawing.Point(0, 498);
+            this._currentShapeInfo.Margin = new System.Windows.Forms.Padding(0);
+            this._currentShapeInfo.Name = "_currentShapeInfo";
+            this._currentShapeInfo.Size = new System.Drawing.Size(0, 24);
+            this._currentShapeInfo.TabIndex = 0;
             // 
             // _formTableLayout
             // 
@@ -84,7 +98,7 @@
             this._buttonsTableLayout.Name = "_buttonsTableLayout";
             this._buttonsTableLayout.RowCount = 1;
             this._buttonsTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this._buttonsTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this._buttonsTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this._buttonsTableLayout.Size = new System.Drawing.Size(1042, 46);
             this._buttonsTableLayout.TabIndex = 1;
             // 
@@ -148,7 +162,7 @@
             this._redoButton.Image = ((System.Drawing.Image)(resources.GetObject("_redoButton.Image")));
             this._redoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._redoButton.Name = "_redoButton";
-            this._redoButton.Size = new System.Drawing.Size(38, 16);
+            this._redoButton.Size = new System.Drawing.Size(38, 23);
             this._redoButton.Text = "Redo";
             // 
             // DrawingForm
@@ -160,6 +174,8 @@
             this.Controls.Add(this._formTableLayout);
             this.Name = "DrawingForm";
             this.Text = "DrawingForm";
+            this._canvas.ResumeLayout(false);
+            this._canvas.PerformLayout();
             this._formTableLayout.ResumeLayout(false);
             this._formTableLayout.PerformLayout();
             this._buttonsTableLayout.ResumeLayout(false);
@@ -180,5 +196,6 @@
         private System.Windows.Forms.ToolStrip _toolStrip;
         private System.Windows.Forms.ToolStripButton _undoButton;
         private System.Windows.Forms.ToolStripButton _redoButton;
+        private System.Windows.Forms.Label _currentShapeInfo;
     }
 }

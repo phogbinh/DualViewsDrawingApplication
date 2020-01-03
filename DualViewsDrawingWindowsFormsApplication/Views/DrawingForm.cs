@@ -1,4 +1,5 @@
 ﻿using DualViewsDrawingModel;
+using DualViewsDrawingModel.Shapes;
 using DualViewsDrawingWindowsFormsApplication.Views.Utilities;
 using System;
 using System.Windows.Forms;
@@ -44,6 +45,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             _model.UndoRedoStacksChanged += UpdateUndoRedoButtonEnabledStates;
             _model.CanvasRefreshDrawRequested += HandleCanvasRefreshDrawRequested;
             _model.DrawingEnded += HandleDrawingEnded;
+            _model.CanvasCurrentShapeChanged += HandleCanvasCurrentShapeChanged;
         }
 
         /// <summary>
@@ -55,6 +57,7 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
             _model.UndoRedoStacksChanged -= UpdateUndoRedoButtonEnabledStates;
             _model.CanvasRefreshDrawRequested -= HandleCanvasRefreshDrawRequested;
             _model.DrawingEnded -= HandleDrawingEnded;
+            _model.CanvasCurrentShapeChanged -= HandleCanvasCurrentShapeChanged;
         }
 
         /// <summary>
@@ -72,6 +75,23 @@ namespace DualViewsDrawingWindowsFormsApplication.Views
         {
             _drawingPresentationModel.HandleDrawingEnded();
             _model.SetCurrentShapeDrawerType(ShapeDrawerType.None);
+        }
+
+        /// <summary>
+        /// Handles the canvas current shape changed.
+        /// </summary>
+        private void HandleCanvasCurrentShapeChanged()
+        {
+            ShapeDrawerType currentShapeType = _model.GetCanvasCurrentShapeType();
+            Rectangle currentShapeRectangle = _model.GetCanvasCurrentShapeRectangle();
+            if ( currentShapeType == ShapeDrawerType.None && currentShapeRectangle == null )
+            {
+                _currentShapeInfo.Text = "";
+            }
+            else
+            {
+                _currentShapeInfo.Text = Definitions.CURRENT_SHAPE_INFO_SELECTED_TEXT + ShapeDrawerTypeHelper.GetString(currentShapeType) + Definitions.OPENING_BRACKET + currentShapeRectangle.X + Definitions.COMMA_SPACE + currentShapeRectangle.Y + Definitions.COMMA_SPACE + currentShapeRectangle.GetLowerRightX() + Definitions.COMMA_SPACE + currentShapeRectangle.X + Definitions.COMMA_SPACE + currentShapeRectangle.GetLowerRightY() + Definitions.CLOSING_BRACKET;
+            }
         }
 
         /// <summary>
