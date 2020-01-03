@@ -108,14 +108,14 @@ namespace DualViewsDrawingModel.Shapes.Test
         public void TestIsAlignedWithPoint()
         {
             _line = new Line(new Point(0.0, 1.0), new Point(5.0, 1.0)); // y = 1
-            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(0.0, 1.0), Definitions.DOUBLE_EPSILON));
-            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.0, 1.0), Definitions.DOUBLE_EPSILON));
-            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(-0.1, 1.0), Definitions.DOUBLE_EPSILON));
-            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.1, 1.0), Definitions.DOUBLE_EPSILON));
-            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 1.1), Definitions.DOUBLE_EPSILON));
-            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 0.9), Definitions.DOUBLE_EPSILON));
-            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(-0.1, 0.9), Definitions.DOUBLE_EPSILON));
-            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.1, 0.9), Definitions.DOUBLE_EPSILON));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(0.0, 1.0), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.0, 1.0), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(-0.1, 1.0), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsTrue(_line.IsAlignedWithPoint(new Point(5.1, 1.0), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 1.1), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.0, 0.9), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(-0.1, 0.9), Definitions.DOUBLE_DIFFERENCE));
+            Assert.IsFalse(_line.IsAlignedWithPoint(new Point(0.1, 0.9), Definitions.DOUBLE_DIFFERENCE));
         }
     }
 }

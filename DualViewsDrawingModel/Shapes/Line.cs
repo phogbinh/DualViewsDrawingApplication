@@ -79,7 +79,7 @@ namespace DualViewsDrawingModel.Shapes
         /// </summary>
         public bool IsIncludingPoint(Point point)
         {
-            if ( !IsAlignedWithPoint(point, Definitions.DOUBLE_EPSILON) )
+            if ( !IsAlignedWithPoint(point, Definitions.DOUBLE_DIFFERENCE) )
             {
                 return false;
             }
