@@ -85,8 +85,8 @@ namespace DualViewsDrawingModel.Shapes
             }
             Vector pointToLineHead = new Vector(_x1, _y1) - new Vector(point.X, point.Y);
             Vector lineTailToHead = new Vector(_x1, _y1) - new Vector(_x2, _y2);
-            double vectorsDotProduct = Vector.DotProduct(pointToLineHead, lineTailToHead);
-            return Definitions.IsInclusiveInInterval(vectorsDotProduct, 0.0, lineTailToHead.LengthSquared);
+            double dotProduct = Vector.DotProduct(pointToLineHead, lineTailToHead);
+            return Definitions.IsInclusiveInInterval(dotProduct, 0.0, lineTailToHead.LengthSquared);
         }
 
         /// <summary>

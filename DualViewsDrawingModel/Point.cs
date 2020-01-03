@@ -55,8 +55,8 @@
         /// </summary>
         public bool IsCloseToPoint(Point point, double pointToPointMaximumDistanceSquared)
         {
-            Vector vector = new Vector(point._x, point._y) - new Vector(_x, _y);
-            return vector.LengthSquared <= pointToPointMaximumDistanceSquared;
+            Vector pointToPoint = new Vector(point._x, point._y) - new Vector(_x, _y);
+            return pointToPoint.LengthSquared <= pointToPointMaximumDistanceSquared;
         }
     }
 }
