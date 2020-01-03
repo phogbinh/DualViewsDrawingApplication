@@ -1,4 +1,6 @@
-﻿namespace DualViewsDrawingModel.CanvasDrawerStates
+﻿using DualViewsDrawingModel.Shapes;
+
+namespace DualViewsDrawingModel.CanvasDrawerStates
 {
     public interface ICanvasDrawerState
     {
@@ -26,5 +28,15 @@
         /// Draws the specified graphics.
         /// </summary>
         void Draw(IGraphics graphics);
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        Rectangle GetCurrentShapeRectangle();
+
+        /// <summary>
+        /// Gets the type of the current shape.
+        /// </summary>
+        ShapeDrawerType GetCurrentShapeType();
     }
 }

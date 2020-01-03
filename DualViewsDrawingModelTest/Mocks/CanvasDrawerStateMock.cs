@@ -1,5 +1,6 @@
 ﻿using DualViewsDrawingModel;
 using DualViewsDrawingModel.CanvasDrawerStates;
+using DualViewsDrawingModel.Shapes;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
@@ -25,6 +26,14 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledGetCurrentShapeRectangle
+        {
+            get; set;
+        }
+        public bool IsCalledGetCurrentShapeType
+        {
+            get; set;
+        }
 
         public CanvasDrawerStateMock() : base()
         {
@@ -33,6 +42,8 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledHandleCanvasLeftMouseMoved = false;
             IsCalledHandleCanvasLeftMouseReleased = false;
             IsCalledDraw = false;
+            IsCalledGetCurrentShapeRectangle = false;
+            IsCalledGetCurrentShapeType = false;
         }
 
         /// <summary>
@@ -73,6 +84,24 @@ namespace DualViewsDrawingModelTest.Mocks
         public void Draw(IGraphics graphics)
         {
             IsCalledDraw = true;
+        }
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        public Rectangle GetCurrentShapeRectangle()
+        {
+            IsCalledGetCurrentShapeRectangle = true;
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the type of the current shape.
+        /// </summary>
+        public ShapeDrawerType GetCurrentShapeType()
+        {
+            IsCalledGetCurrentShapeType = true;
+            return ShapeDrawerType.None;
         }
     }
 }

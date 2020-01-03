@@ -1,6 +1,7 @@
 ﻿using DualViewsDrawingModel.CanvasDrawerStates;
 using DualViewsDrawingModel.Commands;
 using DualViewsDrawingModel.ShapeDrawers;
+using DualViewsDrawingModel.Shapes;
 using System;
 
 namespace DualViewsDrawingModel
@@ -9,11 +10,16 @@ namespace DualViewsDrawingModel
     {
         public delegate void CanvasRefreshDrawRequestedEventHandler();
         public delegate void DrawingEndedEventHandler();
+        public delegate void CurrentShapeChangedEventHandler();
         public CanvasRefreshDrawRequestedEventHandler CanvasRefreshDrawRequested
         {
             get; set;
         }
         public DrawingEndedEventHandler DrawingEnded
+        {
+            get; set;
+        }
+        public CurrentShapeChangedEventHandler CurrentShapeChanged
         {
             get; set;
         }
@@ -47,6 +53,7 @@ namespace DualViewsDrawingModel
         {
             SetCurrentShapeDrawerType(shapeDrawerType);
             SetCurrentState(new CanvasDrawerPointerState(this));
+            NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerPointerState` is completely created.
             ClearShapeDrawersManager();
         }
 
@@ -182,6 +189,41 @@ namespace DualViewsDrawingModel
         public virtual void CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
         {
             _commandsManager.AddThenExecuteCommand(new DrawingCommand(this, drawingStartingPoint, drawingEndingPoint, _currentShapeDrawerType));
+        }
+
+        /// <summary>
+        /// Gets the selected shape shape drawer.
+        /// </summary>
+        public virtual ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
+        {
+            return _canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIsCloseToPoint(leftMousePressedPosition, Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED);
+        }
+
+        /// <summary>
+        /// Notifies the current shape changed.
+        /// </summary>
+        public virtual void NotifyCurrentShapeChanged()
+        {
+            if ( CurrentShapeChanged != null )
+            {
+                CurrentShapeChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        public virtual Rectangle GetCurrentShapeRectangle()
+        {
+            return _currentState.GetCurrentShapeRectangle();
+        }
+
+        /// <summary>
+        /// Gets the type of the current shape.
+        /// </summary>
+        public virtual ShapeDrawerType GetCurrentShapeType()
+        {
+            return _currentState.GetCurrentShapeType();
         }
     }
 }

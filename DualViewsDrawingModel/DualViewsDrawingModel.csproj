@@ -53,6 +53,8 @@
     <Compile Include="Definitions.cs" />
     <Compile Include="DrawingPresentationModel.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="IClosePointDetector.cs" />
+    <Compile Include="IIncludingPointDetector.cs" />
     <Compile Include="IDrawingCommandAgent.cs" />
     <Compile Include="IGraphics.cs" />
     <Compile Include="Model.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Shapes\Line.cs" />
     <Compile Include="Shapes\Rectangle.cs" />
     <Compile Include="ShapeDrawerTypeHelper.cs" />
+    <Compile Include="Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

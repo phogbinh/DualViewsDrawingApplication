@@ -7,7 +7,7 @@ namespace DualViewsDrawingModel.ShapeDrawers
     {
         public LineDrawer(Point drawingStartingPointData, Point drawingEndingPointData) : base(drawingStartingPointData, drawingEndingPointData)
         {
-            /* Body intentionally empty */
+            _type = ShapeDrawerType.Line;
         }
 
         /// <summary>
@@ -20,6 +20,14 @@ namespace DualViewsDrawingModel.ShapeDrawers
                 throw new ArgumentNullException(Definitions.ERROR_GRAPHICS_IS_NULL);
             }
             graphics.Draw(GetLine());
+        }
+
+        /// <summary>
+        /// Gets the close point detector.
+        /// </summary>
+        public override IClosePointDetector GetClosePointDetector()
+        {
+            return GetLine();
         }
 
         /// <summary>

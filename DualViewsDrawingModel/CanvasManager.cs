@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DualViewsDrawingModel.Shapes;
+using System;
 
 namespace DualViewsDrawingModel
 {
@@ -24,6 +25,17 @@ namespace DualViewsDrawingModel
             set
             {
                 _canvasDrawer.DrawingEnded = value;
+            }
+        }
+        public CanvasDrawer.CurrentShapeChangedEventHandler CurrentShapeChanged
+        {
+            get
+            {
+                return _canvasDrawer.CurrentShapeChanged;
+            }
+            set
+            {
+                _canvasDrawer.CurrentShapeChanged = value;
             }
         }
         public double CanvasWidth
@@ -149,6 +161,22 @@ namespace DualViewsDrawingModel
         public virtual void RefreshDrawCanvas(IGraphics graphics)
         {
             _canvasDrawer.RefreshDrawCanvas(graphics);
+        }
+
+        /// <summary>
+        /// Gets the current shape rectangle.
+        /// </summary>
+        public virtual Rectangle GetCurrentShapeRectangle()
+        {
+            return _canvasDrawer.GetCurrentShapeRectangle();
+        }
+
+        /// <summary>
+        /// Gets the type of the current shape.
+        /// </summary>
+        public virtual ShapeDrawerType GetCurrentShapeType()
+        {
+            return _canvasDrawer.GetCurrentShapeType();
         }
     }
 }

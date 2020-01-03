@@ -1,5 +1,4 @@
-﻿using DualViewsDrawingModel.Shapes;
-using System;
+﻿using System;
 
 namespace DualViewsDrawingModel.ShapeDrawers
 {
@@ -7,7 +6,7 @@ namespace DualViewsDrawingModel.ShapeDrawers
     {
         public RectangleDrawer(Point drawingStartingPointData, Point drawingEndingPointData) : base(drawingStartingPointData, drawingEndingPointData)
         {
-            /* Body intentionally empty */
+            _type = ShapeDrawerType.Rectangle;
         }
 
         /// <summary>
@@ -23,11 +22,11 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
 
         /// <summary>
-        /// Gets the rectangle.
+        /// Gets the close point detector.
         /// </summary>
-        private Rectangle GetRectangle()
+        public override IClosePointDetector GetClosePointDetector()
         {
-            return new Rectangle(_drawingStartingPoint, _drawingEndingPoint);
+            return GetRectangle();
         }
     }
 }
