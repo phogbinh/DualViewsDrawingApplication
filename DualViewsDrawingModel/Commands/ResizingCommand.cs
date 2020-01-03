@@ -5,12 +5,17 @@ namespace DualViewsDrawingModel.Commands
 {
     public class ResizingCommand : ICommand
     {
+        private IResizingCommandAgent _agent;
         private ShapeDrawer _shapeDrawer;
         private Point _oldDrawingEndingPoint;
         private Point _newDrawingEndingPoint;
 
-        public ResizingCommand(ShapeDrawer shapeDrawerData, Point oldDrawingEndingPointData, Point newDrawingEndingPointData)
+        public ResizingCommand(IResizingCommandAgent agentData, ShapeDrawer shapeDrawerData, Point oldDrawingEndingPointData, Point newDrawingEndingPointData)
         {
+            if ( agentData == null )
+            {
+                throw new ArgumentNullException(Definitions.ERROR_AGENT_IS_NULL);
+            }
             if ( shapeDrawerData == null )
             {
                 throw new ArgumentNullException(Definitions.ERROR_SHAPE_DRAWER_IS_NULL);
@@ -23,6 +28,7 @@ namespace DualViewsDrawingModel.Commands
             {
                 throw new ArgumentNullException(Definitions.ERROR_POINT_IS_NULL);
             }
+            _agent = agentData;
             _shapeDrawer = shapeDrawerData;
             _oldDrawingEndingPoint = oldDrawingEndingPointData;
             _newDrawingEndingPoint = newDrawingEndingPointData;
@@ -33,7 +39,7 @@ namespace DualViewsDrawingModel.Commands
         /// </summary>
         public void Execute()
         {
-            _shapeDrawer.DrawingEndingPoint = _newDrawingEndingPoint;
+            _agent.ResizeShape(_shapeDrawer, _newDrawingEndingPoint);
         }
 
         /// <summary>
@@ -41,7 +47,7 @@ namespace DualViewsDrawingModel.Commands
         /// </summary>
         public void ReverseExecution()
         {
-            _shapeDrawer.DrawingEndingPoint = _oldDrawingEndingPoint;
+            _agent.ResizeShape(_shapeDrawer, _oldDrawingEndingPoint);
         }
     }
 }
