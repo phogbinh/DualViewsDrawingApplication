@@ -50,6 +50,7 @@
     <Compile Include="CanvasManager.cs" />
     <Compile Include="CommandsManager.cs" />
     <Compile Include="Commands\DrawingCommand.cs" />
+    <Compile Include="Commands\ResizingCommand.cs" />
     <Compile Include="Definitions.cs" />
     <Compile Include="DrawingPresentationModel.cs" />
     <Compile Include="Commands\ICommand.cs" />

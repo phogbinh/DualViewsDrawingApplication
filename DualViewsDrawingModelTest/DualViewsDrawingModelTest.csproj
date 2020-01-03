@@ -64,6 +64,7 @@
     <Compile Include="CanvasManagerTest.cs" />
     <Compile Include="CommandsManagerTest.cs" />
     <Compile Include="Commands\DrawingCommandTest.cs" />
+    <Compile Include="Commands\ResizingCommandTest.cs" />
     <Compile Include="DefinitionsTest.cs" />
     <Compile Include="DrawingPresentationModelTest.cs" />
     <Compile Include="Mocks\ButtonEnabledStatesManagerMock.cs" />
