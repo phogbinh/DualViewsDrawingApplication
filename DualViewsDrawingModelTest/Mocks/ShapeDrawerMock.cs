@@ -7,19 +7,28 @@ namespace DualViewsDrawingModelTest.Mocks
 {
     public class ShapeDrawerMock : ShapeDrawer
     {
-        public bool IsCalledDraw
+        public bool IsCalledGetRectangle
         {
             get; set;
         }
-        public bool IsCalledGetRectangle
+        public bool IsCalledDraw
         {
             get; set;
         }
 
         public ShapeDrawerMock(Point drawingStartingPointData, Point drawingEndingPointData) : base(drawingStartingPointData, drawingEndingPointData)
         {
-            IsCalledDraw = false;
             IsCalledGetRectangle = false;
+            IsCalledDraw = false;
+        }
+
+        /// <summary>
+        /// Gets the rectangle.
+        /// </summary>
+        public override Rectangle GetRectangle()
+        {
+            IsCalledGetRectangle = true;
+            return base.GetRectangle();
         }
 
         /// <summary>
@@ -44,15 +53,6 @@ namespace DualViewsDrawingModelTest.Mocks
         public override IClosePointDetector GetClosePointDetector()
         {
             return null;
-        }
-
-        /// <summary>
-        /// Gets the rectangle.
-        /// </summary>
-        public override Rectangle GetRectangle()
-        {
-            IsCalledGetRectangle = true;
-            return base.GetRectangle();
         }
 
         /// <summary>
