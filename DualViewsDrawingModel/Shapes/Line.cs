@@ -54,9 +54,9 @@ namespace DualViewsDrawingModel.Shapes
         }
 
         /// <summary>
-        /// Gets the closet point.
+        /// Gets the closest point.
         /// </summary>
-        public Point GetClosetPoint(Point point)
+        public Point GetClosestPoint(Point point)
         {
             Vector lineHeadToPoint = new Vector(point.X, point.Y) - new Vector(_x1, _y1);
             Vector lineHeadToTail = new Vector(_x2, _y2) - new Vector(_x1, _y1);
