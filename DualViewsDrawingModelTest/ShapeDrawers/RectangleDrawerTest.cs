@@ -9,6 +9,7 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
     [TestClass()]
     public class RectangleDrawerTest
     {
+        private const string MEMBER_VARIABLE_NAME_TYPE = "_type";
         private const string MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT = "_drawingStartingPoint";
         private const string MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT = "_drawingEndingPoint";
         private RectangleDrawer _rectangleDrawer;
@@ -35,6 +36,7 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
             var drawingEndingPoint = new Point();
             var rectangleDrawer = new RectangleDrawer(drawingStartingPoint, drawingEndingPoint);
             var target = new PrivateObject(rectangleDrawer);
+            Assert.AreEqual(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_TYPE), ShapeDrawerType.Rectangle);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT), drawingStartingPoint);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT), drawingEndingPoint);
         }

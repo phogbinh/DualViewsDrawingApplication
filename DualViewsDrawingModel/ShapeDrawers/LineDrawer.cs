@@ -7,7 +7,7 @@ namespace DualViewsDrawingModel.ShapeDrawers
     {
         public LineDrawer(Point drawingStartingPointData, Point drawingEndingPointData) : base(drawingStartingPointData, drawingEndingPointData)
         {
-            /* Body intentionally empty */
+            _type = ShapeDrawerType.Line;
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace DualViewsDrawingModel.ShapeDrawers
     {
         public RectangleDrawer(Point drawingStartingPointData, Point drawingEndingPointData) : base(drawingStartingPointData, drawingEndingPointData)
         {
-            /* Body intentionally empty */
+            _type = ShapeDrawerType.Rectangle;
         }
 
         /// <summary>
