@@ -174,7 +174,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Gets the type of the current shape.
         /// </summary>
-        public ShapeDrawerType GetCurrentShapeType()
+        public virtual ShapeDrawerType GetCurrentShapeType()
         {
             return _canvasDrawer.GetCurrentShapeType();
         }
