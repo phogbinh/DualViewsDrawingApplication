@@ -72,6 +72,20 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         }
 
         /// <summary>
+        /// Tests the state of the go to resizing.
+        /// </summary>
+        [TestMethod()]
+        public void TestGoToResizingState()
+        {
+            const string MEMBER_FUNCTION_NAME_GO_TO_RESIZING_STATE = "GoToResizingState";
+            var arguments = new object[] { new ShapeDrawerMock(new Point(), new Point()) };
+            _target.Invoke(MEMBER_FUNCTION_NAME_GO_TO_RESIZING_STATE, arguments);
+            Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentState);
+            Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerResizingState));
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
+        }
+
+        /// <summary>
         /// Tests the select shape.
         /// </summary>
         [TestMethod()]

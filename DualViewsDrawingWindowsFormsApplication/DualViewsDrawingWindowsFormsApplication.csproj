@@ -61,6 +61,9 @@
     <Compile Include="..\DualViewsDrawingModel\CanvasDrawerStates\CanvasDrawerPointerState.cs">
       <Link>Models\CanvasDrawerStates\CanvasDrawerPointerState.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\CanvasDrawerStates\CanvasDrawerResizingState.cs">
+      <Link>Models\CanvasDrawerStates\CanvasDrawerResizingState.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\CanvasDrawerStates\ICanvasDrawerState.cs">
       <Link>Models\CanvasDrawerStates\ICanvasDrawerState.cs</Link>
     </Compile>

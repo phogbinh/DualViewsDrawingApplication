@@ -46,6 +46,15 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         }
 
         /// <summary>
+        /// Goes the state of to resizing.
+        /// </summary>
+        private void GoToResizingState(ShapeDrawer selectedResizingShapeDrawer)
+        {
+            _canvasDrawer.SetCurrentState(new CanvasDrawerResizingState(_canvasDrawer, selectedResizingShapeDrawer));
+            _canvasDrawer.NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerResizingState` is completely created.
+        }
+
+        /// <summary>
         /// Selects the shape.
         /// </summary>
         private void SelectShape(Point mousePosition)
