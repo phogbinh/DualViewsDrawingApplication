@@ -1,5 +1,6 @@
 ﻿using DualViewsDrawingModel.Shapes;
 using System;
+using System.Collections.Generic;
 
 namespace DualViewsDrawingModel.ShapeDrawers
 {
@@ -80,5 +81,10 @@ namespace DualViewsDrawingModel.ShapeDrawers
         /// Gets the close point detector.
         /// </summary>
         public abstract IClosePointDetector GetClosePointDetector();
+
+        /// <summary>
+        /// Gets the corner points.
+        /// </summary>
+        public abstract List<Point> GetCornerPoints();
     }
 }

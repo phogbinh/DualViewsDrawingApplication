@@ -1,6 +1,7 @@
 ﻿using DualViewsDrawingModel;
 using DualViewsDrawingModel.ShapeDrawers;
 using DualViewsDrawingModel.Shapes;
+using System.Collections.Generic;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
@@ -52,6 +53,14 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             IsCalledGetRectangle = true;
             return base.GetRectangle();
+        }
+
+        /// <summary>
+        /// Gets the corner points.
+        /// </summary>
+        public override List<Point> GetCornerPoints()
+        {
+            return null;
         }
     }
 }

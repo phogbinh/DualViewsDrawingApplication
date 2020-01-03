@@ -1,5 +1,6 @@
 ﻿using DualViewsDrawingModel.Shapes;
 using System;
+using System.Collections.Generic;
 
 namespace DualViewsDrawingModel.ShapeDrawers
 {
@@ -40,6 +41,17 @@ namespace DualViewsDrawingModel.ShapeDrawers
         public override IClosePointDetector GetClosePointDetector()
         {
             return GetLine();
+        }
+
+        /// <summary>
+        /// Gets the corner points.
+        /// </summary>
+        public override List<Point> GetCornerPoints()
+        {
+            List<Point> cornerPoints = new List<Point>();
+            cornerPoints.Add(_drawingStartingPoint);
+            cornerPoints.Add(_drawingEndingPoint);
+            return cornerPoints;
         }
 
         /// <summary>
