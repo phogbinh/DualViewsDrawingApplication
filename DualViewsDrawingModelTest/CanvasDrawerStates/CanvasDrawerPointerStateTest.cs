@@ -62,6 +62,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         {
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.None);
             _canvasDrawerPointerState.HandleCanvasLeftMousePressed(new Point());
+            Assert.IsTrue(_canvasDrawer.IsCalledGetSelectedResizingShapeDrawer);
             Assert.IsTrue(_canvasDrawer.IsCalledGetSelectedShapeShapeDrawer);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
             _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Line);

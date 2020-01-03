@@ -71,6 +71,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledGetSelectedResizingShapeDrawer
+        {
+            get; set;
+        }
         public bool IsCalledNotifyCurrentShapeChanged
         {
             get; set;
@@ -106,6 +110,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = false;
             IsCalledCreateThenExecuteResizingCommand = false;
             IsCalledGetSelectedShapeShapeDrawer = false;
+            IsCalledGetSelectedResizingShapeDrawer = false;
             IsCalledNotifyCurrentShapeChanged = false;
             IsCalledGetCurrentShapeRectangle = false;
             IsCalledGetCurrentShapeType = false;
@@ -240,6 +245,15 @@ namespace DualViewsDrawingModelTest.Mocks
         public override ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
         {
             IsCalledGetSelectedShapeShapeDrawer = true;
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the selected resizing shape drawer.
+        /// </summary>
+        public override ShapeDrawer GetSelectedResizingShapeDrawer(Point leftMousePressedPosition)
+        {
+            IsCalledGetSelectedResizingShapeDrawer = true;
             return null;
         }
 
