@@ -68,6 +68,21 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
 
         /// <summary>
+        /// Draws the selection corners.
+        /// </summary>
+        protected void DrawSelectionCorners(IGraphics graphics)
+        {
+            if ( graphics == null )
+            {
+                throw new ArgumentNullException(Definitions.ERROR_GRAPHICS_IS_NULL);
+            }
+            foreach ( Point cornerPoint in this.GetCornerPoints() )
+            {
+                graphics.DrawSelectionCorner(cornerPoint);
+            }
+        }
+
+        /// <summary>
         /// Draws the specified graphics.
         /// </summary>
         public abstract void Draw(IGraphics graphics);
