@@ -2,7 +2,7 @@
 
 namespace DualViewsDrawingModel.Shapes
 {
-    public class Rectangle : IIncludingPointDetector
+    public class Rectangle : IClosePointDetector, IIncludingPointDetector
     {
         public double X
         {
@@ -77,6 +77,14 @@ namespace DualViewsDrawingModel.Shapes
             _y = Math.Min(drawingStartingPoint.Y, drawingEndingPoint.Y);
             Width = Math.Abs(drawingStartingPoint.X - drawingEndingPoint.X);
             Height = Math.Abs(drawingStartingPoint.Y - drawingEndingPoint.Y);
+        }
+
+        /// <summary>
+        /// Determines whether [is close to point].
+        /// </summary>
+        public bool IsCloseToPoint(Point point, double pointToLineMaximumDistanceSquared)
+        {
+            return IsIncludingPoint(point);
         }
 
         /// <summary>
