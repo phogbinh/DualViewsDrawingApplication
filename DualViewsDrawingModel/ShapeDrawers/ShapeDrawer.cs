@@ -3,7 +3,7 @@ using System;
 
 namespace DualViewsDrawingModel.ShapeDrawers
 {
-    public abstract class ShapeDrawer
+    public abstract class ShapeDrawer : IClosePointDetector
     {
         public Point DrawingEndingPoint
         {
