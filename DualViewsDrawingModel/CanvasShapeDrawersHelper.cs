@@ -6,7 +6,6 @@ namespace DualViewsDrawingModel
 {
     public class CanvasShapeDrawersHelper
     {
-        private const string ERROR_SHAPE_DRAWER_IS_NULL = "The given shape drawer is null.";
         private List<ShapeDrawer> _shapeDrawers;
 
         public CanvasShapeDrawersHelper()
@@ -21,7 +20,7 @@ namespace DualViewsDrawingModel
         {
             if ( shapeDrawer == null )
             {
-                throw new ArgumentNullException(ERROR_SHAPE_DRAWER_IS_NULL);
+                throw new ArgumentNullException(Definitions.ERROR_SHAPE_DRAWER_IS_NULL);
             }
             _shapeDrawers.Add(shapeDrawer);
         }
@@ -33,7 +32,7 @@ namespace DualViewsDrawingModel
         {
             if ( shapeDrawer == null )
             {
-                throw new ArgumentNullException(ERROR_SHAPE_DRAWER_IS_NULL);
+                throw new ArgumentNullException(Definitions.ERROR_SHAPE_DRAWER_IS_NULL);
             }
             _shapeDrawers.Remove(shapeDrawer);
         }

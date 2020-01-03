@@ -20,6 +20,7 @@ namespace DualViewsDrawingModel
         public const string COMMA_SPACE = ", ";
         public const string ERROR_MOUSE_POSITION_IS_NULL = "The given mouse position is null.";
         public const string ERROR_AGENT_IS_NULL = "The given agent is null.";
+        public const string ERROR_SHAPE_DRAWER_IS_NULL = "The given shape drawer is null.";
         private const string ERROR_INTERVAL_LOWER_BOUNDARY_IS_BIGGER_THAN_UPPER_BOUNDARY = "The given interval lower boundary is bigger than the interval bigger boundary";
 
         /// <summary>
