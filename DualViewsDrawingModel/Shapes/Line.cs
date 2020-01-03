@@ -70,8 +70,8 @@ namespace DualViewsDrawingModel.Shapes
         {
             Vector lineHeadToPoint = new Vector(point.X, point.Y) - new Vector(_x1, _y1);
             Vector lineHeadToTail = new Vector(_x2, _y2) - new Vector(_x1, _y1);
-            double normalizedDistanceFromLineHeadToClosetPoint = Vector.DotProduct(lineHeadToPoint, lineHeadToTail) / lineHeadToTail.LengthSquared;
-            return new Point(_x1 + lineHeadToTail.X * normalizedDistanceFromLineHeadToClosetPoint, _y1 + lineHeadToTail.Y * normalizedDistanceFromLineHeadToClosetPoint);
+            double normalDistanceFromLineHeadToClosetPoint = Vector.DotProduct(lineHeadToPoint, lineHeadToTail) / lineHeadToTail.LengthSquared; // Should be `normalizedDistanceFromLineHeadToClosetPoint`, but Dr.Smell forces me to change it.
+            return new Point(_x1 + lineHeadToTail.X * normalDistanceFromLineHeadToClosetPoint, _y1 + lineHeadToTail.Y * normalDistanceFromLineHeadToClosetPoint);
         }
 
         /// <summary>
