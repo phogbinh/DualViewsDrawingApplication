@@ -208,6 +208,14 @@ namespace DualViewsDrawingModel
         }
 
         /// <summary>
+        /// Gets the selected resizing shape drawer.
+        /// </summary>
+        public ShapeDrawer GetSelectedResizingShapeDrawer(Point leftMousePressedPosition)
+        {
+            return _canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(leftMousePressedPosition, Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED);
+        }
+
+        /// <summary>
         /// Notifies the current shape changed.
         /// </summary>
         public virtual void NotifyCurrentShapeChanged()

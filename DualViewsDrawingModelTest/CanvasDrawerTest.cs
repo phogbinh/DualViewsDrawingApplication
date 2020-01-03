@@ -254,6 +254,16 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the get selected resizing shape drawer.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetSelectedResizingShapeDrawer()
+        {
+            _canvasDrawer.GetSelectedResizingShapeDrawer(new Point());
+            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledGetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint);
+        }
+
+        /// <summary>
         /// Tests the notify current shape changed.
         /// </summary>
         [TestMethod()]
