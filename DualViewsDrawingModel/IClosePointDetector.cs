@@ -1,6 +1,6 @@
 ﻿namespace DualViewsDrawingModel
 {
-    interface IClosePointDetector
+    public interface IClosePointDetector
     {
         /// <summary>
         /// Determines whether [is close to point].
