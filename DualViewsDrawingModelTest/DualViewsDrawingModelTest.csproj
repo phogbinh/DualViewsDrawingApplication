@@ -60,6 +60,7 @@
     <Compile Include="ButtonEnabledStateTest.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerDrawingStateTest.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerPointerStateTest.cs" />
+    <Compile Include="CanvasDrawerStates\CanvasDrawerResizingStateTest.cs" />
     <Compile Include="CanvasDrawerTest.cs" />
     <Compile Include="CanvasManagerTest.cs" />
     <Compile Include="CommandsManagerTest.cs" />

@@ -63,6 +63,10 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledCreateThenExecuteResizingCommand
+        {
+            get; set;
+        }
         public bool IsCalledGetSelectedShapeShapeDrawer
         {
             get; set;
@@ -100,6 +104,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledDrawShape = false;
             IsCalledRemoveShape = false;
             IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = false;
+            IsCalledCreateThenExecuteResizingCommand = false;
             IsCalledGetSelectedShapeShapeDrawer = false;
             IsCalledNotifyCurrentShapeChanged = false;
             IsCalledGetCurrentShapeRectangle = false;
@@ -219,6 +224,14 @@ namespace DualViewsDrawingModelTest.Mocks
         public override void CreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer(Point drawingStartingPoint, Point drawingEndingPoint)
         {
             IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer = true;
+        }
+
+        /// <summary>
+        /// Creates the then execute resizing command.
+        /// </summary>
+        public override void CreateThenExecuteResizingCommand(ShapeDrawer shapeDrawer, Point oldDrawingEndingPoint, Point newDrawingEndingPoint)
+        {
+            IsCalledCreateThenExecuteResizingCommand = true;
         }
 
         /// <summary>

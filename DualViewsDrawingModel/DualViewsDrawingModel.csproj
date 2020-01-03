@@ -46,6 +46,7 @@
     <Compile Include="CanvasDrawer.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerDrawingState.cs" />
     <Compile Include="CanvasDrawerStates\CanvasDrawerPointerState.cs" />
+    <Compile Include="CanvasDrawerStates\CanvasDrawerResizingState.cs" />
     <Compile Include="CanvasDrawerStates\ICanvasDrawerState.cs" />
     <Compile Include="CanvasManager.cs" />
     <Compile Include="CommandsManager.cs" />

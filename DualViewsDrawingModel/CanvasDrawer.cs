@@ -194,7 +194,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Creates the then execute resizing command.
         /// </summary>
-        public void CreateThenExecuteResizingCommand(ShapeDrawer shapeDrawer, Point oldDrawingEndingPoint, Point newDrawingEndingPoint)
+        public virtual void CreateThenExecuteResizingCommand(ShapeDrawer shapeDrawer, Point oldDrawingEndingPoint, Point newDrawingEndingPoint)
         {
             _commandsManager.AddThenExecuteCommand(new ResizingCommand(shapeDrawer, oldDrawingEndingPoint, newDrawingEndingPoint));
         }
