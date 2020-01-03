@@ -51,6 +51,14 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
 
         /// <summary>
+        /// Determines whether [is drawing ending point close to point].
+        /// </summary>
+        public bool IsDrawingEndingPointCloseToPoint(Point point, double pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared)
+        {
+            return _drawingEndingPoint.IsCloseToPoint(point, pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared);
+        }
+
+        /// <summary>
         /// Gets the rectangle.
         /// </summary>
         public virtual Rectangle GetRectangle()

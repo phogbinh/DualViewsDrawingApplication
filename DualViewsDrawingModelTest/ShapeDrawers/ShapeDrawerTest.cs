@@ -65,6 +65,17 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
+        /// Tests the is drawing ending point close to point.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsDrawingEndingPointCloseToPoint()
+        {
+            _shapeDrawer.DrawingEndingPoint = new Point(1.1, 2.2);
+            Assert.IsTrue(_shapeDrawer.IsDrawingEndingPointCloseToPoint(new Point(1.1, 2.2), 0.0));
+            Assert.IsFalse(_shapeDrawer.IsDrawingEndingPointCloseToPoint(new Point(5.5, 5.5), 8.0));
+        }
+
+        /// <summary>
         /// Tests the get rectangle.
         /// </summary>
         [TestMethod()]
