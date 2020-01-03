@@ -37,14 +37,22 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         {
             if ( _canvasDrawer.CurrentShapeDrawerType == ShapeDrawerType.None )
             {
-                _currentSelectedShapeShapeDrawer = _canvasDrawer.GetSelectedShapeShapeDrawer(mousePosition);
-                _canvasDrawer.NotifyCurrentShapeChanged();
+                SelectShape(mousePosition);
             }
             else
             {
                 _canvasDrawer.SetCurrentState(new CanvasDrawerDrawingState(_canvasDrawer, mousePosition));
                 _canvasDrawer.NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerDrawingState` is completely created.
             }
+        }
+
+        /// <summary>
+        /// Selects the shape.
+        /// </summary>
+        private void SelectShape(Point mousePosition)
+        {
+            _currentSelectedShapeShapeDrawer = _canvasDrawer.GetSelectedShapeShapeDrawer(mousePosition);
+            _canvasDrawer.NotifyCurrentShapeChanged();
         }
 
         /// <summary>

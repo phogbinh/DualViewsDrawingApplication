@@ -72,6 +72,20 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         }
 
         /// <summary>
+        /// Tests the select shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestSelectShape()
+        {
+            const string MEMBER_FUNCTION_NAME_SELECT_SHAPE = "SelectShape";
+            _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.None);
+            var arguments = new object[] { new Point() };
+            _target.Invoke(MEMBER_FUNCTION_NAME_SELECT_SHAPE, arguments);
+            Assert.IsTrue(_canvasDrawer.IsCalledGetSelectedShapeShapeDrawer);
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
+        }
+
+        /// <summary>
         /// Tests the handle canvas left mouse moved.
         /// </summary>
         [TestMethod()]
