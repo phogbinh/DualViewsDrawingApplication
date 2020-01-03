@@ -57,9 +57,12 @@ namespace DualViewsDrawingModel.Test
         public void TestInitialize()
         {
             _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SHAPE_DRAWER_TYPE, ShapeDrawerType.Line);
+            int count = 0;
+            _canvasDrawer.CurrentShapeChanged += () => count++;
             _canvasDrawer.Initialize(ShapeDrawerType.Rectangle);
             Assert.AreEqual(_canvasDrawer.CurrentShapeDrawerType, ShapeDrawerType.Rectangle);
             Assert.IsInstanceOfType(_target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_STATE), typeof(CanvasDrawerPointerState));
+            Assert.AreEqual(count, 1);
             Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledClear);
         }
 

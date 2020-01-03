@@ -53,6 +53,7 @@ namespace DualViewsDrawingModel
         {
             SetCurrentShapeDrawerType(shapeDrawerType);
             SetCurrentState(new CanvasDrawerPointerState(this));
+            NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerPointerState` is completely created.
             ClearShapeDrawersManager();
         }
 

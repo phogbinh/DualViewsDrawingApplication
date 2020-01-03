@@ -46,7 +46,6 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CANVAS_DRAWER), canvasDrawer);
             Assert.AreSame(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_DRAWING_STARTING_POINT), currentDrawingShapeDrawingStartingPoint);
             Assert.IsInstanceOfType(target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_DRAWING_SHAPE_HINT_SHAPE_DRAWER), typeof(RectangleDrawer));
-            Assert.IsTrue(canvasDrawer.IsCalledNotifyCurrentShapeChanged);
         }
 
         /// <summary>
@@ -107,6 +106,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
             Assert.IsTrue(_canvasDrawer.IsCalledCreateThenExecuteDrawingCommandToDrawShapeUsingCurrentShapeDrawer);
             Assert.IsTrue(_canvasDrawer.IsCalledNotifyDrawingEnded);
             Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerPointerState));
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
         }
 
         /// <summary>

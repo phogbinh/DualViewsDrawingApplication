@@ -27,7 +27,6 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
             _canvasDrawer = canvasDrawerData;
             _currentDrawingShapeDrawingStartingPoint = currentDrawingShapeDrawingStartingPointData;
             _currentDrawingShapeHintShapeDrawer = ShapeDrawerFactory.CreateShapeDrawer(_currentDrawingShapeDrawingStartingPoint, _currentDrawingShapeDrawingStartingPoint, _canvasDrawer.CurrentShapeDrawerType);
-            _canvasDrawer.NotifyCurrentShapeChanged();
         }
 
         /// <summary>
@@ -74,6 +73,7 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         {
             EndDrawing(mousePosition);
             _canvasDrawer.SetCurrentState(new CanvasDrawerPointerState(_canvasDrawer));
+            _canvasDrawer.NotifyCurrentShapeChanged(); // Only notify after `CanvasDrawerPointerState` is completely created.
         }
 
         /// <summary>
