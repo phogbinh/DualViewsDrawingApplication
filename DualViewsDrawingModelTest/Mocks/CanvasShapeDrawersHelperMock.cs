@@ -25,7 +25,7 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
-        public bool IsCalledGetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint
+        public bool IsCalledGetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint
         {
             get; set;
         }
@@ -37,7 +37,7 @@ namespace DualViewsDrawingModelTest.Mocks
             IsCalledClear = false;
             IsCalledDraw = false;
             IsCalledGetMostRecentDrawShapeDrawerThatIsCloseToPoint = false;
-            IsCalledGetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint = false;
+            IsCalledGetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint = false;
         }
 
         /// <summary>
@@ -84,9 +84,9 @@ namespace DualViewsDrawingModelTest.Mocks
         /// <summary>
         /// Gets the most recent drawn shape drawer whose drawing ending point is close to point.
         /// </summary>
-        public override ShapeDrawer GetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(Point point, double pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared)
+        public override ShapeDrawer GetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(Point point, double pointToShapeDrawerDrawingEndingPointMaximumDistanceSquared)
         {
-            IsCalledGetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint = true;
+            IsCalledGetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint = true;
             return null;
         }
     }

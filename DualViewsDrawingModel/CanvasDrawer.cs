@@ -221,7 +221,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public virtual ShapeDrawer GetSelectedResizingShapeDrawer(Point leftMousePressedPosition)
         {
-            return _canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(leftMousePressedPosition, Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED);
+            return _canvasShapeDrawersHelper.GetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(leftMousePressedPosition, Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED);
         }
 
         /// <summary>

@@ -112,17 +112,17 @@ namespace DualViewsDrawingModel.Test
         /// Tests the get most recent drawn shape drawer whose drawing ending point is close to point.
         /// </summary>
         [TestMethod()]
-        public void TestGetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint()
+        public void TestGetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint()
         {
             var dumpPoint = new Point(TestDefinitions.DUMP_DOUBLE, TestDefinitions.DUMP_DOUBLE);
             var rectangleDrawer = new RectangleDrawer(dumpPoint, new Point(5.0, 5.0));
             var firstLineDrawer = new LineDrawer(dumpPoint, new Point(5.0, 5.0));
             _shapeDrawers.Add(rectangleDrawer);
             _shapeDrawers.Add(firstLineDrawer);
-            Assert.AreSame(_canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(new Point(5.0, 5.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED), firstLineDrawer);
+            Assert.AreSame(_canvasShapeDrawersHelper.GetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(new Point(5.0, 5.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED), firstLineDrawer);
             _shapeDrawers.Add(new LineDrawer(dumpPoint, new Point(10.0, 5.0)));
-            Assert.AreSame(_canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(new Point(5.0, 5.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED), firstLineDrawer);
-            Assert.IsNull(_canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(new Point(7.0, 7.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.AreSame(_canvasShapeDrawersHelper.GetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(new Point(5.0, 5.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED), firstLineDrawer);
+            Assert.IsNull(_canvasShapeDrawersHelper.GetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint(new Point(7.0, 7.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
         }
     }
 }

@@ -275,7 +275,7 @@ namespace DualViewsDrawingModel.Test
         public void TestGetSelectedResizingShapeDrawer()
         {
             _canvasDrawer.GetSelectedResizingShapeDrawer(new Point());
-            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledGetMostRecentDrawnShapeDrawerWhoseDrawingEndingPointIsCloseToPoint);
+            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledGetMostRecentDrawShapeDrawerWhoseDrawingEndingPointIsCloseToPoint);
         }
 
         /// <summary>
