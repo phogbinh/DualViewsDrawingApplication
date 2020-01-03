@@ -18,5 +18,20 @@ namespace DualViewsDrawingModel
         /// Draws the specified rectangle.
         /// </summary>
         void Draw(Rectangle rectangle);
+
+        /// <summary>
+        /// Draws the selection border.
+        /// </summary>
+        void DrawSelectionBorder(Line line);
+
+        /// <summary>
+        /// Draws the selection border.
+        /// </summary
+        void DrawSelectionBorder(Rectangle rectangle);
+
+        /// <summary>
+        /// Draws the selection corner.
+        /// </summary>
+        void DrawSelectionCorner(Point point);
     }
 }

@@ -3,6 +3,7 @@ using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Reflection;
 
 namespace DualViewsDrawingModel.ShapeDrawers.Test
 {
@@ -88,6 +89,42 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
             Assert.AreEqual(expectedRectangle.Y, 2.0);
             Assert.AreEqual(expectedRectangle.Width, 2.0);
             Assert.AreEqual(expectedRectangle.Height, 3.0);
+        }
+
+        /// <summary>
+        /// Tests the draw selection hint.
+        /// </summary>
+        [TestMethod()]
+        public void TestDrawSelectionHint()
+        {
+            var lineDrawer = new LineDrawer(new Point(), new Point());
+            var graphics = new GraphicsMock();
+            lineDrawer.DrawSelectionHint(graphics);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionCorner);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionBorderLine);
+            var rectangleDrawer = new RectangleDrawer(new Point(), new Point());
+            graphics = new GraphicsMock();
+            rectangleDrawer.DrawSelectionHint(graphics);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionCorner);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionBorderRectangle);
+        }
+
+        /// <summary>
+        /// Tests the draw selection corners.
+        /// </summary>
+        [TestMethod()]
+        public void TestDrawSelectionCorners()
+        {
+            const string MEMBER_FUNCTION_NAME_DRAW_SELECTION_CORNERS = "DrawSelectionCorners";
+            var arguments = new object[] { null };
+            TargetInvocationException expectedException = Assert.ThrowsException<TargetInvocationException>(() => _target.Invoke(MEMBER_FUNCTION_NAME_DRAW_SELECTION_CORNERS, arguments));
+            Assert.IsInstanceOfType(expectedException.InnerException, typeof(ArgumentNullException));
+            var lineDrawer = new LineDrawer(new Point(), new Point());
+            var target = new PrivateObject(lineDrawer);
+            var graphics = new GraphicsMock();
+            arguments = new object[] { graphics };
+            target.Invoke(MEMBER_FUNCTION_NAME_DRAW_SELECTION_CORNERS, arguments);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionCorner);
         }
     }
 }

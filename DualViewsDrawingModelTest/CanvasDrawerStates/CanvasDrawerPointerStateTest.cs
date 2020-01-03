@@ -159,8 +159,11 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         [TestMethod()]
         public void TestDraw()
         {
-            _canvasDrawerPointerState.Draw(new GraphicsMock());
-            Assert.IsTrue(true);
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_CURRENT_SELECTED_SHAPE_SHAPE_DRAWER, new LineDrawer(new Point(), new Point()));
+            var graphics = new GraphicsMock();
+            _canvasDrawerPointerState.Draw(graphics);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionCorner);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionBorderLine);
         }
 
         /// <summary>

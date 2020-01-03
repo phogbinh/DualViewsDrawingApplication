@@ -1,24 +1,34 @@
 ﻿using DualViewsDrawingModel;
 using DualViewsDrawingModel.ShapeDrawers;
 using DualViewsDrawingModel.Shapes;
+using System.Collections.Generic;
 
 namespace DualViewsDrawingModelTest.Mocks
 {
     public class ShapeDrawerMock : ShapeDrawer
     {
-        public bool IsCalledDraw
+        public bool IsCalledGetRectangle
         {
             get; set;
         }
-        public bool IsCalledGetRectangle
+        public bool IsCalledDraw
         {
             get; set;
         }
 
         public ShapeDrawerMock(Point drawingStartingPointData, Point drawingEndingPointData) : base(drawingStartingPointData, drawingEndingPointData)
         {
-            IsCalledDraw = false;
             IsCalledGetRectangle = false;
+            IsCalledDraw = false;
+        }
+
+        /// <summary>
+        /// Gets the rectangle.
+        /// </summary>
+        public override Rectangle GetRectangle()
+        {
+            IsCalledGetRectangle = true;
+            return base.GetRectangle();
         }
 
         /// <summary>
@@ -30,6 +40,14 @@ namespace DualViewsDrawingModelTest.Mocks
         }
 
         /// <summary>
+        /// Draws the selection border.
+        /// </summary>
+        public override void DrawSelectionBorder(IGraphics graphics)
+        {
+            /* Body intentionally empty */
+        }
+
+        /// <summary>
         /// Gets the close point detector.
         /// </summary>
         public override IClosePointDetector GetClosePointDetector()
@@ -38,12 +56,11 @@ namespace DualViewsDrawingModelTest.Mocks
         }
 
         /// <summary>
-        /// Gets the rectangle.
+        /// Gets the corner points.
         /// </summary>
-        public override Rectangle GetRectangle()
+        public override List<Point> GetCornerPoints()
         {
-            IsCalledGetRectangle = true;
-            return base.GetRectangle();
+            return null;
         }
     }
 }

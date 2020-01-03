@@ -17,12 +17,27 @@ namespace DualViewsDrawingModelTest.Mocks
         {
             get; set;
         }
+        public bool IsCalledDrawSelectionBorderLine
+        {
+            get; set;
+        }
+        public bool IsCalledDrawSelectionBorderRectangle
+        {
+            get; set;
+        }
+        public bool IsCalledDrawSelectionCorner
+        {
+            get; set;
+        }
 
         public GraphicsMock() : base()
         {
             IsCalledClearAll = false;
             IsCalledDrawLine = false;
             IsCalledDrawRectangle = false;
+            IsCalledDrawSelectionBorderLine = false;
+            IsCalledDrawSelectionBorderRectangle = false;
+            IsCalledDrawSelectionCorner = false;
         }
 
         /// <summary>
@@ -47,6 +62,30 @@ namespace DualViewsDrawingModelTest.Mocks
         public void Draw(Rectangle rectangle)
         {
             IsCalledDrawRectangle = true;
+        }
+
+        /// <summary>
+        /// Draws the selection border.
+        /// </summary>
+        public void DrawSelectionBorder(Line line)
+        {
+            IsCalledDrawSelectionBorderLine = true;
+        }
+
+        /// <summary>
+        /// Draws the selection border.
+        /// </summary>
+        public void DrawSelectionBorder(Rectangle rectangle)
+        {
+            IsCalledDrawSelectionBorderRectangle = true;
+        }
+
+        /// <summary>
+        /// Draws the selection corner.
+        /// </summary>
+        public void DrawSelectionCorner(Point point)
+        {
+            IsCalledDrawSelectionCorner = true;
         }
     }
 }

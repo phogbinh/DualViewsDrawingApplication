@@ -3,6 +3,7 @@ using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace DualViewsDrawingModel.ShapeDrawers.Test
 {
@@ -54,12 +55,35 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
+        /// Tests the draw selection border.
+        /// </summary>
+        [TestMethod()]
+        public void TestDrawSelectionBorder()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => _lineDrawer.DrawSelectionBorder(null));
+            var graphics = new GraphicsMock();
+            _lineDrawer.DrawSelectionBorder(graphics);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionBorderLine);
+        }
+
+        /// <summary>
         /// Tests the get close point detector.
         /// </summary>
         [TestMethod()]
         public void TestGetClosePointDetector()
         {
             Assert.IsInstanceOfType(_lineDrawer.GetClosePointDetector(), typeof(Line));
+        }
+
+        /// <summary>
+        /// Tests the get corner points.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCornerPoints()
+        {
+            List<Point> expectedCornerPoints = _lineDrawer.GetCornerPoints();
+            Assert.AreSame(expectedCornerPoints[ 0 ], _target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT));
+            Assert.AreSame(expectedCornerPoints[ 1 ], _target.GetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT));
         }
 
         /// <summary>

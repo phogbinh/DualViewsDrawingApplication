@@ -114,5 +114,37 @@ namespace DualViewsDrawingModel.Shapes
         {
             return _y + Height;
         }
+
+        /// <summary>
+        /// Gets the upper left point.
+        /// </summary>
+        public Point GetUpperLeftPoint()
+        {
+            return new Point(_x, _y);
+        }
+
+        /// <summary>
+        /// Gets the upper right point.
+        /// </summary>
+        public Point GetUpperRightPoint()
+        {
+            return new Point(GetLowerRightX(), _y);
+        }
+
+        /// <summary>
+        /// Gets the lower right point.
+        /// </summary>
+        public Point GetLowerRightPoint()
+        {
+            return new Point(GetLowerRightX(), GetLowerRightY());
+        }
+
+        /// <summary>
+        /// Gets the lower left point.
+        /// </summary>
+        public Point GetLowerLeftPoint()
+        {
+            return new Point(_x, GetLowerRightY());
+        }
     }
 }

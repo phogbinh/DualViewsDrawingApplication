@@ -3,6 +3,7 @@ using DualViewsDrawingModelTest;
 using DualViewsDrawingModelTest.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace DualViewsDrawingModel.ShapeDrawers.Test
 {
@@ -54,12 +55,45 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
+        /// Tests the draw selection border.
+        /// </summary>
+        [TestMethod()]
+        public void TestDrawSelectionBorder()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => _rectangleDrawer.DrawSelectionBorder(null));
+            var graphics = new GraphicsMock();
+            _rectangleDrawer.DrawSelectionBorder(graphics);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionBorderRectangle);
+        }
+
+        /// <summary>
         /// Tests the get close point detector.
         /// </summary>
         [TestMethod()]
         public void TestGetClosePointDetector()
         {
             Assert.IsInstanceOfType(_rectangleDrawer.GetClosePointDetector(), typeof(Rectangle));
+        }
+
+        /// <summary>
+        /// Tests the get corner points.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetCornerPoints()
+        {
+            var drawingStartingPoint = new Point(0.0, 0.1);
+            var drawingEndingPoint = new Point(1.0, 1.1);
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_STARTING_POINT, drawingStartingPoint);
+            _target.SetFieldOrProperty(MEMBER_VARIABLE_NAME_DRAWING_ENDING_POINT, drawingEndingPoint);
+            List<Point> expectedCornerPoints = _rectangleDrawer.GetCornerPoints();
+            Assert.AreEqual(expectedCornerPoints[ 0 ].X, 0.0);
+            Assert.AreEqual(expectedCornerPoints[ 0 ].Y, 0.1);
+            Assert.AreEqual(expectedCornerPoints[ 1 ].X, 1.0);
+            Assert.AreEqual(expectedCornerPoints[ 1 ].Y, 0.1);
+            Assert.AreEqual(expectedCornerPoints[ 2 ].X, 1.0);
+            Assert.AreEqual(expectedCornerPoints[ 2 ].Y, 1.1);
+            Assert.AreEqual(expectedCornerPoints[ 3 ].X, 0.0);
+            Assert.AreEqual(expectedCornerPoints[ 3 ].Y, 1.1);
         }
     }
 }
