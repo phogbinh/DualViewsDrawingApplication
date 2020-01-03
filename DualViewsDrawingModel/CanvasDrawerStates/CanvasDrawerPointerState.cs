@@ -108,7 +108,10 @@ namespace DualViewsDrawingModel.CanvasDrawerStates
         /// </summary>
         public void Draw(IGraphics graphics)
         {
-            /* Body intentionally empty */
+            if ( _currentSelectedShapeShapeDrawer != null )
+            {
+                _currentSelectedShapeShapeDrawer.DrawSelectionHint(graphics);
+            }
         }
 
         /// <summary>
