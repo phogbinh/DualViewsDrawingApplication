@@ -265,7 +265,7 @@ namespace DualViewsDrawingModel.Test
         public void TestGetSelectedShapeShapeDrawer()
         {
             _canvasDrawer.GetSelectedShapeShapeDrawer(new Point());
-            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledGetMostRecentDrawnShapeDrawerThatIsCloseToPoint);
+            Assert.IsTrue(_canvasShapeDrawersHelper.IsCalledGetMostRecentDrawShapeDrawerThatIsCloseToPoint);
         }
 
         /// <summary>

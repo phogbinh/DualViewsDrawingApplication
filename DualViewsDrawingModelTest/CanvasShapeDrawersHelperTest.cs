@@ -98,14 +98,14 @@ namespace DualViewsDrawingModel.Test
         /// Tests the get most recent drawn shape drawer that includes point.
         /// </summary>
         [TestMethod()]
-        public void TestGetMostRecentDrawnShapeDrawerThatIncludesPoint()
+        public void TestGetMostRecentDrawShapeDrawerThatIncludesPoint()
         {
             var rectangleDrawer = new RectangleDrawer(new Point(0.0, 0.0), new Point(5.0, 5.0));
             var lineDrawer = new LineDrawer(new Point(0.0, 0.0), new Point(5.0, 5.0));
             _shapeDrawers.Add(rectangleDrawer);
             _shapeDrawers.Add(lineDrawer);
-            Assert.AreSame(_canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIsCloseToPoint(new Point(2.5, 2.5), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED), lineDrawer);
-            Assert.IsNull(_canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIsCloseToPoint(new Point(-0.1, 0.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.AreSame(_canvasShapeDrawersHelper.GetMostRecentDrawShapeDrawerThatIsCloseToPoint(new Point(2.5, 2.5), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED), lineDrawer);
+            Assert.IsNull(_canvasShapeDrawersHelper.GetMostRecentDrawShapeDrawerThatIsCloseToPoint(new Point(-0.1, 0.0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
         }
 
         /// <summary>

@@ -59,7 +59,7 @@ namespace DualViewsDrawingModel
         /// <summary>
         /// Gets the most recent drawn shape drawer that is close to point.
         /// </summary>
-        public virtual ShapeDrawer GetMostRecentDrawnShapeDrawerThatIsCloseToPoint(Point point, double pointToShapeDrawerMaximumDistanceSquared)
+        public virtual ShapeDrawer GetMostRecentDrawShapeDrawerThatIsCloseToPoint(Point point, double pointToShapeDrawerMaximumDistanceSquared)
         {
             for ( int index = _shapeDrawers.Count - 1; index >= 0; index-- )
             {

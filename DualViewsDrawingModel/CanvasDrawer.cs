@@ -213,7 +213,7 @@ namespace DualViewsDrawingModel
         /// </summary>
         public virtual ShapeDrawer GetSelectedShapeShapeDrawer(Point leftMousePressedPosition)
         {
-            return _canvasShapeDrawersHelper.GetMostRecentDrawnShapeDrawerThatIsCloseToPoint(leftMousePressedPosition, Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED);
+            return _canvasShapeDrawersHelper.GetMostRecentDrawShapeDrawerThatIsCloseToPoint(leftMousePressedPosition, Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED);
         }
 
         /// <summary>
