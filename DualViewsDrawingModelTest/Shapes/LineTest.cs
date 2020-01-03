@@ -35,6 +35,24 @@ namespace DualViewsDrawingModel.Shapes.Test
         }
 
         /// <summary>
+        /// Tests the is close to point.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsCloseToPoint()
+        {
+            _line = new Line(new Point(0, 3), new Point(2, -1)); // 2 * x + y = 3
+            Assert.IsTrue(_line.IsCloseToPoint(new Point(0, 3), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsTrue(_line.IsCloseToPoint(new Point(2, -1), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(_line.IsCloseToPoint(new Point(-0.2, 3.4), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(_line.IsCloseToPoint(new Point(2.2, -1.4), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsTrue(_line.IsCloseToPoint(new Point(1, 1), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsTrue(_line.IsCloseToPoint(new Point(2, 2), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsTrue(_line.IsCloseToPoint(new Point(0, 0), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(_line.IsCloseToPoint(new Point(3, 3), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+            Assert.IsFalse(_line.IsCloseToPoint(new Point(-1, -1), Definitions.MOUSE_POSITION_TO_SELECTION_SHAPE_MAXIMUM_DISTANCE_SQUARED));
+        }
+
+        /// <summary>
         /// Tests the get closest point.
         /// </summary>
         [TestMethod()]
