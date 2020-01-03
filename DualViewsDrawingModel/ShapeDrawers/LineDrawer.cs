@@ -23,6 +23,18 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
 
         /// <summary>
+        /// Draws the selection border.
+        /// </summary>
+        public override void DrawSelectionBorder(IGraphics graphics)
+        {
+            if ( graphics == null )
+            {
+                throw new ArgumentNullException(Definitions.ERROR_GRAPHICS_IS_NULL);
+            }
+            graphics.DrawSelectionBorder(GetLine());
+        }
+
+        /// <summary>
         /// Gets the close point detector.
         /// </summary>
         public override IClosePointDetector GetClosePointDetector()

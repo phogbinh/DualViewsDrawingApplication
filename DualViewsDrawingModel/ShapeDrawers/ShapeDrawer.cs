@@ -72,6 +72,11 @@ namespace DualViewsDrawingModel.ShapeDrawers
         public abstract void Draw(IGraphics graphics);
 
         /// <summary>
+        /// Draws the selection border.
+        /// </summary>
+        public abstract void DrawSelectionBorder(IGraphics graphics);
+
+        /// <summary>
         /// Gets the close point detector.
         /// </summary>
         public abstract IClosePointDetector GetClosePointDetector();

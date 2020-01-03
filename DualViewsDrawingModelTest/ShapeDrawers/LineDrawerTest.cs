@@ -54,6 +54,18 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
         }
 
         /// <summary>
+        /// Tests the draw selection border.
+        /// </summary>
+        [TestMethod()]
+        public void TestDrawSelectionBorder()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => _lineDrawer.DrawSelectionBorder(null));
+            var graphics = new GraphicsMock();
+            _lineDrawer.DrawSelectionBorder(graphics);
+            Assert.IsTrue(graphics.IsCalledDrawSelectionBorderLine);
+        }
+
+        /// <summary>
         /// Tests the get close point detector.
         /// </summary>
         [TestMethod()]

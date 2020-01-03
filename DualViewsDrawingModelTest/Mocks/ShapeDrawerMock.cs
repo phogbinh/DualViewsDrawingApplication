@@ -30,6 +30,14 @@ namespace DualViewsDrawingModelTest.Mocks
         }
 
         /// <summary>
+        /// Draws the selection border.
+        /// </summary>
+        public override void DrawSelectionBorder(IGraphics graphics)
+        {
+            /* Body intentionally empty */
+        }
+
+        /// <summary>
         /// Gets the close point detector.
         /// </summary>
         public override IClosePointDetector GetClosePointDetector()
