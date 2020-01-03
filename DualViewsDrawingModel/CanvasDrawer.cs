@@ -44,6 +44,7 @@ namespace DualViewsDrawingModel
             }
             _commandsManager = commandsManagerData;
             _canvasShapeDrawersHelper = new CanvasShapeDrawersHelper();
+            this.CurrentShapeChanged += NotifyCanvasRefreshDrawRequested;
         }
 
         /// <summary>
