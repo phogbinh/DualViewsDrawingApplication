@@ -76,6 +76,17 @@ namespace DualViewsDrawingModel.Shapes.Test
         }
 
         /// <summary>
+        /// Tests the is close to point.
+        /// </summary>
+        [TestMethod()]
+        public void TestIsCloseToPoint()
+        {
+            PointMock point = new PointMock();
+            _rectangle.IsCloseToPoint(point, TestDefinitions.DUMP_DOUBLE);
+            Assert.IsTrue(point.IsCalledIsInclusiveInRegion);
+        }
+
+        /// <summary>
         /// Tests the is including point.
         /// </summary>
         [TestMethod()]

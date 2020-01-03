@@ -23,6 +23,14 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
 
         /// <summary>
+        /// Gets the close point detector.
+        /// </summary>
+        public override IClosePointDetector GetClosePointDetector()
+        {
+            return GetLine();
+        }
+
+        /// <summary>
         /// Gets the line.
         /// </summary>
         private Line GetLine()

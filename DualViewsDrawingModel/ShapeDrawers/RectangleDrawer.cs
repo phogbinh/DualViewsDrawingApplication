@@ -1,5 +1,4 @@
-﻿using DualViewsDrawingModel.Shapes;
-using System;
+﻿using System;
 
 namespace DualViewsDrawingModel.ShapeDrawers
 {
@@ -20,6 +19,14 @@ namespace DualViewsDrawingModel.ShapeDrawers
                 throw new ArgumentNullException(Definitions.ERROR_GRAPHICS_IS_NULL);
             }
             graphics.Draw(GetRectangle());
+        }
+
+        /// <summary>
+        /// Gets the close point detector.
+        /// </summary>
+        public override IClosePointDetector GetClosePointDetector()
+        {
+            return GetRectangle();
         }
     }
 }

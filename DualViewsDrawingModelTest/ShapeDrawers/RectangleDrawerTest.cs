@@ -50,5 +50,14 @@ namespace DualViewsDrawingModel.ShapeDrawers.Test
             _rectangleDrawer.Draw(graphics);
             Assert.IsTrue(graphics.IsCalledDrawRectangle);
         }
+
+        /// <summary>
+        /// Tests the get close point detector.
+        /// </summary>
+        [TestMethod()]
+        public void TestGetClosePointDetector()
+        {
+            Assert.IsInstanceOfType(_rectangleDrawer.GetClosePointDetector(), typeof(Rectangle));
+        }
     }
 }
