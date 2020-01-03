@@ -103,6 +103,9 @@
     <Compile Include="..\DualViewsDrawingModel\IIncludingPointDetector.cs">
       <Link>Models\IIncludingPointDetector.cs</Link>
     </Compile>
+    <Compile Include="..\DualViewsDrawingModel\IResizingCommandAgent.cs">
+      <Link>Models\IResizingCommandAgent.cs</Link>
+    </Compile>
     <Compile Include="..\DualViewsDrawingModel\Model.cs">
       <Link>Models\Model.cs</Link>
     </Compile>

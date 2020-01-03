@@ -59,6 +59,7 @@
     <Compile Include="IIncludingPointDetector.cs" />
     <Compile Include="IDrawingCommandAgent.cs" />
     <Compile Include="IGraphics.cs" />
+    <Compile Include="IResizingCommandAgent.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="ShapeDrawers\LineDrawer.cs" />

@@ -6,7 +6,7 @@ using System;
 
 namespace DualViewsDrawingModel
 {
-    public class CanvasDrawer : IDrawingCommandAgent
+    public class CanvasDrawer : IDrawingCommandAgent, IResizingCommandAgent
     {
         public delegate void CanvasRefreshDrawRequestedEventHandler();
         public delegate void DrawingEndedEventHandler();
@@ -180,6 +180,15 @@ namespace DualViewsDrawingModel
         public virtual void RemoveShape(ShapeDrawer shapeDrawer)
         {
             _canvasShapeDrawersHelper.RemoveShapeDrawer(shapeDrawer);
+            NotifyCanvasRefreshDrawRequested();
+        }
+
+        /// <summary>
+        /// Resizes the shape.
+        /// </summary>
+        public void ResizeShape(ShapeDrawer shapeDrawer, Point drawingEndingPoint)
+        {
+            shapeDrawer.DrawingEndingPoint = drawingEndingPoint;
             NotifyCanvasRefreshDrawRequested();
         }
 

@@ -223,6 +223,21 @@ namespace DualViewsDrawingModel.Test
         }
 
         /// <summary>
+        /// Tests the resize shape.
+        /// </summary>
+        [TestMethod()]
+        public void TestResizeShape()
+        {
+            int count = 0;
+            _canvasDrawer.CanvasRefreshDrawRequested += () => count++;
+            var shapeDrawer = new ShapeDrawerMock(new Point(), new Point());
+            var drawingEndingPoint = new Point();
+            _canvasDrawer.ResizeShape(shapeDrawer, drawingEndingPoint);
+            Assert.AreSame(shapeDrawer.DrawingEndingPoint, drawingEndingPoint);
+            Assert.AreEqual(count, 1);
+        }
+
+        /// <summary>
         /// Tests the create then execute drawing command to draw shape using current shape drawer.
         /// </summary>
         [TestMethod()]
