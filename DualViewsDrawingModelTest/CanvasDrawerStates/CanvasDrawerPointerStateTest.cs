@@ -86,6 +86,21 @@ namespace DualViewsDrawingModel.CanvasDrawerStates.Test
         }
 
         /// <summary>
+        /// Tests the state of the go to drawing.
+        /// </summary>
+        [TestMethod()]
+        public void TestGoToDrawingState()
+        {
+            const string MEMBER_FUNCTION_NAME_GO_TO_DRAWING_STATE = "GoToDrawingState";
+            _canvasDrawer.SetCurrentShapeDrawerType(ShapeDrawerType.Rectangle);
+            var arguments = new object[] { new Point() };
+            _target.Invoke(MEMBER_FUNCTION_NAME_GO_TO_DRAWING_STATE, arguments);
+            Assert.IsTrue(_canvasDrawer.IsCalledSetCurrentState);
+            Assert.IsInstanceOfType(_canvasDrawer.CurrentState, typeof(CanvasDrawerDrawingState));
+            Assert.IsTrue(_canvasDrawer.IsCalledNotifyCurrentShapeChanged);
+        }
+
+        /// <summary>
         /// Tests the handle canvas left mouse moved.
         /// </summary>
         [TestMethod()]
