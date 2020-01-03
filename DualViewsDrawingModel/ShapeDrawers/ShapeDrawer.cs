@@ -14,6 +14,10 @@ namespace DualViewsDrawingModel.ShapeDrawers
         }
         public Point DrawingEndingPoint
         {
+            get
+            {
+                return _drawingEndingPoint;
+            }
             set
             {
                 _drawingEndingPoint = value;
