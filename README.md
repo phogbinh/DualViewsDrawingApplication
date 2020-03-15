@@ -3,6 +3,9 @@
 ## Description
 This is a simple drawing application for Windows which supports two view versions: Windows Forms and Universal Windows Platform (UWP).
 
+## Contributor
+* [phogbinh](https://github.com/phogbinh)
+
 ## Design Patterns
 The application is implemented applying the following design patterns:
 * Model-View-Controller (MVC) Pattern
